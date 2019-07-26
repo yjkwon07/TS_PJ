@@ -5,3 +5,11 @@
 google mindmup을 활용하여 아이디어 확장
 
 [mindmup](https://drive.mindmup.com/map/1EwfCe1HodFb2d6O-Y9zePkc0dbcALPMT)
+
+# 개발환경👷
+-- version? 
+```
+java
+spring 
+ORACLE
+```
