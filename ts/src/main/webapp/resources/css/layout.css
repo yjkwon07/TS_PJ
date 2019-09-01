@@ -1,0 +1,41 @@
+@import "./default.css";
+@import "./header.css";
+@import "./quickMenu.css";
+a{
+	text-decoration: none;
+}
+a:link {
+	color :#95a5a6;
+}
+a:visited {
+	color :#95a5a6;
+}
+a:hover {
+	color :#f39c12;
+}
+div.cs_body_Content {
+
+}
+header {
+	padding-right: 5rem;
+}
+
+aside {
+    flex-basis: 10rem;
+    border: 1px solid;
+    align-content: left;
+}
+
+article {
+	flex-basis: 88rem;
+    border:  1px solid;
+    
+}
+.cs_body_asid_article_flex {
+	clear:both;
+	display:flex;
+}
+footer {
+    border: 1px solid;
+}
+

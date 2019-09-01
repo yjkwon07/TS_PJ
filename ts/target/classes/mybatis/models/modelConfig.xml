@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration 	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<!-- parameterType이나 resultType에 클래스이름을 패키지명 생략가능! -->
+	<typeAliases>
+		<package name="com.duojj.vo" />
+	</typeAliases>
+</configuration>

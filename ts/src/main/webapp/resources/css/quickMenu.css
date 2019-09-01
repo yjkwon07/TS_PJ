@@ -1,0 +1,44 @@
+.cs_body_Quickmenu {
+	text-align: center;
+	font-size: 0.8rem;
+	
+	border-radius: 0.6rem;
+    box-sizing: border-box;
+    position: fixed;
+    top: 8.1rem;
+    right: 0.3rem;
+   
+    background: rgb(83, 92, 104, 0.1);
+}
+.cs_quickMenu {
+	padding-left: 0.4rem;
+}
+.cs_quickMenu > ul{
+	margin-bottom: 0.7rem;
+	
+	text-align: left;
+}
+.cs_quickMenu > ul > li > a {
+}
+.cs_quickMenu > ul > li > a > img{
+	border-radius: 1rem;
+	width: 1.5rem;
+	margin-top: 0.2rem;
+	margin-right: 0.3rem;
+}
+.cs_quickMenu_Recent {
+	border: 0.15rem solid;
+	border-color: #badc58;
+	font-size: 0.4rem;
+	line-height: 1.5rem;
+		
+    margin-right: 0.2rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+.cs_quickMenu_Recent > img {
+	width:200px;
+}
+.cs_quickMenu > .cs_quickMenu_Subbar {
+	    padding: 6px;
+}

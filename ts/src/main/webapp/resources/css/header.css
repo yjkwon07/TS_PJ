@@ -1,0 +1,35 @@
+.cs_header_Logo > a >img {
+    width: 10rem;
+    height: 7rem;
+    
+    float: left;
+    margin-top: 0.5rem;
+}
+.cs_header_link {
+    float: right;
+    margin: 1rem;
+}
+.cs_header_link > ul {
+	font-size: 0.8rem;
+	
+    display: flex;
+}
+.cs_header_link > ul > li {
+	margin-right: 0.5rem;
+    padding-right: 0.5rem;
+    border-right: 1px solid;
+    border-color: hotpink;
+}
+.cs_header_Search {
+	clear:right;
+	height: 25px;
+    text-align: right;
+    
+    padding-right: 1.5rem;
+}
+.cs_header_Search > form > input{
+	border: 0.2rem solid;
+	border-color: rgb(186, 220, 88);
+	width: 11.5rem;
+	height: 1.8rem;
+}
