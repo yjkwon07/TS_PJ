@@ -1,0 +1,33 @@
+package com.duojj.controller;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.duojj.service.UserService;
+import com.duojj.vo.UserVO;
+
+@Controller("UserController")
+@RequestMapping(value = "/user")
+@EnableAspectJAutoProxy
+public class UserController {
+	@Autowired
+	UserService userService;
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public void UserDetals(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		List<UserVO> list= userService.selectGoodsList();
+		for(UserVO user : list) {
+			System.out.println(user.getUser_name());	
+		}
+		
+	}
+	
+}
