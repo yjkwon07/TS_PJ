@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+    <!-- CategoriesPage-->
+    <definition name="/categoires" extends="baseLayout">
+        <put-attribute name="title" value="TS_PJ_Categories"/>
+        <put-attribute name="content" value="/WEB-INF/views/content/categories.jsp"/>
+    </definition>
+</tiles-definitions>
