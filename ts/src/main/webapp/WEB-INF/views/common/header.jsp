@@ -6,51 +6,182 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <body>
-    <div class="cs_header_Logo">
-        <a href="${contextPath}/main/main.do">
-            <img class="cs_main_Logo" alt="메인로고" src="${contextPath}/resources/image/main.png" />
-        </a>
-    </div>
-    <div class="cs_header_Link">
-        <ul>
-            <c:choose>
-                <c:when test="${isLogOn == true and not empty memberInfo}">
-                    <li>환영합니다!!</li>
-                    <li><a href="${contextPath}/">로그아웃</a></li>
-                    <li><a href="${contextPath}/">마이페이지</a></li>
-                    <li><a href="${contextPath}/">장바구니</a></li>
-                    <li><a href="${contextPath}/">주문배송</a></li>
-                </c:when>
-                <c:otherwise>
-                    <li><a href="${contextPath}/">로그인</a></li>
-                    <li><a href="${contextPath}/">회원가입</a></li>
-                </c:otherwise>
-            </c:choose>
-            <li>
-                <a href="${contextPath}/">고객센터</a>
-            </li>
-            <c:if test="${isLogOn==true and memberInfo.member_id=='admin'}">
-                <li>
-                    <a href="${contextPath}/">관리자</a>
-                </li>
-            </c:if>
-        </ul>
-    </div>
-    
-    <!-- SearchBar -->
-    <div class="cs_header_Search">
-        <form name="formSearch" action="${contextPath}/">
-            <input name="searchWord" type="text" placeholder="Search">
-            <!-- 돋보기이미지로 수정하기 -->
-            <button name="search" type="submit">검색</button>
-        </form>
-    </div>
-    <!-- 
-        cs_header_Search에 ajax로 검색을 통하여 
-        cs_header_Suggest영역에 결과를 계속해서 나타내기
-    -->
-    <div class="cs_header_Suggest">
-        <div class="cs_header_SuggestList"></div>
-    </div> 
-    <script src="${contextPath}/resources/js/common/header.js"></script>
+<!-- Header Container
+================================================== -->
+<header id="header-container">
+
+	<!-- Header -->
+	<div id="header">
+		<div class="container">
+			
+			<!-- Left Side Content -->
+			<div class="left-side">
+				
+				<!-- Logo -->
+				<div id="logo">
+					<a href="/"><img src="${contextPath}/resources/images/logo.png" alt=""></a>
+				</div>
+
+				<!-- Mobile Navigation -->
+				<div class="mmenu-trigger">
+					<button class="hamburger hamburger--collapse" type="button">
+						<span class="hamburger-box">
+							<span class="hamburger-inner"></span>
+						</span>
+					</button>
+				</div>
+
+				<!-- Main Navigation -->
+				<nav id="navigation" class="style-1">
+					<ul id="responsive">
+
+						<li><a href="#">Categories</a>
+							<ul>
+								<li><a href="#">프로그래밍</a>
+									<ul>
+										<li><a href="listings-list-with-sidebar.html">웹/앱</a></li>
+										<li><a href="listings-list-full-width.html">클라우드</a></li>
+										<li><a href="listings-list-full-width-with-map.html">코딩</a></li>
+									</ul>
+								</li>
+								<li><a href="#">뷰티</a>
+									<ul>
+										<li><a href="listings-grid-with-sidebar-1.html">뷰티</a></li>
+										<li><a href="listings-grid-with-sidebar-2.html">커스텀</a></li>
+										<li><a href="listings-grid-full-width.html">의류</a></li>
+									</ul>
+								</li>
+								<li><a href="#">Half Screen Map</a>
+									<ul>
+										<li><a href="listings-half-screen-map-list.html">List Layout</a></li>
+										<li><a href="listings-half-screen-map-grid-1.html">Grid Layout 1</a></li>
+										<li><a href="listings-half-screen-map-grid-2.html">Grid Layout 2</a></li>
+									</ul>
+								</li>
+								<li><a href="listings-single-page.html">Single Listing 1</a></li>
+								<li><a href="listings-single-page-2.html">Single Listing 2</a></li>
+							</ul>
+						</li>
+
+						<li><a href="#">User Board</a>
+						</li>
+
+						<li><a href="#">User Profile</a>
+						</li>
+						
+					</ul>
+				</nav>
+				<div class="clearfix"></div>
+				<!-- Main Navigation / End -->
+				
+			</div>
+			<!-- Left Side Content / End -->
+
+
+			<!-- Right Side Content / End -->
+			<div class="right-side">
+				<div class="header-widget">
+					<a href="#sign-in-dialog" class="sign-in popup-with-zoom-anim"><i class="sl sl-icon-login"></i> Sign In</a>
+				</div>
+			</div>
+			<!-- Right Side Content / End -->
+
+			<!-- Sign In Popup -->
+			<div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide">
+
+				<div class="small-dialog-header">
+					<h3>Sign In</h3>
+				</div>
+
+				<!--Tabs -->
+				<div class="sign-in-form style-1">
+
+					<ul class="tabs-nav">
+						<li class=""><a href="#tab1">Log In</a></li>
+						<li><a href="#tab2">Register</a></li>
+					</ul>
+
+					<div class="tabs-container alt">
+
+						<!-- Login -->
+						<div class="tab-content" id="tab1" style="display: none;">
+							<form method="post" class="login">
+
+								<p class="form-row form-row-wide">
+									<label for="username">Username:
+										<i class="im im-icon-Male"></i>
+										<input type="text" class="input-text" name="username" id="username" value="" />
+									</label>
+								</p>
+
+								<p class="form-row form-row-wide">
+									<label for="password">Password:
+										<i class="im im-icon-Lock-2"></i>
+										<input class="input-text" type="password" name="password" id="password"/>
+									</label>
+									<span class="lost_password">
+										<a href="#" >Lost Your Password?</a>
+									</span>
+								</p>
+
+								<div class="form-row">
+									<input type="submit" class="button border margin-top-5" name="login" value="Login" />
+									<div class="checkboxes margin-top-10">
+										<input id="remember-me" type="checkbox" name="check">
+										<label for="remember-me">Remember Me</label>
+									</div>
+								</div>
+								
+							</form>
+						</div>
+
+						<!-- Register -->
+						<div class="tab-content" id="tab2" style="display: none;">
+
+							<form method="post" class="register">
+								
+							<p class="form-row form-row-wide">
+								<label for="username2">Username:
+									<i class="im im-icon-Male"></i>
+									<input type="text" class="input-text" name="username" id="username2" value="" />
+								</label>
+							</p>
+								
+							<p class="form-row form-row-wide">
+								<label for="email2">Email Address:
+									<i class="im im-icon-Mail"></i>
+									<input type="text" class="input-text" name="email" id="email2" value="" />
+								</label>
+							</p>
+
+							<p class="form-row form-row-wide">
+								<label for="password1">Password:
+									<i class="im im-icon-Lock-2"></i>
+									<input class="input-text" type="password" name="password1" id="password1"/>
+								</label>
+							</p>
+
+							<p class="form-row form-row-wide">
+								<label for="password2">Repeat Password:
+									<i class="im im-icon-Lock-2"></i>
+									<input class="input-text" type="password" name="password2" id="password2"/>
+								</label>
+							</p>
+
+							<input type="submit" class="button border fw margin-top-10" name="register" value="Register" />
+	
+							</form>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<!-- Sign In Popup / End -->
+
+		</div>
+	</div>
+	<!-- Header / End -->
+</header>
+<div class="clearfix"></div>
+<!-- Header Container / End -->
 </body>
