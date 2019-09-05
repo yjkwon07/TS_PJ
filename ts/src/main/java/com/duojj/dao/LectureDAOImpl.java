@@ -20,4 +20,6 @@ public class LectureDAOImpl implements LectureDAO{
 		
 		session.insert(namespace+".postLectureRegister",vo);
 	}
+	
+	
 }

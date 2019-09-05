@@ -1,22 +1,19 @@
 package com.duojj.dao;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
-import org.springframework.stereotype.Repository;
-
+import com.duojj.dto.LoginDTO;
 import com.duojj.vo.UserVO;
 
-@Repository("UserDao")
-public class UserDao {
-	@Autowired
-	private SqlSession sqlSession;
+public interface UserDAO {
 	
-	public List<UserVO> selectGoodsList() throws DataAccessException {
-		List<UserVO> goodsList=(ArrayList)sqlSession.selectList("mapper.goods.selectGoodsList");
-		return goodsList;
-	}
+	//로그인
+	public UserVO login(LoginDTO dto)throws Exception;
+	
+	//로그인한 사용자의 sessionkey와 sessionLimit를 업데이트하는 기능
+	public void keepLogin(String user_id, String sessionId, Date next);
+	
+	//기록된 값으로 사용자의 정보를 조회하는 기능
+	public UserVO checkUserWithSessionKey(String value);
+	
 }
