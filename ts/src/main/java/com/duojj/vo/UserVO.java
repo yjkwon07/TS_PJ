@@ -3,9 +3,20 @@ package com.duojj.vo;
 import java.util.Date;
 
 public class UserVO {
-	String user_id;
-	String user_pw;
-	String user_name;
+	private String user_id;
+	private String user_pw;
+	private String user_name;
+	private String user_birth;
+	private String user_image;
+	private int user_sex;
+	private String user_status;
+	private String user_youtube;
+	private int user_auth;
+	private Date user_regdate;
+	private Date user_moddate;
+	private String user_sessionkey;
+	private Date user_sessionlimit;
+	
 	public String getUser_id() {
 		return user_id;
 	}
@@ -84,14 +95,5 @@ public class UserVO {
 	public void setUser_sessionlimit(Date user_sessionlimit) {
 		this.user_sessionlimit = user_sessionlimit;
 	}
-	String user_birth;
-	String user_image;
-	int user_sex;
-	String user_status;
-	String user_youtube;
-	int user_auth;
-	Date user_regdate;
-	Date user_moddate;
-	String user_sessionkey;
-	Date user_sessionlimit;
+
 }

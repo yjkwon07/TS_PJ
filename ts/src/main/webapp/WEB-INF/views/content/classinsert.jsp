@@ -74,7 +74,7 @@
 									<i class="tip" 
 										data-tip-content="Maximum of 15 keywords related with your business"></i>
 								</h5>
-								<input type="text" placeholder="Teacher name" disabled>
+								<input type="text" value='${login.user_name}' disabled>
 							</div>
 
 							<!-- Type -->

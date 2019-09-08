@@ -37,6 +37,11 @@
 			value="org.springframework.web.servlet.view.tiles2.TilesView" />
 	</beans:bean>
 
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
 <!-- 
 	<mvc:interceptors>
 		<mvc:interceptor>
@@ -47,8 +52,23 @@
 	</mvc:interceptors>
 -->
 
-	<context:component-scan
-		base-package="com.duojj.*" />
+	<beans:bean id="authInterceptor" class="com.duojj.interceptor.AuthInterceptor"></beans:bean>
+	
+	<beans:bean id="loginCheckInterceptor" class="com.duojj.interceptor.LoginCheckInterceptor"></beans:bean>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/user/loginPost"/>
+			<beans:ref bean="loginCheckInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/test/classinsert"/>
+			<beans:ref bean="authInterceptor"/>
+		</interceptor>
+	</interceptors>
+
+	<context:component-scan base-package="com.duojj.controller" />
 	
 	<!-- 멀티파트 리졸버 -->
 	<beans:bean id="multipartResolvver"
