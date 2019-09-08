@@ -54,12 +54,12 @@
 
 	<beans:bean id="authInterceptor" class="com.duojj.interceptor.AuthInterceptor"></beans:bean>
 	
-	<beans:bean id="loginInterceptor" class="com.duojj.interceptor.LoginInterceptor"></beans:bean>
+	<beans:bean id="loginCheckInterceptor" class="com.duojj.interceptor.LoginCheckInterceptor"></beans:bean>
 	
 	<interceptors>
 		<interceptor>
 			<mapping path="/user/loginPost"/>
-			<beans:ref bean="loginInterceptor"/>
+			<beans:ref bean="loginCheckInterceptor"/>
 		</interceptor>
 		
 		<interceptor>

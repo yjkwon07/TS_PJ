@@ -11,7 +11,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-public class LoginInterceptor extends HandlerInterceptorAdapter{
+public class LoginCheckInterceptor extends HandlerInterceptorAdapter{
 	
 	
 	/*
@@ -25,7 +25,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 	 */
 	
 	private static final String LOGIN = "login";
-	private static final Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
+	private static final Logger logger = LoggerFactory.getLogger(LoginCheckInterceptor.class);
 	
 	
 	@Override
@@ -58,11 +58,14 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 			
 			
 			//자동 로그인을 선택한 경우 쿠키를 생성하고 쿠키의 이름 'loginCookie'로 저장, 값에는 세션 쿠키의 값
+//			쿠키의 사용 범위를 지정해주지 않으면 쿠키를 보낸 서블릿의 경로에
+//		    한정. 따라서 쿠키의 사용 범위를 현재 웹 어플리케이션 전체로
+//		    지정해야함
 			if(request.getParameter("useCookie") != null) {
 				
 				logger.info("remember me..........");
 				Cookie loginCookie = new Cookie("loginCookie",session.getId());
-				loginCookie.setPath("/main");
+				loginCookie.setPath("/");
 				loginCookie.setMaxAge(60*60*24*7); //1주일간 브라우저에 보관
 				response.addCookie(loginCookie); // 만들어진 쿠키는 반드시 HttpServletResponse에 담겨서 전송
 			}

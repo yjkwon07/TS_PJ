@@ -7,8 +7,4 @@
         <put-attribute name="content" value="/WEB-INF/views/content/main.jsp"/>
     </definition>
     
-    <definition name="/login" extends="baseLayout">
-        <put-attribute name="title" value="TS_PJ_Login"/>
-        <put-attribute name="content" value="/WEB-INF/views/content/login.jsp"/>
-    </definition>
 </tiles-definitions>

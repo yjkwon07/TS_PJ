@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.util.WebUtils;
 
@@ -22,8 +23,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 	 * 안되어 있으면 로그인창으로 이동하고
 	 * 로그인하면 사용자가 원하는 URI로 다시 이동!
 	 */
-	
-	private static final Logger logger = LoggerFactory.getLogger(AuthInterceptor.class);
 	
 	@Inject
 	private UserService service;
@@ -45,7 +44,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 		}
 		
 		if(req.getMethod().equals("GET")) {
-			logger.info("dest: "+ (uri + query));
 			req.getSession().setAttribute("dest", uri + query);
 		}
 	}
@@ -57,7 +55,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 		
 		if(session.getAttribute("login") == null) {
 			
-			logger.info("current user is not logined");
 			
 			saveDest(request);
 			
@@ -68,9 +65,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 			
 			if(loginCookie != null) {
 				UserVO userVO = service.checkLoginBefore(loginCookie.getValue());
-				
-				logger.info("USERVO: " +userVO);
-				
+			
 				if(userVO != null) {
 					session.setAttribute("login", userVO);
 					return true;
