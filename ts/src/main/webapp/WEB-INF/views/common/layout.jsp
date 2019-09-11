@@ -36,38 +36,42 @@
 
 	<!-- Scripts
 ================================================== -->
+	<!-- After, method call complete -->
+	<script>
+		// Do the normal stuff for this function
+		function someMethodIThinkMightBeSlow(startTime) {
+  console.log(startTime);
+
+			var duration = performance.now() - startTime;
+			console.log('someMethodIThinkMightBeSlow took',duration,'ms');
+		}
+	</script>
+	
 	<!--default passive -->
 	<script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
 
-	<script type="text/javascript" src="${contextPath}/resources/scripts/jquery-2.2.0.min.js"></script>
-	<script type="text/javascript" src="${contextPath}/resources/scripts/mmenu.min.js"></script>
-	<script type="text/javascript" src="${contextPath}/resources/scripts/chosen.min.js"></script>
-	<script type="text/javascript" src="${contextPath}/resources/scripts/slick.min.js"></script>
-	<script type="text/javascript" src="${contextPath}/resources/scripts/rangeslider.min.js"></script>
-	<script type="text/javascript" src="${contextPath}/resources/scripts/magnific-popup.min.js"></script>
-	<script type="text/javascript" src="${contextPath}/resources/scripts/waypoints.min.js"></script>
-	<script type="text/javascript" src="${contextPath}/resources/scripts/counterup.min.js"></script>
-	<script type="text/javascript" src="${contextPath}/resources/scripts/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="${contextPath}/resources/scripts/tooltips.min.js"></script>
-	<script type="text/javascript" src="${contextPath}/resources/scripts/custom.js"></script>
+	<!--jquery-->
+	<script type="text/javascript" src="${contextPath}/resources/scripts/jquery/jquery-2.2.0.min.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/scripts/jquery/jquery-ui.min.js"></script>
 
-	<!-- Google Autocomplete -->
-	<script>
-		function someMethodIThinkMightBeSlow() {
-			var startTime = performance.now();
-
-			// Do the normal stuff for this function
-
-			var duration = performance.now() - startTime;
-			console.log(`someMethodIThinkMightBeSlow took ${duration}ms`);
-		}
-	</script>
+	<!--jQuery requestAnimationFrame-->
+	<!--optimizing view rendering-->
+	<script src="${contextPath}/resources/scripts/jquery-custom/min/requestanimationframe.min.js"></script>
+	<!--jquery-custom-->
+	<script type="text/javascript" src="${contextPath}/resources/scripts/jquery-custom/min/chosen.min.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/scripts/jquery-custom/min/magnific-popup.min.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/scripts/jquery-custom/min/mmenu.min.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/scripts/jquery-custom/min/slick.min.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/scripts/jquery-custom/min/rangeslider.min.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/scripts/jquery-custom/min/waypoints.min.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/scripts/jquery-custom/min/counterup.min.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/scripts/jquery-custom/min/tooltips.min.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/scripts/jquery-custom/custom.js"></script>
 
 	<!-- Maps -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsLQ-siN80uRGoJqri7Ib9qhYETZm2en8&libraries=places"></script>
+	<script	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsLQ-siN80uRGoJqri7Ib9qhYETZm2en8&libraries=places"></script>
 	<script type="text/javascript" src="${contextPath}/resources/scripts/maps/infobox.min.js"></script>
 	<script type="text/javascript" src="${contextPath}/resources/scripts/maps/markerclusterer.js"></script>
 	<script type="text/javascript" src="${contextPath}/resources/scripts/maps/custommarker.js"></script>
 	<script type="text/javascript" src="${contextPath}/resources/scripts/maps/mainMap.js"></script>
-
 </body>

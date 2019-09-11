@@ -1,6 +1,6 @@
 // Default infoBox Rating Type
 var INFOBOX_RATINGTYPE = 'star-rating';
-
+var IMAGE_URL = 'http://localhost:8090/jj/resources/images';
 // Google Map Style
 // https://mapstyle.withgoogle.com/
 var MAINMAP_STYLE = [{
@@ -180,49 +180,49 @@ function geolocate(map) {
 var locations = [
   {},
   {
-    html: locationData('listings-single-page.html', 'images/listing-item-01.jpg', "Tom's Restaurant", '964 School Street, New York', '3.5', '12'),
+    html: locationData('listings-single-page.html', `${IMAGE_URL}/classImages/listing-item-01.png`, "Tom's Restaurant", '964 School Street, New York', '3.5', '12'),
     lat: 40.94401669296697,
     lng: -74.16938781738281,
     pinMarkerId: 1,
     pinImg: '<i class="im im-icon-Chef-Hat"></i>'
   },
   {
-    html: locationData('listings-single-page.html', 'images/listing-item-02.jpg', 'Sticky Band', 'Bishop Avenue, New York', '5.0', '23'),
+    html: locationData('listings-single-page.html', `${IMAGE_URL}/classImages/listing-item-02.png`, 'Sticky Band', 'Bishop Avenue, New York', '5.0', '23'),
     lat: 40.77055783505125,
     lng: -74.26002502441406,
     pinMarkerId: 2,
     pinImg: '<i class="im im-icon-Electric-Guitar"></i>'
   },
   {
-    html: locationData('listings-single-page.html', 'images/listing-item-03.jpg', 'Hotel Govendor', '778 Country Street, New York', '2.0', '17'),
+    html: locationData('listings-single-page.html', `${IMAGE_URL}/classImages/listing-item-03.png`, 'Hotel Govendor', '778 Country Street, New York', '2.0', '17'),
     lat: 40.7427837,
     lng: -73.11445617675781,
     pinMarkerId: 3,
     pinImg: '<i class="im im-icon-Home-2"></i>'
   },
   {
-    html: locationData('listings-single-page.html', 'images/listing-item-04.jpg', 'Burger House', '2726 Shinn Street, New York', '5.0', '31'),
+    html: locationData('listings-single-page.html', `${IMAGE_URL}/classImages/listing-item-04.png`, 'Burger House', '2726 Shinn Street, New York', '5.0', '31'),
     lat: 40.70437865245596,
     lng: -73.98674011230469,
     pinMarkerId: 4,
     pinImg: '<i class="im im-icon-Hamburger"></i>'
   },
   {
-    html: locationData('listings-single-page.html', 'images/listing-item-05.jpg', 'Airport', '1512 Duncan Avenue, New York', '3.5', '46'),
+    html: locationData('listings-single-page.html', `${IMAGE_URL}/classImages/listing-item-05.png`, 'Airport', '1512 Duncan Avenue, New York', '3.5', '46'),
     lat: 40.641311,
     lng: -73.778139,
     pinMarkerId: 5,
     pinImg: '<i class="im im-icon-Plane"></i>'
   },
   {
-    html: locationData('listings-single-page.html', 'images/listing-item-06.jpg', 'Think Coffee', '215 Terry Lane, New York', '4.5', '15'),
+    html: locationData('listings-single-page.html', `${IMAGE_URL}/classImages/listing-item-06.png`, 'Think Coffee', '215 Terry Lane, New York', '4.5', '15'),
     lat: 41.080938,
     lng: -73.535957,
     pinMarkerId: 6,
     pinImg: '<i class="im im-icon-Coffee"></i>'
   },
   {
-    html: locationData('listings-single-page.html', 'images/listing-item-04.jpg', 'Burger House', '2726 Shinn Street, New York', '5.0', '31'),
+    html: locationData('listings-single-page.html', `${IMAGE_URL}/classImages/listing-item-04.png`, 'Burger House', '2726 Shinn Street, New York', '5.0', '31'),
     lat: 41.079386,
     lng: -73.519478,
     pinMarkerId: 7,
@@ -348,7 +348,7 @@ function mainMap() {
     },
     closeBoxMargin: "0",
     closeBoxURL: "",
-    infoBoxClearance: new google.maps.Size(25, 25),
+    infoBoxClearance: new google.maps.Size(350, 300),
     isHidden: false,
     pane: "floatPane",
     enableEventPropagation: false,
@@ -436,11 +436,15 @@ function mainMap() {
     Promise.resolve().then(someMethodIThinkMightBeSlow);
   });
 }
-
-var map = document.getElementById('map');
-if (map && typeof (map) !== 'undefined') {
-  google.maps.event.addDomListener(window, 'load', mainMap());
-  Promise.resolve().then(someMethodIThinkMightBeSlow);
+var startTime;
+function initMap(){
+  startTime = performance.now();
+  var map = document.getElementById('map');
+  if (map && typeof (map) !== 'undefined') {
+    google.maps.event.addDomListener(window, 'load', mainMap());
+  }
 }
+
+Promise.resolve(initMap()).then(someMethodIThinkMightBeSlow(startTime));
 
 // ---------------- Main Map / End ---------------- //
