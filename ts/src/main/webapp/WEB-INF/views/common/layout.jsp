@@ -36,6 +36,9 @@
 
 	<!-- Scripts
 ================================================== -->
+	<!--default passive -->
+	<script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
+
 	<script type="text/javascript" src="${contextPath}/resources/scripts/jquery-2.2.0.min.js"></script>
 	<script type="text/javascript" src="${contextPath}/resources/scripts/mmenu.min.js"></script>
 	<script type="text/javascript" src="${contextPath}/resources/scripts/chosen.min.js"></script>
@@ -50,30 +53,21 @@
 
 	<!-- Google Autocomplete -->
 	<script>
-		function initAutocomplete() {
-			var input = document.getElementById('autocomplete-input');
-			var autocomplete = new google.maps.places.Autocomplete(input);
+		function someMethodIThinkMightBeSlow() {
+			var startTime = performance.now();
 
-			autocomplete.addListener('place_changed', function () {
-				var place = autocomplete.getPlace();
-				if (!place.geometry) {
-					window.alert("No details available for input: '" + place.name + "'");
-					return;
-				}
-			});
+			// Do the normal stuff for this function
 
-			if ($('.main-search-input-item')[0]) {
-				setTimeout(function () {
-					$(".pac-container").prependTo("#autocomplete-container");
-				}, 300);
-			}
+			var duration = performance.now() - startTime;
+			console.log(`someMethodIThinkMightBeSlow took ${duration}ms`);
 		}
 	</script>
 
 	<!-- Maps -->
-	<script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initAutocomplete"></script>
-	<script type="text/javascript" src="${contextPath}/resources/scripts/infobox.min.js"></script>
-	<script type="text/javascript" src="${contextPath}/resources/scripts/markerclusterer.js"></script>
-	<script type="text/javascript" src="${contextPath}/resources/scripts/maps.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsLQ-siN80uRGoJqri7Ib9qhYETZm2en8&libraries=places"></script>
+	<script type="text/javascript" src="${contextPath}/resources/scripts/maps/infobox.min.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/scripts/maps/markerclusterer.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/scripts/maps/custommarker.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/scripts/maps/mainMap.js"></script>
 
 </body>
