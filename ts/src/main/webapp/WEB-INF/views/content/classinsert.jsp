@@ -136,10 +136,10 @@
 											<div class="main-search-input">
 
 												<div class="main-search-input-item">
-													<input id="search" type="text" placeholder="What are you looking for?"
+													<input type="text" placeholder="What are you looking for?"
 														value="" />
 												</div>
-												<ul id="search-list"></ul>
+
 												<button class="button">Search</button>
 
 											</div>

@@ -36,42 +36,44 @@
 
 	<!-- Scripts
 ================================================== -->
-	<!-- After, method call complete -->
-	<script>
-		// Do the normal stuff for this function
-		function someMethodIThinkMightBeSlow(startTime) {
-  console.log(startTime);
+	<script type="text/javascript" src="${contextPath}/resources/scripts/jquery-2.2.0.min.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/scripts/mmenu.min.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/scripts/chosen.min.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/scripts/slick.min.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/scripts/rangeslider.min.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/scripts/magnific-popup.min.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/scripts/waypoints.min.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/scripts/counterup.min.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/scripts/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/scripts/tooltips.min.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/scripts/custom.js"></script>
 
-			var duration = performance.now() - startTime;
-			console.log('someMethodIThinkMightBeSlow took',duration,'ms');
+	<!-- Google Autocomplete -->
+	<script>
+		function initAutocomplete() {
+			var input = document.getElementById('autocomplete-input');
+			var autocomplete = new google.maps.places.Autocomplete(input);
+
+			autocomplete.addListener('place_changed', function () {
+				var place = autocomplete.getPlace();
+				if (!place.geometry) {
+					window.alert("No details available for input: '" + place.name + "'");
+					return;
+				}
+			});
+
+			if ($('.main-search-input-item')[0]) {
+				setTimeout(function () {
+					$(".pac-container").prependTo("#autocomplete-container");
+				}, 300);
+			}
 		}
 	</script>
-	
-	<!--default passive -->
-	<script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
-
-	<!--jquery-->
-	<script type="text/javascript" src="${contextPath}/resources/scripts/jquery/jquery-2.2.0.min.js"></script>
-	<script type="text/javascript" src="${contextPath}/resources/scripts/jquery/jquery-ui.min.js"></script>
-
-	<!--jQuery requestAnimationFrame-->
-	<!--optimizing view rendering-->
-	<script src="${contextPath}/resources/scripts/jquery-custom/min/requestanimationframe.min.js"></script>
-	<!--jquery-custom-->
-	<script type="text/javascript" src="${contextPath}/resources/scripts/jquery-custom/min/chosen.min.js"></script>
-	<script type="text/javascript" src="${contextPath}/resources/scripts/jquery-custom/min/magnific-popup.min.js"></script>
-	<script type="text/javascript" src="${contextPath}/resources/scripts/jquery-custom/min/mmenu.min.js"></script>
-	<script type="text/javascript" src="${contextPath}/resources/scripts/jquery-custom/min/slick.min.js"></script>
-	<script type="text/javascript" src="${contextPath}/resources/scripts/jquery-custom/min/rangeslider.min.js"></script>
-	<script type="text/javascript" src="${contextPath}/resources/scripts/jquery-custom/min/waypoints.min.js"></script>
-	<script type="text/javascript" src="${contextPath}/resources/scripts/jquery-custom/min/counterup.min.js"></script>
-	<script type="text/javascript" src="${contextPath}/resources/scripts/jquery-custom/min/tooltips.min.js"></script>
-	<script type="text/javascript" src="${contextPath}/resources/scripts/jquery-custom/custom.js"></script>
 
 	<!-- Maps -->
-	<script	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsLQ-siN80uRGoJqri7Ib9qhYETZm2en8&libraries=places"></script>
-	<script type="text/javascript" src="${contextPath}/resources/scripts/maps/infobox.min.js"></script>
-	<script type="text/javascript" src="${contextPath}/resources/scripts/maps/markerclusterer.js"></script>
-	<script type="text/javascript" src="${contextPath}/resources/scripts/maps/custommarker.js"></script>
-	<script type="text/javascript" src="${contextPath}/resources/scripts/maps/mainMap.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initAutocomplete"></script>
+	<script type="text/javascript" src="${contextPath}/resources/scripts/infobox.min.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/scripts/markerclusterer.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/scripts/maps.js"></script>
+
 </body>

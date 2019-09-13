@@ -5,6 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
 <body>
 	<!-- Map
 ================================================== -->
@@ -34,10 +35,9 @@
 			</div>
 
 		</div>
+
 		<!-- Scroll Enabling Button -->
 		<a href="#" id="scrollEnabling" title="Enable or disable scrolling on map">Enable Scrolling</a>
-		<!-- current button Button -->
-		<a href="#" id="geoLocation" title="Enable or disable scrolling on map">현재 위치</a>
 	</div>
 
 
