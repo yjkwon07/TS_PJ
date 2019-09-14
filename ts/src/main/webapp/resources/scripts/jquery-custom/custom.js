@@ -36,12 +36,12 @@ $(document).ready(function(){
 				});
 
 				mmenuAPI.bind( "open:finish", function() {
-				   setTimeout(function() {
+					requestAnimationFrame(function() {
 				      $icon.addClass( "is-active" );
 				   });
 				});
 				mmenuAPI.bind( "close:finish", function() {
-				   setTimeout(function() {
+					requestAnimationFrame(function() {
 				      $icon.removeClass( "is-active" );
 				   });
 				});

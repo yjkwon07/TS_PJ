@@ -115,9 +115,53 @@
 					<!-- Section / End -->
 
 					<!-- Section -->
+<<<<<<< HEAD
 					<input type="hidden" value="30.2" name="class_lat"> 
 					<input type="hidden" value="122.2" name="class_lng">
 					<input type="hidden" value="122" name="class_id"> 
+=======
+					<div class="add-listing-section margin-top-45">
+
+						<!-- Headline -->
+						<div class="add-listing-headline">
+							<h3><i class="sl sl-icon-location"></i> Location</h3>
+						</div>
+						<!-- Map
+						================================================== -->
+						<div id="map-container" class="fullwidth-home-map">
+
+							<div id="map" data-map-zoom="9">
+								<!-- map goes here -->
+							</div>
+
+							<div class="main-search-inner">
+
+								<div class="container">
+									<div class="row">
+										<div class="col-md-12">
+
+											<div class="main-search-input">
+
+												<div class="main-search-input-item">
+													<input id="search" type="text" placeholder="What are you looking for?"
+														value="" />
+												</div>
+												<ul id="search-list"></ul>
+												<button class="button">Search</button>
+
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+							<!-- Scroll Enabling Button -->
+							<a href="#" id="scrollEnabling" title="Enable or disable scrolling on map">Enable
+								Scrolling</a>
+						</div>
+					</div>
+>>>>>>> acb517efaf49e671e612392ea9948645dd461b59
 					<!-- Section / End -->
 
 
