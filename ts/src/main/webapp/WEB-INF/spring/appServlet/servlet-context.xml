@@ -62,10 +62,10 @@
 			<beans:ref bean="loginCheckInterceptor"/>
 		</interceptor>
 		
-		<interceptor>
+ 		<interceptor>
 			<mapping path="/test/classinsert"/>
 			<beans:ref bean="authInterceptor"/>
-		</interceptor>
+		</interceptor> 
 	</interceptors>
 
 	<context:component-scan base-package="com.duojj.controller" />

@@ -1,6 +1,7 @@
 package com.duojj.controller;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Controller;
@@ -33,8 +34,8 @@ public class LectureController {
 	}
 	
 	@RequestMapping(value="/regist", method=RequestMethod.POST)
-	public ModelAndView postLectureRegister(LectureVO vo, RedirectAttributes rttr)throws Exception{
-		
+	public ModelAndView postLectureRegister(LectureVO vo)throws Exception{
+		System.out.println(vo);
 		service.postLectureRegister(vo);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/complete"); // 뷰의 이름

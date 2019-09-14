@@ -30,5 +30,9 @@
 			</div><!-- /.col -->
 		</div>
 	</form>
+	<form action="/user/logout" method="post">
+		<button type="submit" class="btn btn-primary btn-block btn-flat">logout</button>
+		
+	</form>
 </body>
 </html>

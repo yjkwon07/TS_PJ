@@ -6,7 +6,7 @@ tmp/
 *.bak
 *.swp
 *~.nib
-local.properties
+jdbc.properties
 .settings/
 .loadpath
 .recommenders

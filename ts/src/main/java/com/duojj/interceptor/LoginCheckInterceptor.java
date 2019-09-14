@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.util.WebUtils;
 
 public class LoginCheckInterceptor extends HandlerInterceptorAdapter{
 	
@@ -70,9 +71,9 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter{
 				response.addCookie(loginCookie); // 만들어진 쿠키는 반드시 HttpServletResponse에 담겨서 전송
 			}
 			
-			response.sendRedirect("/test/main");
-//			Object dest = session.getAttribute("dest");
-//			response.sendRedirect(dest != null ? (String)dest:"/");
+//			response.sendRedirect("/test/main");
+			Object dest = session.getAttribute("dest");
+			response.sendRedirect(dest != null ? (String)dest:"/");
 		}
 	}
 

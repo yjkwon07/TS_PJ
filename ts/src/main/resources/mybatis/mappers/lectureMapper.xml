@@ -23,7 +23,7 @@
 		class_SAT,
 		class_SUN,
 		class_lat, 
-		class_log, 
+		class_lng, 
 		class_maincategories,
 		class_endday,
 		class_subcategories,
@@ -47,18 +47,19 @@
 		class_SAT,
 		class_SUN,
 		class_lat, 
-		class_log, 
+		class_lng, 
 		class_maincategories,
 		class_endday,
 		class_subcategories,
 		class_teacher_name,
-		class_startday)
+		class_startday,
+		class_youtube)
 		values(#{user_id},#{class_name},#{class_student_cnt},
 				#{class_image},#{class_price},#{class_summary},#{class_content},
 				#{class_MON},#{class_TUE},#{class_WED},#{class_THU},
 				#{class_FRI},#{class_SAT},#{class_SUN},#{class_lat},
-				#{class_log},#{class_maincategories},#{class_endday},#{class_subcategories},
-				#{class_teacher_name},#{class_startday})
+				#{class_lng},#{class_maincategories},#{class_endday},#{class_subcategories},
+				#{class_teacher_name},#{class_startday},#{class_youtube})
 	</insert>
 
 
