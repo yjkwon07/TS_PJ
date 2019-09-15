@@ -62,8 +62,7 @@ public class UserController {
 		if(vo == null) {
 			mv.setViewName("redirect:login");
 			return mv;
-		}
-		if(vo != null) {
+		} else {
 			System.out.println(vo.getUser_name());
 			mv.setViewName("/main");
 		}
@@ -93,7 +92,7 @@ public class UserController {
 			
 			session.removeAttribute("login");
 			session.invalidate();
-			mv.setViewName("redirect:main");
+			mv.setViewName("redirect:/test/main");
 			
 			Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
 			

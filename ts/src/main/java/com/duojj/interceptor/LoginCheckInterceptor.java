@@ -71,9 +71,9 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter{
 				response.addCookie(loginCookie); // 만들어진 쿠키는 반드시 HttpServletResponse에 담겨서 전송
 			}
 			
-//			response.sendRedirect("/test/main");
-			Object dest = session.getAttribute("dest");
-			response.sendRedirect(dest != null ? (String)dest:"/");
+			response.sendRedirect("/test/main");
+//			Object dest = session.getAttribute("dest");
+//			response.sendRedirect(dest != null ? (String)dest:"/");
 		}
 	}
 
