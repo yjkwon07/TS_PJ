@@ -1,14 +1,12 @@
 package com.duojj.controller;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.duojj.service.LectureService;
 import com.duojj.vo.LectureVO;
@@ -35,10 +33,9 @@ public class LectureController {
 	
 	@RequestMapping(value="/regist", method=RequestMethod.POST)
 	public ModelAndView postLectureRegister(LectureVO vo)throws Exception{
-		System.out.println(vo);
 		service.postLectureRegister(vo);
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/complete"); // 뷰의 이름
+		mv.setViewName("/complete"); // 뷰의 이름 -> 강의 상세 페이지로 들어가야함
 		
 		return mv;
 	}

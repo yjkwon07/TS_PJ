@@ -69,6 +69,7 @@
 										data-tip-content="Maximum of 15 keywords related with your business"></i>
 								</h5>
 								<input type="text" value='${login.user_name}' name="class_teacher_name" disabled>
+								<input type="hidden" value='${login.user_name}' name="class_teacher_name"/>
 								<input type="hidden" value='${login.user_id}' name="user_id"/>
 							</div>
 
@@ -111,7 +112,6 @@
 
 					<input type="hidden" value="30.2" name="class_lat"> 
 					<input type="hidden" value="122.2" name="class_lng">
-					<input type="hidden" value="122" name="class_id"> 
 
 					<div class="add-listing-section margin-top-45">
 
@@ -198,8 +198,6 @@
 				</div>
 				<!-- Section / End -->
 
-				<input type="hidden" value="10:00" name="class_startday">
-				<input type="hidden" value="12:00" name="class_endday">
 
 				<!-- Section -->
 				<div class="add-listing-section margin-top-45">
@@ -220,7 +218,7 @@
 								<h5>Monday</h5>
 							</div>
 							<div class="col-md-5">
-								<select class="chosen-select" data-placeholder="Opening Time" name="class_MON">
+								<select class="chosen-select" data-placeholder="Opening Time" >
 									<option label="Opening Time"></option>
 									<option value="">Closed</option>
 									<option value="1AM">1 AM</option>
@@ -288,12 +286,12 @@
 								<h5>Tuesday</h5>
 							</div>
 							<div class="col-md-5">
-								<select class="chosen-select" data-placeholder="Opening Time" name="class_TUE">
+								<select class="chosen-select" data-placeholder="Opening Time" >
 									<!-- Hours added via JS (this is only for demo purpose) -->
 								</select>
 							</div>
 							<div class="col-md-5">
-								<select class="chosen-select" data-placeholder="Closing Time" name="class_TUE">
+								<select class="chosen-select" data-placeholder="Closing Time">
 									<!-- Hours added via JS (this is only for demo purpose) -->
 								</select>
 							</div>
@@ -306,12 +304,12 @@
 								<h5>Wednesday</h5>
 							</div>
 							<div class="col-md-5">
-								<select class="chosen-select" data-placeholder="Opening Time" name="class_WED">
+								<select class="chosen-select" data-placeholder="Opening Time" >
 									<!-- Hours added via JS (this is only for demo purpose) -->
 								</select>
 							</div>
 							<div class="col-md-5">
-								<select class="chosen-select" data-placeholder="Closing Time" name="class_WED">
+								<select class="chosen-select" data-placeholder="Closing Time" >
 									<!-- Hours added via JS (this is only for demo purpose) -->
 								</select>
 							</div>
@@ -324,12 +322,12 @@
 								<h5>Thursday</h5>
 							</div>
 							<div class="col-md-5">
-								<select class="chosen-select" data-placeholder="Opening Time" name="class_THU">
+								<select class="chosen-select" data-placeholder="Opening Time" >
 									<!-- Hours added via JS (this is only for demo purpose) -->
 								</select>
 							</div>
 							<div class="col-md-5">
-								<select class="chosen-select" data-placeholder="Closing Time" name="class_THU">
+								<select class="chosen-select" data-placeholder="Closing Time" >
 									<!-- Hours added via JS (this is only for demo purpose) -->
 								</select>
 							</div>
@@ -342,12 +340,12 @@
 								<h5>Friday</h5>
 							</div>
 							<div class="col-md-5">
-								<select class="chosen-select" data-placeholder="Opening Time" name="class_FRI">
+								<select class="chosen-select" data-placeholder="Opening Time" >
 									<!-- Hours added via JS (this is only for demo purpose) -->
 								</select>
 							</div>
 							<div class="col-md-5">
-								<select class="chosen-select" data-placeholder="Closing Time" name="class_FRI">
+								<select class="chosen-select" data-placeholder="Closing Time" >
 									<!-- Hours added via JS (this is only for demo purpose) -->
 								</select>
 							</div>
@@ -360,12 +358,12 @@
 								<h5>Saturday</h5>
 							</div>
 							<div class="col-md-5">
-								<select class="chosen-select" data-placeholder="Opening Time" name="class_SAT">
+								<select class="chosen-select" data-placeholder="Opening Time" >
 									<!-- Hours added via JS (this is only for demo purpose) -->
 								</select>
 							</div>
 							<div class="col-md-5">
-								<select class="chosen-select" data-placeholder="Closing Time" name="class_SAT">
+								<select class="chosen-select" data-placeholder="Closing Time" >
 									<!-- Hours added via JS (this is only for demo purpose) -->
 								</select>
 							</div>
@@ -378,12 +376,12 @@
 								<h5>Sunday</h5>
 							</div>
 							<div class="col-md-5">
-								<select class="chosen-select" data-placeholder="Opening Time" name="class_SUN">
+								<select class="chosen-select" data-placeholder="Opening Time" >
 									<!-- Hours added via JS (this is only for demo purpose) -->
 								</select>
 							</div>
 							<div class="col-md-5">
-								<select class="chosen-select" data-placeholder="Closing Time" name="class_SUN">
+								<select class="chosen-select" data-placeholder="Closing Time" >
 									<!-- Hours added via JS (this is only for demo purpose) -->
 								</select>
 							</div>
