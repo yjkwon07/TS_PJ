@@ -9,6 +9,7 @@
 <body>
 	<!-- Content
 ================================================== -->
+
 <form action="/lecture/regist" method="POST">
 	<!-- Container -->
 	<div class="container">
@@ -44,30 +45,22 @@
 							<!-- Status -->
 							<div class="col-md-6">
 								<h5>Main Category</h5>
-								<select class="chosen-select-no-single" name="class_maincategories">
+								<select class="mainCateoreies_Litener" name="class_maincategories" id="class_maincategories">
 									<option label="blank">Select Main Category</option>
-									<option value="디자인">디자인</option>
-									<option value="IT">IT</option>
-									<option value="뷰티">뷰티</option>
-									<option value="영상">영상</option>
-									<option value="외국어">외국어</option>
-									<option value="음악">음악</option>
+									<option value="design">디자인</option>
+									<option value="it">IT</option>
+									<option value="beauty">뷰티</option>
+									<option value="video">영상</option>
+									<option value="forLanguage">외국어</option>
+									<option value="music">음악</option>
 								</select>
 							</div>
-
+							
 							<div class="col-md-6">
-								<h5>Sub Category</h5>
-								<select class="chosen-select-no-single" name="class_subcategories">
-									<option label="blank">Select Sub Category</option>
-									<option value="Eat & Drink">Eat & Drink</option>
-									<option value="Shops">Shops</option>
-									<option value="Hotels">Hotels</option>
-									<option value="Restaurants">Restaurants</option>
-									<option value="Fitness">Fitness</option>
-									<option value="Events">Events</option>
-								</select>
+									<h5>Sub Category</h5>
+									<select class="subCateoreies_Litener" name="class_subcategories" id="class_subcategories">
+									</select>
 							</div>
-
 							<!-- Type -->
 							<div class="col-md-6">
 								<h5>
@@ -76,7 +69,7 @@
 										data-tip-content="Maximum of 15 keywords related with your business"></i>
 								</h5>
 								<input type="text" value='${login.user_name}' name="class_teacher_name" disabled>
-								<input type="text" value='${login.user_id}' name="user_id"/>
+								<input type="hidden" value='${login.user_id}' name="user_id"/>
 							</div>
 
 							<!-- Type -->
@@ -115,11 +108,11 @@
 					<!-- Section / End -->
 
 					<!-- Section -->
-<<<<<<< HEAD
+
 					<input type="hidden" value="30.2" name="class_lat"> 
 					<input type="hidden" value="122.2" name="class_lng">
 					<input type="hidden" value="122" name="class_id"> 
-=======
+
 					<div class="add-listing-section margin-top-45">
 
 						<!-- Headline -->
@@ -161,7 +154,6 @@
 								Scrolling</a>
 						</div>
 					</div>
->>>>>>> acb517efaf49e671e612392ea9948645dd461b59
 					<!-- Section / End -->
 
 
@@ -443,42 +435,20 @@
 
 	</div>
 </form>
-	<!-- script -->
-	<!-- Opening hours added via JS (this is only for demo purpose) -->
-	<script>
-		$(".opening-day.js-demo-hours .chosen-select").each(function () {
-			$(this).append('' +
-				'<option></option>' +
-				'<option>Closed</option>' +
-				'<option>1 AM</option>' +
-				'<option>2 AM</option>' +
-				'<option>3 AM</option>' +
-				'<option>4 AM</option>' +
-				'<option>5 AM</option>' +
-				'<option>6 AM</option>' +
-				'<option>7 AM</option>' +
-				'<option>8 AM</option>' +
-				'<option>9 AM</option>' +
-				'<option>10 AM</option>' +
-				'<option>11 AM</option>' +
-				'<option>12 AM</option>' +
-				'<option>1 PM</option>' +
-				'<option>2 PM</option>' +
-				'<option>3 PM</option>' +
-				'<option>4 PM</option>' +
-				'<option>5 PM</option>' +
-				'<option>6 PM</option>' +
-				'<option>7 PM</option>' +
-				'<option>8 PM</option>' +
-				'<option>9 PM</option>' +
-				'<option>10 PM</option>' +
-				'<option>11 PM</option>' +
-				'<option>12 PM</option>');
-		});
-	</script>
-
-	<!-- DropZone | Documentation: http://dropzonejs.com -->
-	<script type="text/javascript" src="${contextPath}/resources/scripts/dropzone.js"></script>
-
-
 </body>
+
+<script>
+	var categories_dict = ${categories_dict};
+	var mainCateoreies_Liteners = document.querySelector(".mainCateoreies_Litener");
+	var subCateoreies_Litener = document.querySelector(".subCateoreies_Litener");
+	mainCateoreies_Liteners.addEventListener("change", function (event) {
+		subCateoreies_Litener.innerHTML = "";
+		var sub_categories_arr = categories_dict[this.value];
+		for (var sub_index = 0; sub_index < sub_categories_arr.length; sub_index++) {
+			var option = document.createElement('option');
+			option.value = sub_categories_arr[sub_index];
+			option.text = sub_categories_arr[sub_index];
+			subCateoreies_Litener.appendChild(option);
+		}
+	})
+</script>

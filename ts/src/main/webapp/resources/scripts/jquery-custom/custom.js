@@ -307,7 +307,7 @@ $(document).ready(function(){
 	        var wheelDelta = event.wheelDelta;
 	        var currentScrollPosition = window.pageYOffset;
 	        window.scrollTo(0, currentScrollPosition - wheelDelta);
-	    });
+	    }, {passive: false});
 	}
 
 
@@ -609,7 +609,7 @@ $(document).ready(function(){
 		 .siblings( $this.find('a').attr('href') ).fadeIn();
 
 		 e.preventDefault();
-	});
+	}, {passive: false});
 	var hash = window.location.hash;
 	var anchor = $('.tabs-nav a[href="' + hash + '"]');
 	if (anchor.length === 0) {
@@ -646,7 +646,7 @@ $(document).ready(function(){
 			  $(this).addClass('ui-accordion-header-active ui-state-active ui-corner-top').next().slideDown(300);
 		 }
 		  e.preventDefault();
-	});
+	}, {passive: false});
 
 
 	/*----------------------------------------------------*/
@@ -658,7 +658,7 @@ $(document).ready(function(){
 	$('.trigger, .trigger.opened').on('click', function(a){
 		$(this).toggleClass('active');
 		a.preventDefault();
-	});
+	}, {passive: false});
 
 	$(".trigger").on('click', function(){
 		$(this).next(".toggle-container").slideToggle(300);
@@ -696,7 +696,7 @@ $(document).ready(function(){
     	e.preventDefault();
 		$(this).toggleClass('liked');
 		$(this).children('.like-icon').toggleClass('liked');
-	});
+	},{passive: false});
 
     /*----------------------------------------------------*/
     /*  Searh Form More Options
@@ -705,7 +705,7 @@ $(document).ready(function(){
     	e.preventDefault();
 		$('.more-search-options, .more-search-options-trigger').toggleClass('active');
 		$('.more-search-options.relative').animate({height: 'toggle', opacity: 'toggle'}, 300);
-	});
+	},{passive: false});
 
 
     /*----------------------------------------------------*/
@@ -826,7 +826,7 @@ $(document).ready(function(){
 			$(dashboardNavContainer).removeClass('active');
 		}
 
-	});
+	},{passive: false});
 
     // Dashbaord Messages Alignment
 	$(window).on('load resize', function() {
@@ -853,13 +853,13 @@ $(document).ready(function(){
 		$('.add-pricing-list-item').on('click', function(e) {
 			e.preventDefault();
 			newMenuItem();
-		});
+		}, {passive: false});
 
 		// remove ingredient
 		$(document).on( "click", "#pricing-list-container .delete", function(e) {
 			e.preventDefault();
 			$(this).parent().parent().remove();
-		});
+		},{passive: false});
 
 		// add submenu
 		$('.add-pricing-submenu').on('click', function(e) {
@@ -875,7 +875,7 @@ $(document).ready(function(){
 				'</tr>');
 
 			newElem.appendTo('table#pricing-list-container');
-		});
+		},{passive: false});
 
 		$('table#pricing-list-container tbody').sortable({
 			forcePlaceholderSize: true,
@@ -930,7 +930,7 @@ $(document).ready(function(){
         }
 
         e.preventDefault();
-    });
+    },{passive: false});
 
     // Apply / Close buttons
     $('.panel-buttons button').on('click', function(e) {
@@ -995,7 +995,7 @@ $(document).ready(function(){
 
 		} else { $('.show-more').animate({height: '450px'}, 400); }
 
-	});
+	},{passive: false});
 
 
 	/*----------------------------------------------------*/
@@ -1026,12 +1026,12 @@ $(document).ready(function(){
 	$('.listing-nav a, a.listing-address, .star-rating a').on('click', function(e) {
         e.preventDefault();
         $('html,body').scrollTo(this.hash, this.hash, { gap: {y: -20} });
-    });
+    },{passive: false});
 
 	$(".listing-nav li:first-child a, a.add-review-btn, a[href='#add-review']").on('click', function(e) {
         e.preventDefault();
         $('html,body').scrollTo(this.hash, this.hash, { gap: {y: -100} });
-    });
+    },{passive: false});
 
 
     // Highlighting functionality.
