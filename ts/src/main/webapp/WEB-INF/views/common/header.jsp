@@ -77,7 +77,7 @@
 			</div>
 			<!-- Left Side Content / End -->
 
-
+		<c:if test="${empty login}">
 			<!-- Right Side Content / End -->
 			<div class="right-side">
 				<div class="header-widget">
@@ -85,14 +85,12 @@
 				</div>
 			</div>
 			<!-- Right Side Content / End -->
-
+			
 			<!-- Sign In Popup -->
 			<div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide">
-
 				<div class="small-dialog-header">
-					<h3>Sign In</h3>
+					<h3>로그인</h3>
 				</div>
-
 				<!--Tabs -->
 				<div class="sign-in-form style-1">
 
@@ -105,19 +103,19 @@
 
 						<!-- Login -->
 						<div class="tab-content" id="tab1" style="display: none;">
-							<form method="post" class="login">
+							<form method="post" action="/user/loginPost" class="login">
 
 								<p class="form-row form-row-wide">
 									<label for="username">Username:
 										<i class="im im-icon-Male"></i>
-										<input type="text" class="input-text" name="username" id="username" value="" />
+										<input type="text" class="input-text" name="user_id" id="username" value="" />
 									</label>
 								</p>
 
 								<p class="form-row form-row-wide">
 									<label for="password">Password:
 										<i class="im im-icon-Lock-2"></i>
-										<input class="input-text" type="password" name="password" id="password"/>
+										<input class="input-text" type="password" name="user_pw" id="password"/>
 									</label>
 									<span class="lost_password">
 										<a href="#" >Lost Your Password?</a>
@@ -125,15 +123,16 @@
 								</p>
 
 								<div class="form-row">
-									<input type="submit" class="button border margin-top-5" name="login" value="Login" />
+									<input type="submit" class="button border margin-top-5" value="Login" />
 									<div class="checkboxes margin-top-10">
-										<input id="remember-me" type="checkbox" name="check">
+										<input id="remember-me" type="checkbox" name="useCookie">
 										<label for="remember-me">Remember Me</label>
 									</div>
 								</div>
 								
 							</form>
 						</div>
+						
 
 						<!-- Register -->
 						<div class="tab-content" id="tab2" style="display: none;">
@@ -176,7 +175,17 @@
 					</div>
 				</div>
 			</div>
-			<!-- Sign In Popup / End -->
+		</c:if>
+		<c:if test="${not empty login}">
+			<form action="/user/logout" method="post">
+				<div class="right-side">
+					<div class="header-widget">
+						<button type="submit"><i class="sl sl-icon-login"></i>로그아웃</button>
+					</div>
+				</div>
+			</form>
+		</c:if>
+		<!-- Sign In Popup / End -->
 
 		</div>
 	</div>

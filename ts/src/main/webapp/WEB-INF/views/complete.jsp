@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	가입이 완료되었습니다.
+	등록되었습니다.
 </body>
 </html>

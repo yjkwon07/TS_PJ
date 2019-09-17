@@ -21,13 +21,14 @@ public class LectureVO {
 	private String	class_SAT;
 	private String	class_SUN;
 	private Double 	class_lat;
-	private Double  class_log;
+	private Double  class_lng;
 	private String	class_maincategories;
 	private Date	class_endday;
 	private String	class_subcategories;
 	private String 	class_teacher_name;
 	private Date	class_startday;
-	
+	private String 	class_youtube;
+
 	public Integer getClass_id() {
 		return class_id;
 	}
@@ -130,11 +131,11 @@ public class LectureVO {
 	public void setClass_lat(Double class_lat) {
 		this.class_lat = class_lat;
 	}
-	public Double getClass_log() {
-		return class_log;
+	public Double getClass_lng() {
+		return class_lng;
 	}
-	public void setClass_log(Double class_log) {
-		this.class_log = class_log;
+	public void setClass_lng(Double class_lng) {
+		this.class_lng = class_lng;
 	}
 	public String getClass_maincategories() {
 		return class_maincategories;
@@ -166,5 +167,10 @@ public class LectureVO {
 	public void setClass_startday(Date class_startday) {
 		this.class_startday = class_startday;
 	}
-	
+	public String getClass_youtube() {
+		return class_youtube;
+	}
+	public void setClass_youtube(String class_youtube) {
+		this.class_youtube = class_youtube;
+	}
 }

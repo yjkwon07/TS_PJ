@@ -5,15 +5,21 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/> 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script> 
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 
 <body>
+
 	<!-- Content
 ================================================== -->
 
+<form action="/lecture/regist" method="POST">
 	<!-- Container -->
 	<div class="container">
 
 		<div class="row">
+		
 			<div class="col-lg-12">
 
 				<div id="add-listing" class="separated-form">
@@ -25,7 +31,7 @@
 						<div class="add-listing-headline">
 							<h3> <i class="sl sl-icon-doc"></i> 강의를 작성해주세요. </h3>
 						</div>
-
+	
 						<!-- Title -->
 						<div class="row with-forms">
 							<div class="col-md-12">
@@ -33,7 +39,7 @@
 									강의 명 
 									<i class="tip" data-tip-content="강의를 입력해주세요. &nbsp; ex) 자바를 다루는 웹 기술"></i>
 								</h5>
-								<input class="search-field" type="text" value="" />
+								<input class="search-field" type="text" value="" name="class_name"/>
 							</div>
 						</div>
 
@@ -43,30 +49,22 @@
 							<!-- Status -->
 							<div class="col-md-6">
 								<h5>Main Category</h5>
-								<select class="chosen-select-no-single">
+								<select class="mainCateoreies_Litener" name="class_maincategories" id="class_maincategories">
 									<option label="blank">Select Main Category</option>
-									<option>디자인</option>
-									<option>IT</option>
-									<option>뷰티</option>
-									<option>영상</option>
-									<option>외국어</option>
-									<option>음악</option>
+									<option value="design">디자인</option>
+									<option value="it">IT</option>
+									<option value="beauty">뷰티</option>
+									<option value="video">영상</option>
+									<option value="forLanguage">외국어</option>
+									<option value="music">음악</option>
 								</select>
 							</div>
-
+							
 							<div class="col-md-6">
-								<h5>Sub Category</h5>
-								<select class="chosen-select-no-single">
-									<option label="blank">Select Sub Category</option>
-									<option>Eat & Drink</option>
-									<option>Shops</option>
-									<option>Hotels</option>
-									<option>Restaurants</option>
-									<option>Fitness</option>
-									<option>Events</option>
-								</select>
+									<h5>Sub Category</h5>
+									<select class="subCateoreies_Litener" name="class_subcategories" id="class_subcategories">
+									</select>
 							</div>
-
 							<!-- Type -->
 							<div class="col-md-6">
 								<h5>
@@ -74,7 +72,9 @@
 									<i class="tip" 
 										data-tip-content="Maximum of 15 keywords related with your business"></i>
 								</h5>
-								<input type="text" value='${login.user_name}' disabled>
+								<input type="text" value='${login.user_name}' name="class_teacher_name" disabled>
+								<input type="hidden" value='${login.user_name}' name="class_teacher_name"/>
+								<input type="hidden" value='${login.user_id}' name="user_id"/>
 							</div>
 
 							<!-- Type -->
@@ -84,7 +84,7 @@
 									<i class="tip"
 										data-tip-content="Maximum of 15 keywords related with your business"></i>
 								</h5>
-								<input type="text" placeholder="Keywords should be separated by commas">
+								<input type="text" placeholder="Keywords should be separated by commas" name="class_summary">
 							</div>
 
 							<!-- Type -->
@@ -94,7 +94,7 @@
 									<i class="tip"
 										data-tip-content="Maximum of 15 keywords related with your business"></i>
 								</h5>
-								<input type="text" placeholder="Keywords should be separated by commas">
+								<input type="text" placeholder="Keywords should be separated by commas" name="class_youtube">
 							</div>
 
 							<!-- Type -->
@@ -104,7 +104,7 @@
 									<i class="tip"
 										data-tip-content="Maximum of 15 keywords related with your business"></i>
 								</h5>
-								<input type="text" placeholder="Keywords should be separated by commas">
+								<input type="text" placeholder="Keywords should be separated by commas" name="class_student_cnt">
 							</div>
 						</div>
 						<!-- Row / End -->
@@ -113,6 +113,10 @@
 					<!-- Section / End -->
 
 					<!-- Section -->
+
+					<input type="hidden" value="30.2" name="class_lat"> 
+					<input type="hidden" value="122.2" name="class_lng">
+
 					<div class="add-listing-section margin-top-45">
 
 						<!-- Headline -->
@@ -168,8 +172,10 @@
 						<!-- Dropzone -->
 						<div class="submit-section">
 							<form action="/file-upload" class="dropzone"></form>
+							<img alt="" src="">
+							<input type="hidden" value="image.png" name="class_image">
 						</div>
-
+					
 					</div>
 					<!-- Section / End -->
 
@@ -187,7 +193,7 @@
 						<!-- Description -->
 						<div class="form">
 							<h5>상세 설명</h5>
-							<textarea class="WYSIWYG" name="summary" cols="40" rows="3" id="summary"
+							<textarea class="WYSIWYG" name="class_content" cols="40" rows="3" id="class_content"
 								spellcheck="true">
 							</textarea>
 						</div>
@@ -201,37 +207,56 @@
 
 					<!-- Headline -->
 					<div class="add-listing-headline">
-						<h3><i class="sl sl-icon-clock"></i> 강의 시자일 종료일</h3>
-						<!-- Switcher -->
-						<label class="switch"><input type="checkbox" checked><span class="slider round"></span></label>
+						<h3>
+							<i class="sl sl-icon-docs"></i> 강의 시작일 / 종료일
+						</h3>
 					</div>
-
-					<!-- Switcher ON-OFF Content -->
-					<div class="switcher-content">
-
-						<!-- Day -->
+					
+					<!-- Day -->
 						<div class="row opening-day">
 							<div class="col-md-2">
-								<h5>Date</h5>
+								<h5>Monday</h5>
 							</div>
 							<div class="col-md-5">
-								<select class="chosen-select" data-placeholder="Opening Time">
+								<select class="chosen-select" data-placeholder="Opening Time" >
 									<option label="Opening Time"></option>
-									<option>Closed</option>
-								</select>
-							</div>
-							<div class="col-md-5">
-								<select class="chosen-select" data-placeholder="Closing Time">
-									<option label="Closing Time"></option>
-									<option>Closed</option>
+									<option value="">Closed</option>
+									<option value="1AM">1 AM</option>
+									<option value="2AM</">2 AM</option>
+									<option value="3AM">3 AM</option>
+									<option value="4AM">4 AM</option>
+									<option value="5AM">5 AM</option>
+									<option value="6AM">6 AM</option>
+									<option value="7AM">7 AM</option>
+									<option value="8AM">8 AM</option>
+									<option value="9AM">9 AM</option>
+									<option value="10AM">10 AM</option>
+									<option value="11AM">11 AM</option>
+									<option value="12AM">12 AM</option>
+									<option value="1PM">1 PM</option>
+									<option value="2PM">2 PM</option>
+									<option value="3PM">3 PM</option>
+									<option value="4PM">4 PM</option>
+									<option value="5PM">5 PM</option>
+									<option value="6PM">6 PM</option>
+									<option value="7PM">7 PM</option>
+									<option value="8PM">8 PM</option>
+									<option value="9PM">9 PM</option>
+									<option value="10PM">10 PM</option>
+									<option value="11PM">11 PM</option>
+									<option value="12PM">12 PM</option>
 								</select>
 							</div>
 						</div>
-						<!-- Day / End -->
+
+					<!-- Description -->
+					<div class="form">
+						<h5>상세 설명</h5>
+						<textarea class="WYSIWYG" name="class_content" cols="40" rows="3" id="class_content"
+							spellcheck="true">
+						</textarea>
 					</div>
-					<!-- Switcher ON-OFF Content / End -->
 				</div>
-				<!-- Section / End -->
 
 				<!-- Section -->
 				<div class="add-listing-section margin-top-45">
@@ -245,70 +270,70 @@
 
 					<!-- Switcher ON-OFF Content -->
 					<div class="switcher-content">
-
+						<div id="datepicker"></div>
 						<!-- Day -->
 						<div class="row opening-day">
 							<div class="col-md-2">
 								<h5>Monday</h5>
 							</div>
 							<div class="col-md-5">
-								<select class="chosen-select" data-placeholder="Opening Time">
+								<select class="chosen-select" data-placeholder="Opening Time" >
 									<option label="Opening Time"></option>
-									<option>Closed</option>
-									<option>1 AM</option>
-									<option>2 AM</option>
-									<option>3 AM</option>
-									<option>4 AM</option>
-									<option>5 AM</option>
-									<option>6 AM</option>
-									<option>7 AM</option>
-									<option>8 AM</option>
-									<option>9 AM</option>
-									<option>10 AM</option>
-									<option>11 AM</option>
-									<option>12 AM</option>
-									<option>1 PM</option>
-									<option>2 PM</option>
-									<option>3 PM</option>
-									<option>4 PM</option>
-									<option>5 PM</option>
-									<option>6 PM</option>
-									<option>7 PM</option>
-									<option>8 PM</option>
-									<option>9 PM</option>
-									<option>10 PM</option>
-									<option>11 PM</option>
-									<option>12 PM</option>
+									<option value="">Closed</option>
+									<option value="1AM">1 AM</option>
+									<option value="2AM</">2 AM</option>
+									<option value="3AM">3 AM</option>
+									<option value="4AM">4 AM</option>
+									<option value="5AM">5 AM</option>
+									<option value="6AM">6 AM</option>
+									<option value="7AM">7 AM</option>
+									<option value="8AM">8 AM</option>
+									<option value="9AM">9 AM</option>
+									<option value="10AM">10 AM</option>
+									<option value="11AM">11 AM</option>
+									<option value="12AM">12 AM</option>
+									<option value="1PM">1 PM</option>
+									<option value="2PM">2 PM</option>
+									<option value="3PM">3 PM</option>
+									<option value="4PM">4 PM</option>
+									<option value="5PM">5 PM</option>
+									<option value="6PM">6 PM</option>
+									<option value="7PM">7 PM</option>
+									<option value="8PM">8 PM</option>
+									<option value="9PM">9 PM</option>
+									<option value="10PM">10 PM</option>
+									<option value="11PM">11 PM</option>
+									<option value="12PM">12 PM</option>
 								</select>
 							</div>
 							<div class="col-md-5">
-								<select class="chosen-select" data-placeholder="Closing Time">
+								<select class="chosen-select" data-placeholder="Closing Time" >
 									<option label="Closing Time"></option>
-									<option>Closed</option>
-									<option>1 AM</option>
-									<option>2 AM</option>
-									<option>3 AM</option>
-									<option>4 AM</option>
-									<option>5 AM</option>
-									<option>6 AM</option>
-									<option>7 AM</option>
-									<option>8 AM</option>
-									<option>9 AM</option>
-									<option>10 AM</option>
-									<option>11 AM</option>
-									<option>12 AM</option>
-									<option>1 PM</option>
-									<option>2 PM</option>
-									<option>3 PM</option>
-									<option>4 PM</option>
-									<option>5 PM</option>
-									<option>6 PM</option>
-									<option>7 PM</option>
-									<option>8 PM</option>
-									<option>9 PM</option>
-									<option>10 PM</option>
-									<option>11 PM</option>
-									<option>12 PM</option>
+									<option value="">Closed</option>
+									<option value="1AM">1 AM</option>
+									<option value="2AM</">2 AM</option>
+									<option value="3AM">3 AM</option>
+									<option value="4AM">4 AM</option>
+									<option value="5AM">5 AM</option>
+									<option value="6AM">6 AM</option>
+									<option value="7AM">7 AM</option>
+									<option value="8AM">8 AM</option>
+									<option value="9AM">9 AM</option>
+									<option value="10AM">10 AM</option>
+									<option value="11AM">11 AM</option>
+									<option value="12AM">12 AM</option>
+									<option value="1PM">1 PM</option>
+									<option value="2PM">2 PM</option>
+									<option value="3PM">3 PM</option>
+									<option value="4PM">4 PM</option>
+									<option value="5PM">5 PM</option>
+									<option value="6PM">6 PM</option>
+									<option value="7PM">7 PM</option>
+									<option value="8PM">8 PM</option>
+									<option value="9PM">9 PM</option>
+									<option value="10PM">10 PM</option>
+									<option value="11PM">11 PM</option>
+									<option value="12PM">12 PM</option>
 								</select>
 							</div>
 						</div>
@@ -320,7 +345,7 @@
 								<h5>Tuesday</h5>
 							</div>
 							<div class="col-md-5">
-								<select class="chosen-select" data-placeholder="Opening Time">
+								<select class="chosen-select" data-placeholder="Opening Time" >
 									<!-- Hours added via JS (this is only for demo purpose) -->
 								</select>
 							</div>
@@ -338,12 +363,12 @@
 								<h5>Wednesday</h5>
 							</div>
 							<div class="col-md-5">
-								<select class="chosen-select" data-placeholder="Opening Time">
+								<select class="chosen-select" data-placeholder="Opening Time" >
 									<!-- Hours added via JS (this is only for demo purpose) -->
 								</select>
 							</div>
 							<div class="col-md-5">
-								<select class="chosen-select" data-placeholder="Closing Time">
+								<select class="chosen-select" data-placeholder="Closing Time" >
 									<!-- Hours added via JS (this is only for demo purpose) -->
 								</select>
 							</div>
@@ -356,12 +381,12 @@
 								<h5>Thursday</h5>
 							</div>
 							<div class="col-md-5">
-								<select class="chosen-select" data-placeholder="Opening Time">
+								<select class="chosen-select" data-placeholder="Opening Time" >
 									<!-- Hours added via JS (this is only for demo purpose) -->
 								</select>
 							</div>
 							<div class="col-md-5">
-								<select class="chosen-select" data-placeholder="Closing Time">
+								<select class="chosen-select" data-placeholder="Closing Time" >
 									<!-- Hours added via JS (this is only for demo purpose) -->
 								</select>
 							</div>
@@ -374,12 +399,12 @@
 								<h5>Friday</h5>
 							</div>
 							<div class="col-md-5">
-								<select class="chosen-select" data-placeholder="Opening Time">
+								<select class="chosen-select" data-placeholder="Opening Time" >
 									<!-- Hours added via JS (this is only for demo purpose) -->
 								</select>
 							</div>
 							<div class="col-md-5">
-								<select class="chosen-select" data-placeholder="Closing Time">
+								<select class="chosen-select" data-placeholder="Closing Time" >
 									<!-- Hours added via JS (this is only for demo purpose) -->
 								</select>
 							</div>
@@ -392,12 +417,12 @@
 								<h5>Saturday</h5>
 							</div>
 							<div class="col-md-5">
-								<select class="chosen-select" data-placeholder="Opening Time">
+								<select class="chosen-select" data-placeholder="Opening Time" >
 									<!-- Hours added via JS (this is only for demo purpose) -->
 								</select>
 							</div>
 							<div class="col-md-5">
-								<select class="chosen-select" data-placeholder="Closing Time">
+								<select class="chosen-select" data-placeholder="Closing Time" >
 									<!-- Hours added via JS (this is only for demo purpose) -->
 								</select>
 							</div>
@@ -410,12 +435,12 @@
 								<h5>Sunday</h5>
 							</div>
 							<div class="col-md-5">
-								<select class="chosen-select" data-placeholder="Opening Time">
+								<select class="chosen-select" data-placeholder="Opening Time" >
 									<!-- Hours added via JS (this is only for demo purpose) -->
 								</select>
 							</div>
 							<div class="col-md-5">
-								<select class="chosen-select" data-placeholder="Closing Time">
+								<select class="chosen-select" data-placeholder="Closing Time" >
 									<!-- Hours added via JS (this is only for demo purpose) -->
 								</select>
 							</div>
@@ -448,7 +473,7 @@
 									<tr class="pricing-list-item pattern">
 										<td>
 											<div class="fm-input pricing-ingredients">
-												<input type="text" placeholder="가격" /></div>
+												<input type="text" placeholder="가격" name="class_price" /></div>
 										</td>
 									</tr>
 								</table>
@@ -460,50 +485,31 @@
 
 				</div>
 				<!-- Section / End -->
-
-
-				<a href="#" class="button preview">Preview <i class="fa fa-arrow-circle-right"></i></a>
-
+				<input type="submit" value="제출"/><i class="fa fa-arrow-circle-right"></i>
+		
 			</div>
 		</div>
 
 	</div>
-	<!-- script -->
-	<!-- Opening hours added via JS (this is only for demo purpose) -->
-	<script>
-		$(".opening-day.js-demo-hours .chosen-select").each(function () {
-			$(this).append('' +
-				'<option></option>' +
-				'<option>Closed</option>' +
-				'<option>1 AM</option>' +
-				'<option>2 AM</option>' +
-				'<option>3 AM</option>' +
-				'<option>4 AM</option>' +
-				'<option>5 AM</option>' +
-				'<option>6 AM</option>' +
-				'<option>7 AM</option>' +
-				'<option>8 AM</option>' +
-				'<option>9 AM</option>' +
-				'<option>10 AM</option>' +
-				'<option>11 AM</option>' +
-				'<option>12 AM</option>' +
-				'<option>1 PM</option>' +
-				'<option>2 PM</option>' +
-				'<option>3 PM</option>' +
-				'<option>4 PM</option>' +
-				'<option>5 PM</option>' +
-				'<option>6 PM</option>' +
-				'<option>7 PM</option>' +
-				'<option>8 PM</option>' +
-				'<option>9 PM</option>' +
-				'<option>10 PM</option>' +
-				'<option>11 PM</option>' +
-				'<option>12 PM</option>');
-		});
-	</script>
-
-	<!-- DropZone | Documentation: http://dropzonejs.com -->
-	<script type="text/javascript" src="${contextPath}/resources/scripts/dropzone.js"></script>
-
-
+</form>
 </body>
+
+<script>
+	$(document).ready(function() { 
+		$("#datepicker").datepicker(); 
+	});
+
+	var categories_dict = ${categories_dict};
+	var mainCateoreies_Liteners = document.querySelector(".mainCateoreies_Litener");
+	var subCateoreies_Litener = document.querySelector(".subCateoreies_Litener");
+	mainCateoreies_Liteners.addEventListener("change", function (event) {
+		subCateoreies_Litener.innerHTML = "";
+		var sub_categories_arr = categories_dict[this.value];
+		for (var sub_index = 0; sub_index < sub_categories_arr.length; sub_index++) {
+			var option = document.createElement('option');
+			option.value = sub_categories_arr[sub_index];
+			option.text = sub_categories_arr[sub_index];
+			subCateoreies_Litener.appendChild(option);
+		}
+	})
+</script>

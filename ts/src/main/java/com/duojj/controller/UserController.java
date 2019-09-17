@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,10 +22,10 @@ import org.springframework.web.util.WebUtils;
 import com.duojj.dto.LoginDTO;
 import com.duojj.service.UserService;
 import com.duojj.vo.UserVO;
+import com.duojj.controller.UserController;
 
 @Controller
 @RequestMapping(value = "/user")
-@EnableAspectJAutoProxy
 public class UserController {
 	/*
 	 * 인터셉터 처리 순서 
@@ -31,16 +33,19 @@ public class UserController {
 	 * 2. controller의 메소드 실행
 	 * 3. interceptor의 posthandle처리
 	 */
+	
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+	static String LOGIN = "login";
+	
 	@Inject
 	private UserService service;
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public ModelAndView getLogin()throws Exception{
 		
-	    // 데이터와 뷰를 동시에 설정이 가능
+		logger.info("call loginForm");
 	    ModelAndView mv = new ModelAndView();
-	    mv.setViewName("/login"); // 뷰의 이름
-	    //mv.addObject("data", "12341234"); // 뷰로 보낼 데이터 값
+	    mv.setViewName("/login"); 
 	    
 	    return mv;
 
@@ -49,29 +54,54 @@ public class UserController {
 	@RequestMapping(value="/loginPost", method=RequestMethod.POST)
 	public ModelAndView postLogin(LoginDTO dto, HttpSession session, Model model, RedirectAttributes rttr)throws Exception{
 	
+		logger.info("call loginPost");
 		ModelAndView mv = new ModelAndView();
 		UserVO vo = service.login(dto);
 		
 		if(vo == null) {
 			mv.setViewName("redirect:login");
+			//비동기?status
 			return mv;
+		} else {
+			mv.setViewName("/main");
+			mv.addObject("userVO", vo);
 
+			if (dto.isUseCookie()) {
+
+				int amount = 60 * 60 * 5;// 5시간
+
+				Date sessionLimit = new Date(System.currentTimeMillis() + (1000 * amount));
+
+				service.keepLogin(vo.getUser_id(), session.getId(), sessionLimit);
+			}
+			return mv;
 		}
-		
-		mv.addObject("userVO", vo);
+	}
+	
+	@RequestMapping(value="/logout", method=RequestMethod.POST)
+	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception{
+		Object obj = session.getAttribute(LOGIN);
+		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/main");
-		
-		if(dto.isUseCookie()) {
+		if(obj != null) {
+			UserVO vo = (UserVO) obj;
 			
-			int amount = 60 * 60 * 24 * 7;//1주일
+			session.removeAttribute(LOGIN);
+			session.invalidate();
+			mv.setViewName("redirect:/test/main");
 			
-			Date sessionLimit = new Date(System.currentTimeMillis()+(1000*amount));
+			Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
 			
-			service.keepLogin(vo.getUser_id(), session.getId(), sessionLimit);
+			if(loginCookie != null) {
+				loginCookie.setPath("/");
+				loginCookie.setMaxAge(0);
+				response.addCookie(loginCookie);
+				service.keepLogin(vo.getUser_id(), session.getId(), new Date());
+			}
 		}
-		
-		return mv;
 
+		//status
+		return mv;
 	}
 	
 	
