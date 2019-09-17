@@ -5,8 +5,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/> 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script> 
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 
 <body>
+
 	<!-- Content
 ================================================== -->
 
@@ -198,6 +202,61 @@
 				</div>
 				<!-- Section / End -->
 
+				<!-- Section -->
+				<div class="add-listing-section margin-top-45">
+
+					<!-- Headline -->
+					<div class="add-listing-headline">
+						<h3>
+							<i class="sl sl-icon-docs"></i> 강의 시작일 / 종료일
+						</h3>
+					</div>
+					
+					<!-- Day -->
+						<div class="row opening-day">
+							<div class="col-md-2">
+								<h5>Monday</h5>
+							</div>
+							<div class="col-md-5">
+								<select class="chosen-select" data-placeholder="Opening Time" >
+									<option label="Opening Time"></option>
+									<option value="">Closed</option>
+									<option value="1AM">1 AM</option>
+									<option value="2AM</">2 AM</option>
+									<option value="3AM">3 AM</option>
+									<option value="4AM">4 AM</option>
+									<option value="5AM">5 AM</option>
+									<option value="6AM">6 AM</option>
+									<option value="7AM">7 AM</option>
+									<option value="8AM">8 AM</option>
+									<option value="9AM">9 AM</option>
+									<option value="10AM">10 AM</option>
+									<option value="11AM">11 AM</option>
+									<option value="12AM">12 AM</option>
+									<option value="1PM">1 PM</option>
+									<option value="2PM">2 PM</option>
+									<option value="3PM">3 PM</option>
+									<option value="4PM">4 PM</option>
+									<option value="5PM">5 PM</option>
+									<option value="6PM">6 PM</option>
+									<option value="7PM">7 PM</option>
+									<option value="8PM">8 PM</option>
+									<option value="9PM">9 PM</option>
+									<option value="10PM">10 PM</option>
+									<option value="11PM">11 PM</option>
+									<option value="12PM">12 PM</option>
+								</select>
+							</div>
+						</div>
+
+					<!-- Description -->
+					<div class="form">
+						<h5>상세 설명</h5>
+						<textarea class="WYSIWYG" name="class_content" cols="40" rows="3" id="class_content"
+							spellcheck="true">
+						</textarea>
+					</div>
+				</div>
 
 				<!-- Section -->
 				<div class="add-listing-section margin-top-45">
@@ -211,7 +270,7 @@
 
 					<!-- Switcher ON-OFF Content -->
 					<div class="switcher-content">
-
+						<div id="datepicker"></div>
 						<!-- Day -->
 						<div class="row opening-day">
 							<div class="col-md-2">
@@ -436,6 +495,10 @@
 </body>
 
 <script>
+	$(document).ready(function() { 
+		$("#datepicker").datepicker(); 
+	});
+
 	var categories_dict = ${categories_dict};
 	var mainCateoreies_Liteners = document.querySelector(".mainCateoreies_Litener");
 	var subCateoreies_Litener = document.querySelector(".subCateoreies_Litener");

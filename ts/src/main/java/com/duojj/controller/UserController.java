@@ -35,6 +35,7 @@ public class UserController {
 	 */
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+	static String LOGIN = "login";
 	
 	@Inject
 	private UserService service;
@@ -43,10 +44,8 @@ public class UserController {
 	public ModelAndView getLogin()throws Exception{
 		
 		logger.info("call loginForm");
-	    // 데이터와 뷰를 동시에 설정이 가능
 	    ModelAndView mv = new ModelAndView();
-	    mv.setViewName("/login"); // 뷰의 이름
-	    //mv.addObject("data", "12341234"); // 뷰로 보낼 데이터 값
+	    mv.setViewName("/login"); 
 	    
 	    return mv;
 
@@ -61,36 +60,33 @@ public class UserController {
 		
 		if(vo == null) {
 			mv.setViewName("redirect:login");
+			//비동기?status
 			return mv;
 		} else {
-			System.out.println(vo.getUser_name());
 			mv.setViewName("/main");
-		}
-		
-		mv.addObject("userVO", vo);
-		
-		if(dto.isUseCookie()) {
-			
-			int amount = 60 * 60 * 24 * 7;//1주일
-			
-			Date sessionLimit = new Date(System.currentTimeMillis()+(1000*amount));
-			
-			service.keepLogin(vo.getUser_id(), session.getId(), sessionLimit);
-		}
-		
-		return mv;
+			mv.addObject("userVO", vo);
 
+			if (dto.isUseCookie()) {
+
+				int amount = 60 * 60 * 5;// 5시간
+
+				Date sessionLimit = new Date(System.currentTimeMillis() + (1000 * amount));
+
+				service.keepLogin(vo.getUser_id(), session.getId(), sessionLimit);
+			}
+			return mv;
+		}
 	}
 	
 	@RequestMapping(value="/logout", method=RequestMethod.POST)
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception{
-		Object obj = session.getAttribute("login");
+		Object obj = session.getAttribute(LOGIN);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/main");
 		if(obj != null) {
 			UserVO vo = (UserVO) obj;
 			
-			session.removeAttribute("login");
+			session.removeAttribute(LOGIN);
 			session.invalidate();
 			mv.setViewName("redirect:/test/main");
 			
@@ -101,9 +97,10 @@ public class UserController {
 				loginCookie.setMaxAge(0);
 				response.addCookie(loginCookie);
 				service.keepLogin(vo.getUser_id(), session.getId(), new Date());
-				
 			}
 		}
+
+		//status
 		return mv;
 	}
 	
