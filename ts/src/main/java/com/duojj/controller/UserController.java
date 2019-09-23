@@ -60,18 +60,17 @@ public class UserController {
 		
 		if(vo == null) {
 			mv.setViewName("redirect:login");
+			rttr.addFlashAttribute("msg", "등록된 정보가 없습니다.");
 			//비동기?status
 			return mv;
 		} else {
 			mv.setViewName("/main");
 			mv.addObject("userVO", vo);
-
+			rttr.addFlashAttribute("msg", "로그인되었습니다.");
 			if (dto.isUseCookie()) {
-
-				int amount = 60 * 60 * 5;// 5시간
-
+				mv.addObject("userVO", vo);
+				int amount = 60 * 60 * 5;
 				Date sessionLimit = new Date(System.currentTimeMillis() + (1000 * amount));
-
 				service.keepLogin(vo.getUser_id(), session.getId(), sessionLimit);
 			}
 			return mv;

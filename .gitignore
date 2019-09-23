@@ -11,6 +11,9 @@ jdbc.properties
 .loadpath
 .recommenders
 
+# vs code 
+.vscode
+
 # External tool builders
 .externalToolBuilders/
 

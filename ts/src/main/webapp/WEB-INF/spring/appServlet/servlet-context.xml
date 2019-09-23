@@ -52,9 +52,11 @@
 	</mvc:interceptors>
 -->
 
-	<beans:bean id="authInterceptor" class="com.duojj.interceptor.AuthInterceptor"></beans:bean>
+	<beans:bean id="loginPathInterceptor" class="com.duojj.interceptor.LoginPathInterceptor"></beans:bean>
 	
 	<beans:bean id="loginCheckInterceptor" class="com.duojj.interceptor.LoginCheckInterceptor"></beans:bean>
+	
+	<beans:bean id="tutorAuthCheckInterceptor" class="com.duojj.interceptor.TutorAuthCheckInterceptor"></beans:bean>
 	
 	<interceptors>
 		<interceptor>
@@ -64,7 +66,7 @@
 		
  		<interceptor>
 			<mapping path="/test/classinsert"/>
-			<beans:ref bean="authInterceptor"/>
+			<beans:ref bean="tutorAuthCheckInterceptor"/>
 		</interceptor> 
 	</interceptors>
 

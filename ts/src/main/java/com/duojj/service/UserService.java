@@ -12,4 +12,6 @@ public interface UserService {
 	public void keepLogin(String user_id, String user_sessionid, Date next);
 	
 	public UserVO checkLoginBefore(String value);
+	
+	public Integer checkUserTutorAuth(String value);
 }
