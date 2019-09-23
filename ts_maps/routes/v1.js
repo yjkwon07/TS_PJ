@@ -22,7 +22,7 @@ const router = express.Router();
 
 router.get('/searchMap/autocomplete/:query', async (req, res, next) => {
     try {
-        const placename = encodeURIComponent(req.params.query);
+        const placename = req.params.query;
         await googleMapsClient.placesQueryAutoComplete({
             input: placename,
             language: 'ko',
@@ -46,7 +46,7 @@ router.get('/searchMap/autocomplete/:query', async (req, res, next) => {
 
 router.get('/searchMap/:query', async (req, res, next) => {
     try {
-        const placename = encodeURIComponent(req.params.query);
+        const placename = req.params.query;
         const googlePlaces = util.promisify(googleMapsClient.places);
         await googlePlaces({
             query: placename,
