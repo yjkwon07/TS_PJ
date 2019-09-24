@@ -38,7 +38,7 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter{
 		
 		HttpSession session = request.getSession();
 		ModelMap modelMap = modelAndView.getModelMap();
-		UserVO userVO = (UserVO)modelMap.get("userVO"); // UserController에서 가져온 로그인한 vo객체 가져옴
+		UserVO userVO = (UserVO)modelMap.get("userVO");
 		
 		if(userVO != null) {
 			logger.info("new login success");
