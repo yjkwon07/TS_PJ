@@ -1,6 +1,5 @@
 package com.duojj.controller;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -45,20 +44,14 @@ public class TestController {
 		return mav;
 	}
 	
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/classinsert", method = RequestMethod.GET)
 	public ModelAndView Classinsert(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		CategoriesDTO categories = new CategoriesDTO();
+		Map<String, Map> map = categories.getCategories();
 		Gson gson = new Gson();
-		Map<String, String[]> map = new HashMap();
-		map.put("design",categories.s[0]);
-		map.put("it",categories.s[1]);
-		map.put("video",categories.s[2]);
-		map.put("forLanguage",categories.s[3]);
-		map.put("beauty",categories.s[4]);
-		map.put("music",categories.s[5]);
 		String json = gson.toJson(map);
-		
 		mav.addObject("categories_dict", json);
 		mav.setViewName("/classinsert");
 		return mav;

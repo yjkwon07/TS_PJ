@@ -5,15 +5,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/> 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script> 
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 
 <body>
-
 	<!-- Content
 ================================================== -->
-
 <form action="/lecture/regist" method="POST">
 	<!-- Container -->
 	<div class="container">
@@ -32,131 +27,122 @@
 							<h3> <i class="sl sl-icon-doc"></i> 강의를 작성해주세요. </h3>
 						</div>
 	
-						<!-- Title -->
+						<!-- class name -->
 						<div class="row with-forms">
 							<div class="col-md-12">
 								<h5>
 									강의 명 
-									<i class="tip" data-tip-content="강의를 입력해주세요. &nbsp; ex) 자바를 다루는 웹 기술"></i>
+									<i class="tip" data-tip-content="강의를 입력해주세요.<br> ex) 직장인 요가 스트레칭"></i>
 								</h5>
 								<input class="search-field" type="text" value="" name="class_name"/>
 							</div>
 						</div>
 
-						<!-- Row -->
+						<!-- class info -->
 						<div class="row with-forms">
 
-							<!-- Status -->
+							<!-- Main Category -->
 							<div class="col-md-6">
 								<h5>Main Category</h5>
-								<select class="mainCateoreies_Litener" name="class_maincategories" id="class_maincategories">
+								<select class="js_mainCateoreies_Litener" name="class_maincategories" id="class_maincategories">
 									<option label="blank">Select Main Category</option>
-									<option value="design">디자인</option>
-									<option value="it">IT</option>
-									<option value="beauty">뷰티</option>
-									<option value="video">영상</option>
-									<option value="forLanguage">외국어</option>
-									<option value="music">음악</option>
 								</select>
 							</div>
-							
+
+							<!-- Sub Category -->
 							<div class="col-md-6">
 									<h5>Sub Category</h5>
-									<select class="subCateoreies_Litener" name="class_subcategories" id="class_subcategories">
+									<select class="js_subCateoreies_Litener" name="class_subcategories" id="class_subcategories">
 									</select>
 							</div>
-							<!-- Type -->
+							
+							<!-- Teacher name  -->
 							<div class="col-md-6">
-								<h5>
-									Teacher name
-									<i class="tip" 
-										data-tip-content="Maximum of 15 keywords related with your business"></i>
-								</h5>
+								<h5>Teacher name</h5>
 								<input type="text" value='${login.user_name}' name="class_teacher_name" disabled>
 								<input type="hidden" value='${login.user_name}' name="class_teacher_name"/>
 								<input type="hidden" value='${login.user_id}' name="user_id"/>
 							</div>
 
-							<!-- Type -->
+							<!-- Summary -->
 							<div class="col-md-6">
 								<h5>
 									Summary
-									<i class="tip"
-										data-tip-content="Maximum of 15 keywords related with your business"></i>
+									<i class="tip" data-tip-content="전반적인 강의 내용을 적어주세요 <br> ex) 지친 하루 가벼운 스트레칭으로 피로를 푸세요."></i>
 								</h5>
-								<input type="text" placeholder="Keywords should be separated by commas" name="class_summary">
+								<input type="text" name="class_summary">
 							</div>
 
-							<!-- Type -->
+							<!-- YouTube Link -->
 							<div class="col-md-6">
 								<h5>
 									YouTube Link
 									<i class="tip"
-										data-tip-content="Maximum of 15 keywords related with your business"></i>
+										data-tip-content="해당강의 유튜브로 홍보해 보세요. <br> !만약 없다면 빈칸으로 남겨 주세요."></i>
 								</h5>
-								<input type="text" placeholder="Keywords should be separated by commas" name="class_youtube">
+								<input type="text" placeholder="https://www.youtube.com/"  name="class_youtube">
 							</div>
 
-							<!-- Type -->
+							<!-- Maximum student -->
 							<div class="col-md-6">
 								<h5>
 									수강 최대 인원 수
-									<i class="tip"
-										data-tip-content="Maximum of 15 keywords related with your business"></i>
+									<i class="tip" data-tip-content="최대 수강인원을 적어주세요."></i>
 								</h5>
-								<input type="text" placeholder="Keywords should be separated by commas" name="class_student_cnt">
+								<input type="text" placeholder="15" name="class_student_cnt">
 							</div>
 						</div>
-						<!-- Row / End -->
+						<!-- class info / End -->
 
 					</div>
 					<!-- Section / End -->
 
 					<!-- Section -->
-
-					<input type="hidden" value="30.2" name="class_lat"> 
-					<input type="hidden" value="122.2" name="class_lng">
-
 					<div class="add-listing-section margin-top-45">
 
-						<!-- Headline -->
+						<!-- Map -->
 						<div class="add-listing-headline">
-							<h3><i class="sl sl-icon-location"></i> Location</h3>
+							<h3><i class="sl sl-icon-location"></i> 강의 장소</h3>
 						</div>
-						<!-- Map
-						================================================== -->
-						<div id="map-container" class="fullwidth-home-map">
 
+						<div id="map-container" class="fullwidth-home-map">
+						
 							<div id="map" data-map-zoom="9">
-								<!-- map goes here -->
+							<!-- map goes here -->
 							</div>
 
+							<!-- place search -->
 							<div class="main-search-inner">
-
+						
 								<div class="container">
+						
 									<div class="row">
-										<div class="col-md-12">
-
+						
+										<div class="col-md-11">
+						
 											<div class="main-search-input">
-
+						
 												<div class="main-search-input-item">
-													<input id="search" type="text" placeholder="What are you looking for?"
-														value="" />
+													<input claas="js_PlaceName" type="text" placeholder="강의 장소를 입력해 주세요." value="" />
 												</div>
+						
+												<button class="js_PlaceSearchButton">Search</button>
+						
 												<ul id="search-list"></ul>
-												<button class="button">Search</button>
-
+						
 											</div>
 										</div>
 									</div>
 								</div>
-
+						
 							</div>
-
+						
 							<!-- Scroll Enabling Button -->
-							<a href="#" id="scrollEnabling" title="Enable or disable scrolling on map">Enable
-								Scrolling</a>
+							<a href="#" id="scrollEnabling" title="Enable or disable scrolling on map">Enable Scrolling</a>
 						</div>
+
+						<input type="hidden" value="30.2" name="class_lat"> 
+						<input type="hidden" value="122.2" name="class_lng">
 					</div>
 					<!-- Section / End -->
 
@@ -166,7 +152,8 @@
 
 						<!-- Headline -->
 						<div class="add-listing-headline">
-							<h3><i class="sl sl-icon-picture"></i> Gallery</h3>
+							<h3><i class="sl sl-icon-picture"></i> 강의 사진 </h3>
+							<h5><i class="tip" data-tip-content="강의를 소개할 사진을 올려주세요."></i> </h5>
 						</div>
 
 						<!-- Dropzone -->
@@ -186,19 +173,18 @@
 						<!-- Headline -->
 						<div class="add-listing-headline">
 							<h3>
-								<i class="sl sl-icon-docs"></i> Details
+								<i class="sl sl-icon-docs"></i> 강의 내용 
 							</h3>
 						</div>
 
 						<!-- Description -->
 						<div class="form">
-							<h5>상세 설명</h5>
-							<textarea class="WYSIWYG" name="class_content" cols="40" rows="3" id="class_content"
-								spellcheck="true">
-							</textarea>
+							<h5>상세 설명 <i class="tip" data-tip-content="강의 세부 내용을 입력해 주세요."></i> </h5>
+							<textarea name="class_content" cols="40" rows="3" id="class_content"></textarea>
 						</div>
 					</div>
-					<!-- Row / End -->
+					<!-- Section / End -->
+
 				</div>
 				<!-- Section / End -->
 
@@ -222,7 +208,7 @@
 									<option label="Opening Time"></option>
 									<option value="">Closed</option>
 									<option value="1AM">1 AM</option>
-									<option value="2AM</">2 AM</option>
+									<option value="2AM">2 AM</option>
 									<option value="3AM">3 AM</option>
 									<option value="4AM">4 AM</option>
 									<option value="5AM">5 AM</option>
@@ -248,14 +234,6 @@
 								</select>
 							</div>
 						</div>
-
-					<!-- Description -->
-					<div class="form">
-						<h5>상세 설명</h5>
-						<textarea class="WYSIWYG" name="class_content" cols="40" rows="3" id="class_content"
-							spellcheck="true">
-						</textarea>
-					</div>
 				</div>
 
 				<!-- Section -->
@@ -264,8 +242,6 @@
 					<!-- Headline -->
 					<div class="add-listing-headline">
 						<h3><i class="sl sl-icon-clock"></i> 강의 가능한 날짜</h3>
-						<!-- Switcher -->
-						<label class="switch"><input type="checkbox" checked><span class="slider round"></span></label>
 					</div>
 
 					<!-- Switcher ON-OFF Content -->
@@ -281,7 +257,7 @@
 									<option label="Opening Time"></option>
 									<option value="">Closed</option>
 									<option value="1AM">1 AM</option>
-									<option value="2AM</">2 AM</option>
+									<option value="2AM">2 AM</option>
 									<option value="3AM">3 AM</option>
 									<option value="4AM">4 AM</option>
 									<option value="5AM">5 AM</option>
@@ -311,7 +287,7 @@
 									<option label="Closing Time"></option>
 									<option value="">Closed</option>
 									<option value="1AM">1 AM</option>
-									<option value="2AM</">2 AM</option>
+									<option value="2AM">2 AM</option>
 									<option value="3AM">3 AM</option>
 									<option value="4AM">4 AM</option>
 									<option value="5AM">5 AM</option>
@@ -485,31 +461,15 @@
 
 				</div>
 				<!-- Section / End -->
-				<input type="submit" value="제출"/><i class="fa fa-arrow-circle-right"></i>
+				<i class="fa fa-arrow-circle-right"></i><input type="submit" value='강의 개설'/>
 		
 			</div>
 		</div>
 
 	</div>
 </form>
+<input class= "js_categories" type="hidden" value=${categories_dict} >
 </body>
+<script src="${contextPath}/resources/scripts/classinsert/categories.js"/>
 
-<script>
-	$(document).ready(function() { 
-		$("#datepicker").datepicker(); 
-	});
 
-	var categories_dict = ${categories_dict};
-	var mainCateoreies_Liteners = document.querySelector(".mainCateoreies_Litener");
-	var subCateoreies_Litener = document.querySelector(".subCateoreies_Litener");
-	mainCateoreies_Liteners.addEventListener("change", function (event) {
-		subCateoreies_Litener.innerHTML = "";
-		var sub_categories_arr = categories_dict[this.value];
-		for (var sub_index = 0; sub_index < sub_categories_arr.length; sub_index++) {
-			var option = document.createElement('option');
-			option.value = sub_categories_arr[sub_index];
-			option.text = sub_categories_arr[sub_index];
-			subCateoreies_Litener.appendChild(option);
-		}
-	})
-</script>

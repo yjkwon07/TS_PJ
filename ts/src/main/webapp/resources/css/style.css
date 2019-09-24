@@ -2603,7 +2603,7 @@ input[type="range"]:focus + .rangeslider .rangeslider__handle {
 	background: #fff;
 	z-index: 112;
 	opacity: 1;
-	tranition: all 0.3s;
+	transition: all 0.3s;
 }
 
 
@@ -10460,8 +10460,8 @@ input:checked + .slider:before {
 	background: #333;
 	color: #fff;
 	padding: 13px 15px;
-	min-width: 200px;
-	max-width: 200px;
+	min-width: 300px;
+	max-width: 300px;
 	font-size: 13px;
 	border-radius: 4px;
 	line-height: 19px;
