@@ -4,6 +4,6 @@
     <!-- PostPage-->
     <definition name="/post" extends="baseLayout">
         <put-attribute name="title" value="TS_PJ_Post"/>
-        <put-attribute name="content" value="/WEB-INF/views/content/post.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/views/content/classinfo.jsp"/>
     </definition>
 </tiles-definitions>
