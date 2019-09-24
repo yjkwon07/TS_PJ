@@ -60,18 +60,16 @@ public class UserController {
 		
 		if(vo == null) {
 			mv.setViewName("redirect:login");
-			//비동기?status
+			rttr.addFlashAttribute("msg", "등록된 정보가 없습니다.");
 			return mv;
 		} else {
 			mv.setViewName("/main");
 			mv.addObject("userVO", vo);
-
+			rttr.addFlashAttribute("msg", "로그인 되었습니다.");
 			if (dto.isUseCookie()) {
-
-				int amount = 60 * 60 * 5;// 5시간
-
+				mv.addObject("userVO", vo);
+				int amount = 60 * 60 * 5;
 				Date sessionLimit = new Date(System.currentTimeMillis() + (1000 * amount));
-
 				service.keepLogin(vo.getUser_id(), session.getId(), sessionLimit);
 			}
 			return mv;
@@ -79,10 +77,11 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/logout", method=RequestMethod.POST)
-	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception{
+	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response, HttpSession session, RedirectAttributes rttr) throws Exception{
 		Object obj = session.getAttribute(LOGIN);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/main");
+		rttr.addFlashAttribute("msg", "로그아웃 되었습니다.");
 		if(obj != null) {
 			UserVO vo = (UserVO) obj;
 			
@@ -99,8 +98,6 @@ public class UserController {
 				service.keepLogin(vo.getUser_id(), session.getId(), new Date());
 			}
 		}
-
-		//status
 		return mv;
 	}
 	

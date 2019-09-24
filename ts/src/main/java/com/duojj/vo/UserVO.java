@@ -16,7 +16,14 @@ public class UserVO {
 	private Date user_moddate;
 	private String user_sessionkey;
 	private Date user_sessionlimit;
+	private Double user_rating;
 	
+	public Double getUser_rating() {
+		return user_rating;
+	}
+	public void setUser_rating(Double user_rating) {
+		this.user_rating = user_rating;
+	}
 	public String getUser_id() {
 		return user_id;
 	}

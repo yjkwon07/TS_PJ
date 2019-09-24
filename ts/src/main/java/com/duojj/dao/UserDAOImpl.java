@@ -17,31 +17,37 @@ import com.duojj.vo.UserVO;
 public class UserDAOImpl implements UserDAO{
 	
 	@Inject
-	private SqlSession session;
+	private SqlSession sqlsession;
 	
 	private static String namespace = "com.duojj.mapper.userMapper";
 
 	@Override
 	public UserVO login(LoginDTO dto) throws Exception {
 		
-		return session.selectOne(namespace+".login", dto);
+		return sqlsession.selectOne(namespace+".login", dto);
 	}
 	
 	@Override
 	public void keepLogin(String user_id, String user_sessionId, Date next) {
-		Map<String, Object> paraMap = new HashMap();
+		Map<String, Object> paraMap = new HashMap<String, Object> ();
 		
 		paraMap.put("user_id", user_id);
 		paraMap.put("user_sessionId", user_sessionId);
 		paraMap.put("next", next);
 		
 		
-		session.update(namespace+ ".keepLogin" ,paraMap);
+		sqlsession.update(namespace+ ".keepLogin" ,paraMap);
 	}
 	
 	@Override
 	public UserVO checkUserWithSessionKey(String value) {
 		
-		return session.selectOne(namespace+".checkUserWithSessionKey",value);
+		return sqlsession.selectOne(namespace+".checkUserWithSessionKey",value);
+	}
+	
+	@Override
+	public Integer checkUserTutorAuth(String value) {
+		
+		return sqlsession.selectOne(namespace+".checkUserTutorAuth", value);
 	}
 }

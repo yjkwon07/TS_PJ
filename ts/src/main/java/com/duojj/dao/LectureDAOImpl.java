@@ -11,14 +11,14 @@ import com.duojj.vo.LectureVO;
 public class LectureDAOImpl implements LectureDAO{
 	
 	@Inject
-	private SqlSession session;
+	private SqlSession sqlSession;
 	
 	private static String namespace = "com.duojj.mapper.lectureMapper";
 	
 	@Override
 	public void postLectureRegister(LectureVO vo) throws Exception {
 		
-		session.insert(namespace+".postLectureRegister",vo);
+		sqlSession.insert(namespace+".postLectureRegister",vo);
 	}
 	
 	

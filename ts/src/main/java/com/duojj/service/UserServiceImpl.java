@@ -33,4 +33,10 @@ public class UserServiceImpl implements UserService{
 		
 		return dao.checkUserWithSessionKey(value);
 	}
+	
+	@Override
+	public Integer checkUserTutorAuth(String value) {
+		
+		return dao.checkUserTutorAuth(value);
+	}
 }

@@ -81,7 +81,7 @@
 			<!-- Right Side Content / End -->
 			<div class="right-side">
 				<div class="header-widget">
-					<a href="#sign-in-dialog" class="sign-in popup-with-zoom-anim"><i class="sl sl-icon-login"></i> Sign In</a>
+					<a href="#sign-in-dialog" class="sign-in popup-with-zoom-anim" id="sign-in"><i class="sl sl-icon-login"></i> Sign In</a>
 				</div>
 			</div>
 			<!-- Right Side Content / End -->
@@ -103,19 +103,18 @@
 
 						<!-- Login -->
 						<div class="tab-content" id="tab1" style="display: none;">
-							<form method="post" action="/user/loginPost" class="login">
-
+							<form action="/user/loginPost" method="POST">
 								<p class="form-row form-row-wide">
 									<label for="username">Username:
 										<i class="im im-icon-Male"></i>
-										<input type="text" class="input-text" name="user_id" id="username" value="" />
+										<input type="text" class="input-text" name="user_id" id="user_id" value="" />
 									</label>
 								</p>
 
 								<p class="form-row form-row-wide">
 									<label for="password">Password:
 										<i class="im im-icon-Lock-2"></i>
-										<input class="input-text" type="password" name="user_pw" id="password"/>
+										<input class="input-text" type="password" name="user_pw" id="user_pw"/>
 									</label>
 									<span class="lost_password">
 										<a href="#" >Lost Your Password?</a>
@@ -123,13 +122,12 @@
 								</p>
 
 								<div class="form-row">
-									<input type="submit" class="button border margin-top-5" value="Login" />
+									<input type="submit" class="button border margin-top-5" value="Login" id="login"/>
 									<div class="checkboxes margin-top-10">
 										<input id="remember-me" type="checkbox" name="useCookie">
 										<label for="remember-me">Remember Me</label>
 									</div>
 								</div>
-								
 							</form>
 						</div>
 						
@@ -194,3 +192,10 @@
 <div class="clearfix"></div>
 <!-- Header Container / End -->
 </body>
+<script>
+	var msg = "${msg}";
+	if(msg.length > 0){
+		window.alert(msg);
+	}
+		
+</script>
