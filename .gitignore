@@ -1,6 +1,3 @@
-###Express###
-node_modules
-.env
 ###Eclipse###
 .metadata
 bin/
