@@ -39,4 +39,10 @@ public class UserServiceImpl implements UserService{
 		
 		return dao.checkUserTutorAuth(value);
 	}
+	
+	@Override
+	public UserVO getUserInfoFromTutorId(String user_id) throws Exception {
+		
+		return dao.getUserInfoFromTutorId(user_id);
+	}
 }

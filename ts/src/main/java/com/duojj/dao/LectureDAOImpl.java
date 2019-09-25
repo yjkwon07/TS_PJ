@@ -21,5 +21,11 @@ public class LectureDAOImpl implements LectureDAO{
 		sqlSession.insert(namespace+".postLectureRegister",vo);
 	}
 	
+	@Override
+	public LectureVO getDetailLectureClass(Integer class_id) throws Exception {
+		
+		return sqlSession.selectOne(namespace+".getDetailLectureClass",class_id);
+	}
+	
 	
 }

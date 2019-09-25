@@ -4,11 +4,13 @@ import javax.inject.Inject;
 
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.duojj.service.LectureService;
+import com.duojj.service.UserService;
 import com.duojj.vo.LectureVO;
 
 @Controller
@@ -17,7 +19,9 @@ import com.duojj.vo.LectureVO;
 public class LectureController {
 
 	@Inject
-	private LectureService service;
+	private LectureService lectureService;
+	@Inject
+	private UserService userService;
 	
 	@RequestMapping(value="/form", method=RequestMethod.GET)
 	public ModelAndView getLectureRegister()throws Exception{
@@ -33,9 +37,20 @@ public class LectureController {
 	
 	@RequestMapping(value="/regist", method=RequestMethod.POST)
 	public ModelAndView postLectureRegister(LectureVO vo)throws Exception{
-		service.postLectureRegister(vo);
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/complete"); // 뷰의 이름 -> 강의 상세 페이지로 들어가야함
+		lectureService.postLectureRegister(vo);
+		mv.setViewName("/"+vo.getClass_id()); // 뷰의 이름 -> 강의 상세 페이지로 들어가야함
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="/{class_id}", method=RequestMethod.GET)
+	public ModelAndView postLectureRegister(@PathVariable Integer class_id)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		LectureVO lectureVO = lectureService.getDetailLectureClass(class_id);
+		mv.addObject("lectureVO", lectureVO);
+		mv.addObject("userVO", userService.getUserInfoFromTutorId(lectureVO.getUser_id()));
+		mv.setViewName("/classinfo");
 		
 		return mv;
 	}

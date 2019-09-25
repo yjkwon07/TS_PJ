@@ -28,5 +28,9 @@
 			from tbl_user
 		where user_sessionkey = #{value}
 	</select>
-
+	<select id="getUserInfoFromTutorId" resultType="UserVO">
+		select *
+			from tbl_user
+		where user_id = #{user_id}
+	</select>
 </mapper>
