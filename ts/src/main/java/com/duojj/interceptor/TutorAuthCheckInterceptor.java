@@ -32,7 +32,7 @@ public class TutorAuthCheckInterceptor extends HandlerInterceptorAdapter{
 
 			if(tutorCheck == 1) {
 				logger.info("튜터가 아닙니다.");
-				response.sendRedirect("/user/login");
+				response.sendRedirect("/main");
 				return false;
 			} else if(tutorCheck == 2) {
 				return true;

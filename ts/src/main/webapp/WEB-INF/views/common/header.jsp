@@ -19,7 +19,7 @@
 				
 				<!-- Logo -->
 				<div id="logo">
-					<a href="/"><img src="${contextPath}/resources/images/logo.png" alt=""></a>
+					<a href="/main"><img src="${contextPath}/resources/images/logo.png" alt=""></a>
 				</div>
 
 				<!-- Mobile Navigation -->
@@ -192,10 +192,3 @@
 <div class="clearfix"></div>
 <!-- Header Container / End -->
 </body>
-<script>
-	var msg = "${msg}";
-	if(msg.length > 0){
-		window.alert(msg);
-	}
-		
-</script>

@@ -87,7 +87,7 @@ public class UserController {
 			
 			session.removeAttribute(LOGIN);
 			session.invalidate();
-			mv.setViewName("redirect:/test/main");
+			mv.setViewName("redirect:/main");
 			
 			Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
 			
