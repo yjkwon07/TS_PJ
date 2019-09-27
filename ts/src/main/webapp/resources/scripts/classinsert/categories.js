@@ -1,4 +1,5 @@
 var categoriesDict = document.querySelector(".js_categories").value;
+document.querySelector(".js_categories").remove();
 categoriesDict = JSON.parse(categoriesDict);
 var mainCateogreies = categoriesDict['mainMap'];
 var subCategories = categoriesDict['subMap'];
