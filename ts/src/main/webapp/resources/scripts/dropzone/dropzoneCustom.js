@@ -164,8 +164,8 @@ function xhrAftertag(file){
 function xhrdelete(file) {
     file.previewElement.querySelector(".delete").addEventListener("click", function (event) {
         event.preventDefault();
-        const formData = new FormData();
-        formData.append('file', file);
+        var formData = new FormData();
+        formData.append('file_name', file.name);
         formData.append('class_id', CLASS_ID);
         fetch(URL_DELETE, {
             method: 'DELETE', 
