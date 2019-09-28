@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.duojj.service.UserService;
 import com.duojj.vo.UserVO;
@@ -26,24 +25,22 @@ public class TutorAuthCheckInterceptor extends HandlerInterceptorAdapter{
 		
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO)session.getAttribute(LOGIN);
-		try {
+		if(userVO != null) {
 			String sessionKey = userVO.getUser_sessionkey();
 			int tutorCheck = service.checkUserTutorAuth(sessionKey);
-
 			if(tutorCheck == 1) {
 				logger.info("튜터가 아닙니다.");
-				response.sendRedirect("/main");
+				response.sendRedirect("/test/error");
 				return false;
 			} else if(tutorCheck == 2) {
 				return true;
 			}
-			return false;
-		} catch (Exception e) {
-			e.printStackTrace();
+		} else {
 			logger.info("로그인이 안되어있습니다.");
 			response.sendRedirect("/user/login");
 			return false;
 		}
+		return false;
 		
 	}
 	

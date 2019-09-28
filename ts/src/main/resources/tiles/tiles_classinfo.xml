@@ -3,7 +3,9 @@
 <tiles-definitions>
     <!-- PostPage-->
     <definition name="/classinfo" extends="baseLayout">
+        <put-attribute name="css" value="/WEB-INF/views/css/classinfoCss.jsp"/>
         <put-attribute name="title" value="TS_PJ_Post"/>
         <put-attribute name="content" value="/WEB-INF/views/content/classinfo.jsp"/>
+        <put-attribute name="script" value="/WEB-INF/views/script/classinfoScript.jsp"/>
     </definition>
 </tiles-definitions>

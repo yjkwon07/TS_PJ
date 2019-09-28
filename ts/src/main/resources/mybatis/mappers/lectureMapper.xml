@@ -64,7 +64,7 @@
 				#{class_teacher_name},#{class_startday},#{class_youtube})
 	</insert>
 	
-	<select id="getDetailLectureClass" resultType="LectureVO">
+	<select id="getDetailLectureClass" resultType="lectureVO">
 		select * 
 			from tbl_class
 		where class_id = #{class_id};

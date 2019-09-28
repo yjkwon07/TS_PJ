@@ -25,5 +25,12 @@ public class TestController {
 		mav.setViewName("/categoires");
 		return mav;
 	}
+	@RequestMapping(value = "/error", method = RequestMethod.GET)
+	public ModelAndView error(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("common/error");
+		return mav;
+	}
+	
 
 }

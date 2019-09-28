@@ -13,7 +13,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h2>${lectureVO.class_name}</h2><span>${lectureVO.class_content}</span>
+					<h2>${lectureVO.class_name}</h2><span>${lectureVO.class_summary}</span>
 				</div>
 			</div>
 		</div>
@@ -45,7 +45,7 @@
 
 							<h3>${lectureVO.class_name}</h3>
 
-							<p>${lectureVO.class_content}</p>
+							<pre>${lectureVO.class_content}</pre>
 
 							<!-- Share Buttons -->
 							<ul class="share-buttons margin-top-40 margin-bottom-0">
@@ -79,12 +79,13 @@
 						<!-- Scroll Enabling Button -->
 						<a href="#" id="scrollEnabling" title="Enable or disable scrolling on map">Enable Scrolling</a>
 					</div>
+					<div id="youTubePlayer"></div><!-- 플레이어를 불러올 영역-->
 					<!-- About Author -->
 					<div class="about-author">
 						<img src="${contextPath}/resources/images/user-avatar.jpg" alt="" />
 						<div class="about-description">
 							<h4>${lectureVO.class_teacher_name}</h4>
-							<a href="${userVO.user_youtube}">${userVO.user_youtube}</a>
+							<input hidden class="js_user_youtube" value="${lectureVO.class_youtube}"/>
 							<p>${userVO.user_status}</p>
 						</div>
 					</div>
