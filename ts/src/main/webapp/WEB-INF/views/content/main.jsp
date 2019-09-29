@@ -419,3 +419,10 @@
 
 	</section>
 </body>
+<script>
+	var msg = "${msg}";
+	if(msg.length > 0){
+		window.alert(msg);
+	}
+		
+</script>

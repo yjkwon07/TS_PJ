@@ -56,7 +56,7 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter{
 			
 			Object dest = session.getAttribute("dest");
 			if(dest == null) {
-				response.sendRedirect("/test/main");
+				response.sendRedirect("/main");
 			} else {
 				response.sendRedirect(dest != null ? (String)dest:"/");
 			}

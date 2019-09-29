@@ -65,7 +65,6 @@ public class UserController {
 		} else {
 			mv.setViewName("/main");
 			mv.addObject("userVO", vo);
-			rttr.addFlashAttribute("msg", "로그인 되었습니다.");
 			if (dto.isUseCookie()) {
 				mv.addObject("userVO", vo);
 				int amount = 60 * 60 * 5;
@@ -87,7 +86,7 @@ public class UserController {
 			
 			session.removeAttribute(LOGIN);
 			session.invalidate();
-			mv.setViewName("redirect:/test/main");
+			mv.setViewName("redirect:/main");
 			
 			Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
 			

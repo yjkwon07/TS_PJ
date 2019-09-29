@@ -449,7 +449,7 @@
 									<tr class="pricing-list-item pattern">
 										<td>
 											<div class="fm-input pricing-ingredients">
-												<input type="text" placeholder="가격" name="class_price" /></div>
+												<input type="text" placeholder="가격" name="class_price" value="123"/></div>
 										</td>
 									</tr>
 								</table>

@@ -65,7 +65,7 @@
 		</interceptor>
 		
  		<interceptor>
-			<mapping path="/test/classinsert"/>
+			<mapping path="/lecture/insert"/>
 			<beans:ref bean="tutorAuthCheckInterceptor"/>
 		</interceptor> 
 	</interceptors>

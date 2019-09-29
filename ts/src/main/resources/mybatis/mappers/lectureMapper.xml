@@ -6,10 +6,10 @@
 <mapper namespace="com.duojj.mapper.lectureMapper">
 	
 	<sql id="fieldSelect">
-		<!--class_id,  -->
+		class_id
 		user_id,
 		class_name, 
-		<!--regdate,  -->
+		class_regdate,
 		class_student_cnt, 
 		class_image, 
 		class_price,
@@ -25,9 +25,11 @@
 		class_lat, 
 		class_lng, 
 		class_maincategories,
+		class_startday,
 		class_endday,
 		class_subcategories,
 		class_teacher_name,
+		class_youtube
 	</sql>
 	<!-- 강좌 업로드 sql -->
 	<insert id="postLectureRegister">
@@ -61,9 +63,18 @@
 				#{class_lng},#{class_maincategories},#{class_endday},#{class_subcategories},
 				#{class_teacher_name},#{class_startday},#{class_youtube})
 	</insert>
+	
+	<select id="getDetailLectureClass" resultType="lectureVO">
+		select * 
+			from tbl_class
+		where class_id = #{class_id}
+	</select>
 
-
-
+	<select id="getTutorLectureList" resultType="lectureVO">
+		select *
+			from tbl_class
+		where user_id = #{user_id}
+	</select>
 </mapper>
 
 

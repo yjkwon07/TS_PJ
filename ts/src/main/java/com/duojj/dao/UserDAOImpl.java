@@ -50,4 +50,10 @@ public class UserDAOImpl implements UserDAO{
 		
 		return sqlsession.selectOne(namespace+".checkUserTutorAuth", value);
 	}
+	
+	@Override
+	public UserVO getUserInfoFromTutorId(String user_id) throws Exception {
+		
+		return sqlsession.selectOne(namespace+".getUserInfoFromTutorId",user_id);
+	}
 }
