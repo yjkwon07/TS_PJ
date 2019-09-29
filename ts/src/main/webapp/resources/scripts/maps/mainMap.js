@@ -175,7 +175,8 @@ function geolocate(map) {
   }
 }
 
-
+ // Map Attributes
+var mapScrollAttr = document.querySelector('#map').dataset.mapScroll;
 
 // Scroll enabling button
 var scrollEnabling = document.querySelector('#scrollEnabling');
@@ -184,18 +185,14 @@ var scrollEnabling = document.querySelector('#scrollEnabling');
 var currentGeoLocation = document.querySelector('#geoLocation');
 var customcurrentGeoLocation = document.querySelector('.input-with-icon.location a i')
 
-function mainMap(locations, position) {
+function mainMap(locations, position, mapZoom) {
   // Map setting 
   // Map Attributes
   // ----------------------------------------------- //
-  
-  // Map Attributes
-  var mapZoomAttr = document.querySelector('#map').dataset.mapZoom;
-  var mapScrollAttr = document.querySelector('#map').dataset.mapScroll;
 
   var zoomLevel, scrollEnabled;
-  if (mapZoomAttr && typeof mapZoomAttr !== "undefined") {
-    zoomLevel = parseInt(mapZoomAttr);
+  if (mapZoom && typeof mapZoom !== "undefined") {
+    zoomLevel = parseInt(mapZoom);
   } else {
     zoomLevel = 5;
   }
@@ -388,12 +385,11 @@ function mainMap(locations, position) {
 var startTime;
 function initMap(){
   startTime = performance.now();
-   
+  var mapZoom = 8;
   var position ={
     lat: 37.3232287,
     lng: 126.8384344,
   };
-
   var locations = [
     {},
     {
@@ -407,12 +403,13 @@ function initMap(){
 
   var map = document.getElementById('map');
   if (map && typeof (map) !== 'undefined') {
-    google.maps.event.addDomListener(window, 'load', mainMap(locations,position));
+    google.maps.event.addDomListener(window, 'load', mainMap(locations,position,mapZoom));
   }
 }
 
 function searchMap(customMap) {
   startTime = performance.now();
+  var mapZoom = customMap.mapZoom;
   var position = {
     lat: customMap.lat,
     lng: customMap.lng,
@@ -427,7 +424,7 @@ function searchMap(customMap) {
       pinImg: `<i class="im ${customMap.pinImg}"></i>`
     },
   ];
-  google.maps.event.addDomListener(window, 'load', mainMap(locations, position));
+  google.maps.event.addDomListener(window, 'load', mainMap(locations, position, mapZoom));
 }
 
 Promise.resolve(initMap()).then(someMethodIThinkMightBeSlow(startTime));

@@ -4,15 +4,15 @@ document.querySelector(".js_PlaceName").addEventListener("keyup", function(e) {
   xhr.onreadystatechange = function() {
     if (xhr.readyState === xhr.DONE) {
       if (xhr.status === 200) {
-        var searchPlace = JSON.parse(xhr.responseText);
+        var place = JSON.parse(xhr.responseText);
         var ul = document.querySelector("#search-list");
         ul.innerHTML = "";
-        searchPlace['results'].forEach(function(pred) {
+        place['results'].forEach(function(pred) {
           var li = document.createElement("li");
           li.textContent = pred.terms[0]['value'];
           li.onclick = function() {
             var placename = li.textContent;
-            search(placename);
+            searchPlace(placename);
             document.querySelectorAll("#search-list li").forEach(tag => tag.remove());
           };
           ul.appendChild(li);
@@ -36,14 +36,14 @@ document.querySelector(".js_PlaceName").addEventListener("keyup", function(e) {
   }, 200);
 });
 
-function search(query){
+function searchPlace(query){
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if(xhr.readyState === xhr.DONE) {
       if(xhr.status === 200) {
-        var searchPlace = JSON.parse(xhr.responseText);
-        var lat = searchPlace['results'][0]['geometry']['location']['lat'];
-        var lng = searchPlace['results'][0]['geometry']['location']['lng'];
+        var place = JSON.parse(xhr.responseText);
+        var lat = place['results'][0]['geometry']['location']['lat'];
+        var lng = place['results'][0]['geometry']['location']['lng'];
         var lectureImg=document.querySelector(".js_main_imgae").src;
         var teacher_name = document.querySelector(".class_teacher_name").value;
         var lectureTitle = document.querySelector(".class_name").value;
@@ -57,9 +57,9 @@ function search(query){
           lectureTitle,
           lectureRating: 0,
           lectureReviewCounter: 0,
-          pinImg:"im-icon-Street-View"
+          pinImg:"im-icon-Street-View",
+          mapZoom : 17
         }
-        document.querySelector(".js_maps").attributes['data-map-zoom'].value=17;
         searchMap(customMap);
       }
       else {
