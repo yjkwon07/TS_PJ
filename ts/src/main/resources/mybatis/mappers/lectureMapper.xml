@@ -67,9 +67,14 @@
 	<select id="getDetailLectureClass" resultType="lectureVO">
 		select * 
 			from tbl_class
-		where class_id = #{class_id};
+		where class_id = #{class_id}
 	</select>
 
+	<select id="getTutorLectureList" resultType="lectureVO">
+		select *
+			from tbl_class
+		where user_id = #{user_id}
+	</select>
 </mapper>
 
 

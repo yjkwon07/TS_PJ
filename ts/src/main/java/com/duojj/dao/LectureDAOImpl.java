@@ -1,5 +1,7 @@
 package com.duojj.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -27,5 +29,10 @@ public class LectureDAOImpl implements LectureDAO{
 		return sqlSession.selectOne(namespace+".getDetailLectureClass",class_id);
 	}
 	
+	@Override
+	public List<LectureVO> getTutorLectureList(String user_id) throws Exception {
+		
+		return sqlSession.selectList(namespace+".getTutorLectureList", user_id);
+	}
 	
 }

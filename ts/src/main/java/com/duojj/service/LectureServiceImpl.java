@@ -1,5 +1,7 @@
 package com.duojj.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -24,5 +26,11 @@ public class LectureServiceImpl implements LectureService{
 	public LectureVO getDetailLectureClass(Integer class_id) throws Exception {
 
 		return dao.getDetailLectureClass(class_id);
+	}
+	
+	@Override
+	public List<LectureVO> getTutorLectureList(String user_id) throws Exception {
+		
+		return dao.getTutorLectureList(user_id);
 	}
 }

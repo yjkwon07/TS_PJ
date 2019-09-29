@@ -93,47 +93,26 @@
 
 					<!-- Related Posts -->
 					<div class="clearfix"></div>
-					<h4 class="headline margin-top-25">다른 강좌들</h4>
+					<h4 class="headline margin-top-25">이 튜터의 다른 강좌들</h4>
 					<div class="row">
-
-						<!-- Blog Post Item -->
-						<div class="col-md-6">
-							<a href="#" class="blog-compact-item-container">
-								<div class="blog-compact-item">
-									<img src="${contextPath}/resources/images/blog-compact-post-01.jpg" alt="">
-									<span class="blog-item-tag">Tips</span>
-									<div class="blog-compact-item-content">
-										<ul class="blog-post-tags">
-											<li>22 August 2017</li>
-										</ul>
-										<h3>케라스 뿌시기</h3>
-										<p>Sed sed tristique nibh iam porta volutpat finibus. Donec in aliquet urneget
-											mattis lorem. Pellentesque pellentesque.</p>
+					<c:forEach var="lectureListVO" items="${lectureList}">
+						<c:if test="${lectureListVO.class_id != lectureVO.class_id}">
+							<!-- Blog Post Item -->
+							<div class="col-md-6">
+								<a href="${lectureListVO.class_id}" class="blog-compact-item-container">
+									<div class="blog-compact-item">
+										<img src="${contextPath}/resources/images/blog-compact-post-01.jpg" alt="">
+										<span class="blog-item-tag">Tips</span>
+										<div class="blog-compact-item-content">
+											<h3>${lectureListVO.class_name}</h3>
+											<p>${lectureListVO.class_summary}</p>
+										</div>
 									</div>
-								</div>
-							</a>
-						</div>
-						<!-- Blog post Item / End -->
-
-						<!-- Blog Post Item -->
-						<div class="col-md-6">
-							<a href="#" class="blog-compact-item-container">
-								<div class="blog-compact-item">
-									<img src="${contextPath}/resources/images/blog-compact-post-03.jpg" alt="">
-									<span class="blog-item-tag">Tips</span>
-									<div class="blog-compact-item-content">
-										<ul class="blog-post-tags">
-											<li>10 August 2017</li>
-										</ul>
-										<h3>마이크로소프트 창업하기</h3>
-										<p>Sed sed tristique nibh iam porta volutpat finibus. Donec in aliquet urneget
-											mattis lorem. Pellentesque pellentesque.</p>
-									</div>
-								</div>
-							</a>
-						</div>
-						<!-- Blog post Item / End -->
-
+								</a>
+							</div>
+							<!-- Blog post Item / End -->
+						</c:if>
+					</c:forEach>
 					</div>
 					<!-- Related Posts / End -->
 
@@ -152,16 +131,35 @@
 						<div class="widget margin-top-40">
 							<h3>수업 세부 사항</h3>
 							<div class="boxed-widget opening-hours margin-top-35">
-								<div class="listing-badge now-open">Now Open</div>
+							<div class="listing-badge now-open">Now Open</div>
+								<h3><i class="sl sl-icon-clock"></i>Start-day<br>End-day</h3>
+								<ul>
+									<li>수업 시작일<span>${lectureVO.class_startday}</span></li>
+									<li>수업 종료일 <span>${lectureVO.class_endday}</span></li>
+								</ul>
+							</div>
+						</div>
+						<!-- Widget / End -->
+
+						<div class="clearfix"></div>
+						<div class="margin-bottom-40"></div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-4">
+					<div class="sidebar right">
+
+						<!-- Widget -->
+						<div class="widget margin-top-40">
+							<div class="boxed-widget opening-hours margin-top-35">
 								<h3><i class="sl sl-icon-clock"></i> Opening Hours</h3>
 								<ul>
-									<li>Monday <span>9 AM - 5 PM</span></li>
-									<li>Tuesday <span>9 AM - 5 PM</span></li>
-									<li>Wednesday <span>9 AM - 5 PM</span></li>
-									<li>Thursday <span>9 AM - 5 PM</span></li>
-									<li>Friday <span>9 AM - 5 PM</span></li>
-									<li>Saturday <span>9 AM - 3 PM</span></li>
-									<li>Sunday <span>Closed</span></li>
+									<li>Monday <span>${lectureVO.class_MON}</span></li>
+									<li>Tuesday <span>${lectureVO.class_TUE}</span></li>
+									<li>Wednesday <span>${lectureVO.class_WED}</span></li>
+									<li>Thursday <span>${lectureVO.class_THU}</span></li>
+									<li>Friday <span>${lectureVO.class_FRI}</span></li>
+									<li>Saturday <span>${lectureVO.class_SAT}</span></li>
+									<li>Sunday <span>${lectureVO.class_SUN}</span></li>
 								</ul>
 							</div>
 						</div>

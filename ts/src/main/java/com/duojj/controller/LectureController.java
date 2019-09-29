@@ -80,8 +80,10 @@ public class LectureController {
 	public ModelAndView getDetailLectureClassId(@PathVariable Integer class_id)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		LectureVO lectureVO = lectureService.getDetailLectureClass(class_id);
+		String tutorId = lectureVO.getUser_id();
 		mv.addObject("lectureVO", lectureVO);
-		mv.addObject("userVO", userService.getUserInfoFromTutorId(lectureVO.getUser_id()));
+		mv.addObject("userVO", userService.getUserInfoFromTutorId(tutorId));
+		mv.addObject("lectureList", lectureService.getTutorLectureList(tutorId));
 		mv.setViewName("/classinfo");
 		
 		return mv;
