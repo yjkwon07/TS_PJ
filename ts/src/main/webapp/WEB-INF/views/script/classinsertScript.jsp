@@ -9,6 +9,8 @@
 <script type="text/javascript" src="${contextPath}/resources/scripts/maps/markerclusterer.js"></script>
 <script type="text/javascript" src="${contextPath}/resources/scripts/maps/custommarker.js"></script>
 <script type="text/javascript" src="${contextPath}/resources/scripts/maps/mainMap.js"></script>
+<!-- MapsFunc -->
+<script type="text/javascript" src="${contextPath}/resources/scripts/mapsfunc/query.js"></script>
 
 <!-- categories -->
 <script src="${contextPath}/resources/scripts/classinsert/categories.js"></script>
