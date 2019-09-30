@@ -10,7 +10,7 @@
 <script type="text/javascript" src="${contextPath}/resources/scripts/maps/custommarker.js"></script>
 <script type="text/javascript" src="${contextPath}/resources/scripts/maps/mainMap.js"></script>
 <!-- MapsFunc -->
-<script type="text/javascript" src="${contextPath}/resources/scripts/mapsfunc/query.js"></script>
+<script type="text/javascript" src="${contextPath}/resources/scripts/maps/query.js"></script>
 
 <!-- categories -->
 <script src="${contextPath}/resources/scripts/classinsert/categories.js"></script>
@@ -18,3 +18,8 @@
 <!--dropZone -->
 <script src="${contextPath}/resources/scripts/dropzone/dropzone.js"></script>
 <script src="${contextPath}/resources/scripts/dropzone/dropzoneCustom.js"></script>
+
+<!-- flatpickr -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> -->
+<script src="${contextPath}/resources/scripts/flatpickr/flatpickr.min.js"></script>
+<script src="${contextPath}/resources/scripts/classinsert/classinsertFlatpickrCustom.js"></script>

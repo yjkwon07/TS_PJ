@@ -14,7 +14,7 @@
 		<div class="col-lg-12">
 
 			<div id="add-listing" class="separated-form">
-				<input hidden class="js_class_id" value="19">
+
 				<!--  Thank you open the class -->
 				<div class="add-listing-section">
 
@@ -121,7 +121,7 @@
 					<div>
 						메인 이미지
 						<span ><img class="js_main_imgae" src=""/></span>
-						<input hidden class="js_class_image" value=""/>
+						<input hidden class="js_class_image class_image" value=""/>
 					</div>
 				</div>
 				<!-- 강의 사진 / End -->
@@ -139,13 +139,13 @@
 					<!-- Description -->
 					<div class="form">
 						<h5>상세 설명 <i class="tip" data-tip-content='강의 세부 내용을 입력해 주세요.'></i> </h5>
-						<textarea name="class_content" cols="40" rows="3" id="class_content"></textarea>
+						<textarea cols="40" rows="3" class="class_content"></textarea>
 					</div>
 
 				</div>
 				<!-- 강의 내용 / End -->
 
-				<!-- Section -->
+				<!-- 강의 장소 -->
 				<div class="add-listing-section margin-top-45">
 
 					<!-- Map -->
@@ -195,9 +195,9 @@
 					<input type="hidden" value="30.2" name="class_lat">
 					<input type="hidden" value="122.2" name="class_lng">
 				</div>
-				<!-- Section / End -->
+				<!-- 강의 장소 / End -->
 
-				<!-- Section -->
+				<!-- 강의 시작일 / 종료일 -->
 				<div class="add-listing-section margin-top-45">
 
 					<!-- Headline -->
@@ -212,144 +212,36 @@
 							<h5>강의 시작일</h5>
 						</div>
 						<div class="col-md-5">
-							<select class="chosen-select" data-placeholder="Opening Time">
-							</select>
+							<input class="class_startday js_flatpickr_basic" />
 						</div>
 					</div>
 
 					<div class="row opening-day">
-							<div class="col-md-2">
-								<h5>강의 종료일</h5>
-							</div>
-							<div class="col-md-5">
-								<select class="chosen-select" data-placeholder="Opening Time">
-								</select>
-							</div>
+						<div class="col-md-2">
+							<h5>강의 종료일</h5>
+						</div>
+						<div class="col-md-5">
+							<input class="class_endday js_flatpickr_basic" />
+						</div>
 					</div>
-
 				</div>
+				<!-- 강의 시작일 / 종료일 / end-->
 
-				<!-- Section -->
+				<!-- 강의 날짜 -->
 				<div class="add-listing-section margin-top-45">
 				
 					<!-- Headline -->
 					<div class="add-listing-headline">
 						<h3><i class="sl sl-icon-clock"></i> 강의 가능한 날짜</h3>
 					</div>
-				
+
 					<!-- Day -->
-					<div class="row opening-day">
-						<div class="col-md-2">
-							<h5>Monday</h5>
-						</div>
-						<div class="col-md-5">
-							<select class="chosen-select" data-placeholder="Opening Time">
-							</select>
-						</div>
-						<div class="col-md-5">
-							<select class="chosen-select" data-placeholder="Closing Time">
-							</select>
-						</div>
-					</div>
-					<!-- Day / End -->
-				
-					<!-- Day -->
-					<div class="row opening-day js-demo-hours">
-						<div class="col-md-2">
-							<h5>Tuesday</h5>
-						</div>
-						<div class="col-md-5">
-							<select class="chosen-select" data-placeholder="Opening Time">
-							</select>
-						</div>
-						<div class="col-md-5">
-							<select class="chosen-select" data-placeholder="Closing Time">
-							</select>
-						</div>
-					</div>
-					<!-- Day / End -->
-				
-					<!-- Day -->
-					<div class="row opening-day js-demo-hours">
-						<div class="col-md-2">
-							<h5>Wednesday</h5>
-						</div>
-						<div class="col-md-5">
-							<select class="chosen-select" data-placeholder="Opening Time">
-							</select>
-						</div>
-						<div class="col-md-5">
-							<select class="chosen-select" data-placeholder="Closing Time">
-							</select>
-						</div>
-					</div>
-					<!-- Day / End -->
-				
-					<!-- Day -->
-					<div class="row opening-day js-demo-hours">
-						<div class="col-md-2">
-							<h5>Thursday</h5>
-						</div>
-						<div class="col-md-5">
-							<select class="chosen-select" data-placeholder="Opening Time">
-							</select>
-						</div>
-						<div class="col-md-5">
-							<select class="chosen-select" data-placeholder="Closing Time">
-							</select>
-						</div>
-					</div>
-					<!-- Day / End -->
-				
-					<!-- Day -->
-					<div class="row opening-day js-demo-hours">
-						<div class="col-md-2">
-							<h5>Friday</h5>
-						</div>
-						<div class="col-md-5">
-							<select class="chosen-select" data-placeholder="Opening Time">
-							</select>
-						</div>
-						<div class="col-md-5">
-							<select class="chosen-select" data-placeholder="Closing Time">
-							</select>
-						</div>
-					</div>
-					<!-- Day / End -->
-				
-					<!-- Day -->
-					<div class="row opening-day js-demo-hours">
-						<div class="col-md-2">
-							<h5>Saturday</h5>
-						</div>
-						<div class="col-md-5">
-							<select class="chosen-select" data-placeholder="Opening Time">
-							</select>
-						</div>
-						<div class="col-md-5">
-							<select class="chosen-select" data-placeholder="Closing Time">
-							</select>
-						</div>
-					</div>
-					<!-- Day / End -->
-				
-					<!-- Day -->
-					<div class="row opening-day js-demo-hours">
-						<div class="col-md-2">
-							<h5>Sunday</h5>
-						</div>
-						<div class="col-md-5">
-							<select class="chosen-select" data-placeholder="Opening Time">
-							</select>
-						</div>
-						<div class="col-md-5">
-							<select class="chosen-select" data-placeholder="Closing Time">
-							</select>
-						</div>
+					<div class="js_day">
+
 					</div>
 					<!-- Day / End -->
 				</div>
-				<!-- Section / End -->
+				<!-- 강의 날짜/ End -->
 
 				<!-- 가격 -->
 				<div class="add-listing-section margin-top-45">
@@ -363,7 +255,7 @@
 										<tr class="pricing-list-item pattern">
 											<td>
 												<div class="fm-input pricing-ingredients">
-													<input type="text" placeholder="가격" name="class_price" /></div>
+													<input type="number" placeholder="가격" name="class_price" /></div>
 											</td>
 										</tr>
 									</table>
@@ -383,7 +275,8 @@
 	<!-- row -->
 </div>
 
-<!-- categories 가져온 후 remove-->
+<!-- 가져온 후 remove-->
+<input hidden class="js_class_id" value="19">
 <input class= "js_categories" type="hidden" value=${categories_dict} />
 
 
