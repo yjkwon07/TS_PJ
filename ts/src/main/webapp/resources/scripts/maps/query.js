@@ -61,6 +61,17 @@ function searchPlace(query){
           mapZoom : 17
         }
         searchMap(customMap);
+        var latElement = document.createElement("input");
+        latElement.type="hidden";
+        latElement.classList.add("class_lat");
+        latElement.value=lat;
+        var lngElement = document.createElement("input");
+        lngElement.type="hidden";
+        lngElement.classList.add("class_lng");
+        lngElement.value=lng;
+        var js_maps = document.querySelector(".js_maps");
+        js_maps.appendChild(latElement);
+        js_maps.appendChild(lngElement);
       }
       else {
         var error = JSON.parse(xhr.responseText);
