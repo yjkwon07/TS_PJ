@@ -47,7 +47,8 @@ public class LectureController {
 	public ModelAndView postLectureRegister(LectureVO vo)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		lectureService.postLectureRegister(vo);
-		mv.setViewName("/"+vo.getClass_id()); // 뷰의 이름 -> 강의 상세 페이지로 들어가야함
+		int classId = lectureService.lastColumnClassId();
+		mv.setViewName("redirect:/lecture/"+classId); 
 		
 		return mv;
 	}

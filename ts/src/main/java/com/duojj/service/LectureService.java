@@ -14,4 +14,6 @@ public interface LectureService {
 	
 	//튜터id로 이 튜터의 다른 강좌 List 조회
 	public List<LectureVO> getTutorLectureList(String user_id)throws Exception;
+
+	public Integer lastColumnClassId() throws Exception;
 }

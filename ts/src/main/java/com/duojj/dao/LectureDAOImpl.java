@@ -35,4 +35,9 @@ public class LectureDAOImpl implements LectureDAO{
 		return sqlSession.selectList(namespace+".getTutorLectureList", user_id);
 	}
 	
+	@Override
+	public Integer lastColumnClassId() throws Exception {
+		
+		return sqlSession.selectOne(namespace+".lastColumnClassId");
+	}
 }

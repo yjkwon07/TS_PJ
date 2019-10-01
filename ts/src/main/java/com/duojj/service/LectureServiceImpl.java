@@ -33,4 +33,10 @@ public class LectureServiceImpl implements LectureService{
 		
 		return dao.getTutorLectureList(user_id);
 	}
+	
+	@Override
+	public Integer lastColumnClassId() throws Exception {
+		
+		return dao.lastColumnClassId();
+	}
 }
