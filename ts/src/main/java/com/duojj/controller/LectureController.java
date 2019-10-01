@@ -78,14 +78,27 @@ public class LectureController {
 	}
 	
 	@RequestMapping(value="/{class_id}", method=RequestMethod.GET)
-	public ModelAndView getDetailLectureClassId(@PathVariable Integer class_id)throws Exception{
+	public ModelAndView getDetailLectureClassId(@PathVariable Integer class_id,RedirectAttributes rttr)throws Exception{
 		ModelAndView mv = new ModelAndView();
+		
 		LectureVO lectureVO = lectureService.getDetailLectureClass(class_id);
-		String tutorId = lectureVO.getUser_id();
-		mv.addObject("lectureVO", lectureVO);
-		mv.addObject("userVO", userService.getUserInfoFromTutorId(tutorId));
-		mv.addObject("lectureList", lectureService.getTutorLectureList(tutorId));
-		mv.setViewName("/classinfo");
+		if(lectureVO != null) {
+			String tutorId = lectureVO.getUser_id();
+			mv.addObject("lectureVO", lectureVO);
+			mv.addObject("userVO", userService.getUserInfoFromTutorId(tutorId));
+			mv.addObject("lectureList", lectureService.getTutorLectureList(tutorId));
+			mv.setViewName("/classinfo");
+		} else {
+			rttr.addFlashAttribute("msg", "수업이 없습니다.");
+			mv.setViewName("redirect:/main");
+			return mv;
+		}
+
+
+		
+
+		
+
 		
 		return mv;
 	}
