@@ -45,8 +45,8 @@ function searchPlace(query){
         var lat = place['results'][0]['geometry']['location']['lat'];
         var lng = place['results'][0]['geometry']['location']['lng'];
         var lectureImg=document.querySelector(".js_main_imgae").src;
-        var teacher_name = document.querySelector(".class_teacher_name").value;
-        var lectureTitle = document.querySelector(".class_name").value;
+        var teacher_name = document.querySelector(".js_class_teacher_name").value;
+        var lectureTitle = document.querySelector(".js_class_name").value;
         
         var customMap = {
           lectureURL: '#',
@@ -63,11 +63,11 @@ function searchPlace(query){
         searchMap(customMap);
         var latElement = document.createElement("input");
         latElement.type="hidden";
-        latElement.classList.add("class_lat");
+        latElement.classList.add("js_class_lat");
         latElement.value=lat;
         var lngElement = document.createElement("input");
         lngElement.type="hidden";
-        lngElement.classList.add("class_lng");
+        lngElement.classList.add("js_class_lng");
         lngElement.value=lng;
         var js_maps = document.querySelector(".js_maps");
         js_maps.appendChild(latElement);

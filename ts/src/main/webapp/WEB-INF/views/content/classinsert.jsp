@@ -30,7 +30,7 @@
 								강의 명
 								<i class="tip" data-tip-content='강의를 입력해주세요.<br> ex) 직장인 요가 스트레칭'></i>
 							</h5>
-							<input type="text" class="class_name" />
+							<input type="text" class="js_class_name" />
 						</div>
 					</div>
 
@@ -54,8 +54,8 @@
 						<div class="col-md-6">
 							<h5>Teacher name</h5>
 							<input type="text" value='${login.user_name}' disabled>
-							<input type="hidden" class="class_teacher_name" value='${login.user_name}' />
-							<!-- <input type="hidden" value='${login.user_id}' name="user_id" /> -->
+							<input type="hidden" class="js_class_teacher_name" value='${login.user_name}' />
+							<input type="hidden" class="js_user_id" value='${login.user_id}'  />
 						</div>
 
 						<!-- Summary -->
@@ -64,7 +64,7 @@
 								Summary
 								<i class="tip" data-tip-content='전반적인 강의 내용을 적어주세요 <br> ex) 지친 하루 가벼운 스트레칭으로 <br> 피로를 푸세요.''></i>
 							</h5>
-							<input type="text" class="class_summary">
+							<input type="text" class="js_class_summary">
 						</div>
 							
 						<!-- YouTube Link -->
@@ -73,7 +73,7 @@
 								YouTube Link
 								<i class="tip" data-tip-content=' 해당강의 유튜브로 홍보해 보세요. <br> <i class="fa fa-warning"></i> 홍보 영상이 없으면 빈칸으로 남겨 주세요.'></i>
 							</h5>
-							<input type="url" class="class_youtube" placeholder="https://www.youtube.com/">
+							<input type="url" class="js_class_youtube" placeholder="https://www.youtube.com/">
 						</div>
 
 						<!-- Maximum student -->
@@ -82,7 +82,7 @@
 								수강 최대 인원 수
 								<i class="tip" data-tip-content='최대 수강인원을 적어주세요.'></i>
 							</h5>
-							<input type="number" placeholder="15" name="class_student_cnt">
+							<input type="number" placeholder="15" class="js_class_student_cnt">
 						</div>
 					</div>
 					<!-- class info / End -->
@@ -139,7 +139,7 @@
 					<!-- Description -->
 					<div class="form">
 						<h5>상세 설명 <i class="tip" data-tip-content='강의 세부 내용을 입력해 주세요.'></i> </h5>
-						<textarea cols="40" rows="3" class="class_content"></textarea>
+						<textarea cols="40" rows="3" class="js_class_content"></textarea>
 					</div>
 
 				</div>
@@ -191,9 +191,6 @@
 						<!-- current button Button -->
 						<a href="#" id="geoLocation" title="Enable or disable scrolling on map">현재 위치</a>
 					</div>
-
-					<input type="hidden" value="30.2" name="class_lat">
-					<input type="hidden" value="122.2" name="class_lng">
 				</div>
 				<!-- 강의 장소 / End -->
 
@@ -212,7 +209,7 @@
 							<h5>강의 시작일</h5>
 						</div>
 						<div class="col-md-5">
-							<input class="class_startday js_flatpickr_basic" />
+							<input class="js_class_startday js_flatpickr_basic" />
 						</div>
 					</div>
 
@@ -221,7 +218,7 @@
 							<h5>강의 종료일</h5>
 						</div>
 						<div class="col-md-5">
-							<input class="class_endday js_flatpickr_basic" />
+							<input class="js_class_endday js_flatpickr_basic" />
 						</div>
 					</div>
 				</div>
@@ -255,7 +252,8 @@
 										<tr class="pricing-list-item pattern">
 											<td>
 												<div class="fm-input pricing-ingredients">
-													<input type="number" placeholder="가격" name="class_price" /></div>
+													<input type="number" placeholder="가격" class="js_class_price" />
+												</div>
 											</td>
 										</tr>
 									</table>
@@ -276,7 +274,7 @@
 </div>
 
 <!-- 가져온 후 remove-->
-<input hidden class="js_class_id" value="19">
+<input hidden class="js_class_id" value="${class_id}">
 <input class= "js_categories" type="hidden" value=${categories_dict} />
 
 

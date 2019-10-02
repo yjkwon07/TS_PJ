@@ -1,11 +1,11 @@
 var calendar = {
-    Monday: "class_MON",
-    Tuesday: "class_TUE",
-    Wednesday: "class_WED",
-    Thursday: "class_THU",
-    Friday: "class_FRI",
-    Saturday: "class_SAT",
-    Sunday: "class_SUN"
+    Monday: "js_class_MON",
+    Tuesday: "js_class_TUE",
+    Wednesday: "js_class_WED",
+    Thursday: "js_class_THU",
+    Friday: "js_class_FRI",
+    Saturday: "js_class_SAT",
+    Sunday: "js_class_SUN"
 };
 var calendarKey = Object.keys(calendar);
 var day = document.querySelector(".js_day");
