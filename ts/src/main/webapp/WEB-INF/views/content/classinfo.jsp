@@ -86,7 +86,7 @@
 						<div class="about-description">
 							<h4>${lectureVO.class_teacher_name}</h4>
 							<input hidden class="js_user_youtube" value="${lectureVO.class_youtube}"/>
-							<p>${userVO.user_status}</p>
+							<p>${tutorVO.user_status}</p>
 						</div>
 					</div>
 
@@ -164,7 +164,13 @@
 							</div>
 						</div>
 						<!-- Widget / End -->
-
+					<form action="/lecture/tuteeRegister" method="POST">
+						<input type="hidden" name="user_id" value="${tuteeVO.user_id}"/>
+						<input type="hidden" name="enrolment_classname" value="${lectureVO.class_name}"/>
+						<input type="hidden" name="enrolment_class_id" value="${lectureVO.class_id}"/>
+						<i class="fa fa-arrow-circle-right"></i><input type="submit" value='강의 신청'/>
+					</form>
+					
 						<div class="clearfix"></div>
 						<div class="margin-bottom-40"></div>
 					</div>

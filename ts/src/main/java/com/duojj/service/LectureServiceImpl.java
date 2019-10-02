@@ -10,7 +10,6 @@ import com.duojj.dao.FileDAO;
 import com.duojj.dao.LectureDAO;
 import com.duojj.vo.FileImageVO;
 import com.duojj.vo.LectureVO;
-import com.duojj.vo.UserVO;
 
 @Service
 public class LectureServiceImpl implements LectureService{

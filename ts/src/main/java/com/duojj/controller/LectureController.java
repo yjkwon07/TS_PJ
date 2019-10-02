@@ -1,6 +1,7 @@
 package com.duojj.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -19,8 +20,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.duojj.dto.CategoriesDTO;
+import com.duojj.service.EnrolmentService;
 import com.duojj.service.LectureService;
 import com.duojj.service.UserService;
+import com.duojj.vo.EnrolmentVO;
 import com.duojj.vo.LectureVO;
 import com.google.gson.Gson;
 
@@ -29,8 +32,12 @@ import com.google.gson.Gson;
 public class LectureController {
 	@Inject
 	private LectureService lectureService;
+
 	@Inject
 	private UserService userService;
+
+	@Inject
+	private EnrolmentService enrolmentService;
 	
 	@InitBinder
 	public void InitBinder(WebDataBinder dataBinder) {
@@ -78,16 +85,51 @@ public class LectureController {
 		}
 	}
 	
+	@SuppressWarnings("unused")
 	@RequestMapping(value="/{class_id}", method=RequestMethod.GET)
-	public ModelAndView getDetailLectureClassId(@PathVariable Integer class_id)throws Exception{
+	public ModelAndView getDetailLectureClassId(@PathVariable Integer class_id,RedirectAttributes rttr,HttpServletRequest request,HttpServletResponse response)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		LectureVO lectureVO = lectureService.getDetailLectureClass(class_id);
-		String tutorId = lectureVO.getUser_id();
-		mv.addObject("lectureVO", lectureVO);
-		mv.addObject("userVO", userService.getUserInfoFromTutorId(tutorId));
-		mv.addObject("lectureList", lectureService.getTutorLectureList(tutorId));
-		mv.setViewName("/classinfo");
-		return mv;
+		try {
+			LectureVO lectureVO = lectureService.getDetailLectureClass(class_id);
+			String tutorId = lectureVO.getUser_id();
+			UserVO tutorVO = userService.getUserInfoFromTutorId(tutorId);
+			List<LectureVO> lectureList = lectureService.getTutorLectureList(tutorId);
+			
+			HttpSession session = request.getSession();
+			UserVO tuteeVO = (UserVO)session.getAttribute("login");
+			if(lectureVO != null) {
+				mv.addObject("lectureVO", lectureVO);
+				mv.addObject("tutorVO", tutorVO);
+				mv.addObject("tuteeVO", tuteeVO);
+				mv.addObject("lectureList", lectureList);
+				mv.setViewName("/classinfo");
+				return mv;
+			} else {
+				rttr.addFlashAttribute("msg", "수업이 없습니다.");
+				mv.setViewName("redirect:/main");
+				return mv;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			rttr.addFlashAttribute("msg", "수업이 없습니다.");
+			mv.setViewName("redirect:/main");
+			return mv;
+		}
 	}
 	
+	@RequestMapping(value="/tuteeRegister", method=RequestMethod.POST)
+	public ModelAndView postTuteeLectureRegister(EnrolmentVO enrolmentVO, HttpServletRequest request, HttpServletResponse response, RedirectAttributes rttr)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		try {
+			enrolmentService.tuteeLectureRegister(enrolmentVO);
+			rttr.addFlashAttribute("msg", "강의신청되었습니다.");
+			mv.setViewName("redirect:/main");
+			return mv;
+		} catch (Exception e) {
+			e.printStackTrace();
+			mv.setViewName("redirect:/user/login");
+			rttr.addFlashAttribute("msg", "로그인이 필요합니다.");
+			return mv;
+		}
+	}
 }
