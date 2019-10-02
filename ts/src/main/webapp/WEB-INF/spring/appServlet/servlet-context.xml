@@ -42,15 +42,6 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-<!-- 
-	<mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/" />
-			<beans:bean
-				class="com.duojj.ts_pj.common.interceptor.ViewNameInterceptor" />
-		</mvc:interceptor>
-	</mvc:interceptors>
--->
 
 	<beans:bean id="loginPathInterceptor" class="com.duojj.interceptor.LoginPathInterceptor"></beans:bean>
 	
