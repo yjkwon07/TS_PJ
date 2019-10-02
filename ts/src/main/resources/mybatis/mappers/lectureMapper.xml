@@ -4,85 +4,88 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.duojj.mapper.lectureMapper">
+
+	<!-- 강좌 개수 sql -->
+	<select id="currentLectureCount" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM tbl_class
+	</select>
 	
-	<sql id="fieldSelect">
-		<!--class_id,  -->
-		user_id,
-		class_name, 
-		<!--regdate,  -->
-		class_student_cnt, 
-		class_image, 
-		class_price,
-		class_summary, 
-		class_content, 
-		class_MON,
-		class_TUE, 
-		class_WED, 
-		class_THU, 
-		class_FRI,
-		class_SAT,
-		class_SUN,
-		class_lat, 
-		class_lng, 
-		class_maincategories,
-		class_endday,
-		class_subcategories,
-		class_teacher_name,
-	</sql>
 	<!-- 강좌 업로드 sql -->
+	<insert id="postInitLectureRegister">
+		insert into tbl_class
+		(
+		class_id,
+		user_id
+		)
+		values(#{class_id}, #{user_id})
+	</insert>
+
 	<insert id="postLectureRegister">
 		insert into tbl_class
-		(user_id,
-		class_name, 
-		class_student_cnt, 
-		class_image, 
+		(
+		class_id,
+		user_id,
+		class_name,
+		class_student_cnt,
+		class_image,
 		class_price,
-		class_summary, 
-		class_content, 
+		class_summary,
+		class_content,
 		class_MON,
-		class_TUE, 
-		class_WED, 
-		class_THU, 
+		class_TUE,
+		class_WED,
+		class_THU,
 		class_FRI,
 		class_SAT,
 		class_SUN,
-		class_lat, 
-		class_lng, 
+		class_lat,
+		class_lng,
 		class_maincategories,
 		class_endday,
 		class_subcategories,
 		class_teacher_name,
 		class_startday,
-		class_youtube)
-		values(#{user_id},#{class_name},#{class_student_cnt},
-				#{class_image},#{class_price},#{class_summary},#{class_content},
-				#{class_MON},#{class_TUE},#{class_WED},#{class_THU},
-				#{class_FRI},#{class_SAT},#{class_SUN},#{class_lat},
-				#{class_lng},#{class_maincategories},#{class_endday},#{class_subcategories},
-				#{class_teacher_name},#{class_startday},#{class_youtube})
+		class_youtube
+		)
+		values(
+		#{class_id},#{user_id},#{class_name},#{class_student_cnt},
+		#{class_image},#{class_price},#{class_summary},#{class_content},
+		#{class_MON},#{class_TUE},#{class_WED},#{class_THU},
+		#{class_FRI},#{class_SAT},#{class_SUN},#{class_lat},
+		#{class_lng},#{class_maincategories},#{class_endday},#{class_subcategories},
+		#{class_teacher_name},#{class_startday},#{class_youtube}
+		)
 	</insert>
-
-
+	
+	<!-- 강좌 update sql -->
+	<update id="postLectureUpdate">
+		UPDATE tbl_class
+		SET
+		user_id=#{user_id},
+		class_name=#{class_name},
+		class_student_cnt=#{class_student_cnt},
+		class_image=#{class_image},
+		class_price=#{class_price},
+		class_summary=#{class_summary},
+		class_content=#{class_content},
+		class_MON=#{class_MON},
+		class_TUE=#{class_TUE},
+		class_WED=#{class_WED},
+		class_THU=#{class_THU},
+		class_FRI=#{class_FRI},
+		class_SAT=#{class_SAT},
+		class_SUN=#{class_SUN},
+		class_lat=#{class_lat},
+		class_lng=#{class_lng},
+		class_maincategories=#{class_maincategories},
+		class_endday=#{class_endday},
+		class_subcategories=#{class_subcategories},
+		class_teacher_name=#{class_teacher_name},
+		class_startday=#{class_startday},
+		class_youtube=#{class_youtube},
+		class_name=#{class_name}
+		
+		WHERE class_id=#{class_id}
+	</update>
 
 </mapper>
-
-
-
-<!-- <resultMap id="goodsResult" type="goodsVO">
-		<result property=user_id column="goods_id"/>
-		<result property="user_pw" column="goods_title"/>
-		<result property="user_name" column="goods_writer"/>
-		<result property="user_birth" column="goods_price"/>
-		<result property="user_image" column="goods_publisher"/>
-
-		<result property="user_sex" column="goods_status"/>
-		<result property="user_status" column="goods_sales_price"/>
-		<result property="user_youtube" column="goods_published_date"/>
-		<result property="user_auth" column="goods_total_page"/>
-		<result property="user_regdate" column="goods_isbn"/>
-		<result property="user_moddate" column="goods_delivery_price"/>
-		<result property="user_sessionkey" column="goods_delivery_date"/>
-
-		<result property="user_sessionlimit" column="fileName"/>
-		
-	</resultMap> -->

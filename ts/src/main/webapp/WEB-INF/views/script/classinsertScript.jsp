@@ -23,3 +23,6 @@
 <!-- <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> -->
 <script src="${contextPath}/resources/scripts/flatpickr/flatpickr.min.js"></script>
 <script src="${contextPath}/resources/scripts/classinsert/classinsertFlatpickrCustom.js"></script>
+
+<!-- classform -->
+<script src="${contextPath}/resources/scripts/classinsert/classform.js"></script>

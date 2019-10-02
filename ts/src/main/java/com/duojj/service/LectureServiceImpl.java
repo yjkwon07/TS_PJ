@@ -4,18 +4,40 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.duojj.dao.FileDAO;
 import com.duojj.dao.LectureDAO;
+import com.duojj.vo.FileImageVO;
 import com.duojj.vo.LectureVO;
 
 @Service
 public class LectureServiceImpl implements LectureService{
 	
 	@Inject
-	private LectureDAO dao;
+	private LectureDAO lectureDao;
+	@Inject
+	private FileDAO fileDao;
+	
+	@Override
+	public void postInitLectureRegister(LectureVO vo) throws Exception {
+		int class_id = lectureDao.currentLectureCount() + 1;
+		vo.setClass_id(class_id);
+		lectureDao.postInitLectureRegister(vo);
+	}
 	
 	@Override
 	public void postLectureRegister(LectureVO vo) throws Exception {
-		
-		dao.postLectureRegister(vo);
+		lectureDao.postLectureUpdate(vo);
 	}
+
+	@Override
+	public void insertImage(FileImageVO vo) throws Exception {
+		fileDao.insertImage(vo);
+	}
+
+	@Override
+	public void deleteImage(FileImageVO vo) throws Exception {
+		fileDao.deleteImage(vo);
+	}
+
+
 }

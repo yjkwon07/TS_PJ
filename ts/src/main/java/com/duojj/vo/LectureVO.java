@@ -3,14 +3,13 @@ package com.duojj.vo;
 import java.util.Date;
 
 public class LectureVO {
-
 	private Integer class_id;
 	private String 	user_id;
 	private String 	class_name;
-	private Date 	regdate;
-	private	Integer class_student_cnt;
+	private String 	class_teacher_name;
+	private String 	class_youtube;
 	private	String 	class_image;
-	private Integer class_price;
+	private	Integer class_student_cnt;
 	private String 	class_summary;
 	private	String  class_content;
 	private	String	class_MON;
@@ -22,13 +21,13 @@ public class LectureVO {
 	private String	class_SUN;
 	private Double 	class_lat;
 	private Double  class_lng;
+	private Integer class_price;
+	private String	class_startday;
+	private String	class_endday;
 	private String	class_maincategories;
-	private Date	class_endday;
 	private String	class_subcategories;
-	private String 	class_teacher_name;
-	private Date	class_startday;
-	private String 	class_youtube;
-
+	private Date 	regdate;
+	
 	public Integer getClass_id() {
 		return class_id;
 	}
@@ -47,17 +46,17 @@ public class LectureVO {
 	public void setClass_name(String class_name) {
 		this.class_name = class_name;
 	}
-	public Date getRegdate() {
-		return regdate;
+	public String getClass_teacher_name() {
+		return class_teacher_name;
 	}
-	public void setRegdate(Date regdate) {
-		this.regdate = regdate;
+	public void setClass_teacher_name(String class_teacher_name) {
+		this.class_teacher_name = class_teacher_name;
 	}
-	public Integer getClass_student_cnt() {
-		return class_student_cnt;
+	public String getClass_youtube() {
+		return class_youtube;
 	}
-	public void setClass_student_cnt(Integer class_student_cnt) {
-		this.class_student_cnt = class_student_cnt;
+	public void setClass_youtube(String class_youtube) {
+		this.class_youtube = class_youtube;
 	}
 	public String getClass_image() {
 		return class_image;
@@ -65,11 +64,11 @@ public class LectureVO {
 	public void setClass_image(String class_image) {
 		this.class_image = class_image;
 	}
-	public Integer getClass_price() {
-		return class_price;
+	public Integer getClass_student_cnt() {
+		return class_student_cnt;
 	}
-	public void setClass_price(Integer class_price) {
-		this.class_price = class_price;
+	public void setClass_student_cnt(Integer class_student_cnt) {
+		this.class_student_cnt = class_student_cnt;
 	}
 	public String getClass_summary() {
 		return class_summary;
@@ -137,17 +136,29 @@ public class LectureVO {
 	public void setClass_lng(Double class_lng) {
 		this.class_lng = class_lng;
 	}
+	public Integer getClass_price() {
+		return class_price;
+	}
+	public void setClass_price(Integer class_price) {
+		this.class_price = class_price;
+	}
+	public String getClass_startday() {
+		return class_startday;
+	}
+	public void setClass_startday(String class_startday) {
+		this.class_startday = class_startday;
+	}
+	public String getClass_endday() {
+		return class_endday;
+	}
+	public void setClass_endday(String class_endday) {
+		this.class_endday = class_endday;
+	}
 	public String getClass_maincategories() {
 		return class_maincategories;
 	}
 	public void setClass_maincategories(String class_maincategories) {
 		this.class_maincategories = class_maincategories;
-	}
-	public Date getClass_endday() {
-		return class_endday;
-	}
-	public void setClass_endday(Date class_endday) {
-		this.class_endday = class_endday;
 	}
 	public String getClass_subcategories() {
 		return class_subcategories;
@@ -155,22 +166,13 @@ public class LectureVO {
 	public void setClass_subcategories(String class_subcategories) {
 		this.class_subcategories = class_subcategories;
 	}
-	public String getClass_teacher_name() {
-		return class_teacher_name;
+	public Date getRegdate() {
+		return regdate;
 	}
-	public void setClass_teacher_name(String class_teacher_name) {
-		this.class_teacher_name = class_teacher_name;
+	public void setRegdate(Date regdate) {
+		this.regdate = regdate;
 	}
-	public Date getClass_startday() {
-		return class_startday;
-	}
-	public void setClass_startday(Date class_startday) {
-		this.class_startday = class_startday;
-	}
-	public String getClass_youtube() {
-		return class_youtube;
-	}
-	public void setClass_youtube(String class_youtube) {
-		this.class_youtube = class_youtube;
-	}
+
+	
+	
 }
