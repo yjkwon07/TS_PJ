@@ -46,6 +46,5 @@ public class LectureDAOImpl implements LectureDAO {
 	public List<LectureVO> getTutorLectureList(String user_id) throws Exception {
 		return sqlSession.selectList(namespace+".getTutorLectureList", user_id);
 	}
-
 }
 

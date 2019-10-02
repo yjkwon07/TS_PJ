@@ -5,9 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.http.HttpStatus;
@@ -28,7 +25,6 @@ import com.duojj.service.LectureService;
 import com.duojj.service.UserService;
 import com.duojj.vo.EnrolmentVO;
 import com.duojj.vo.LectureVO;
-import com.duojj.vo.UserVO;
 import com.google.gson.Gson;
 
 @Controller
