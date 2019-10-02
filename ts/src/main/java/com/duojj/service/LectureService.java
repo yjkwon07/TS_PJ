@@ -1,8 +1,8 @@
 package com.duojj.service;
 
-import com.duojj.vo.FileImageVO;
 import java.util.List;
 
+import com.duojj.vo.FileImageVO;
 import com.duojj.vo.LectureVO;
 
 public interface LectureService {

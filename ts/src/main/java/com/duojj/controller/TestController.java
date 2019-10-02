@@ -27,7 +27,6 @@ import com.duojj.service.UserService;
 import com.duojj.vo.LectureVO;
 import com.duojj.vo.UserVO;
 import com.google.gson.Gson;
-import com.duojj.service.UserService;
 
 @Controller
 @RequestMapping(value = "/test")

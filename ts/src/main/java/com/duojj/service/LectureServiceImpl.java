@@ -45,12 +45,12 @@ public class LectureServiceImpl implements LectureService{
 	@Override
 	public LectureVO getDetailLectureClass(Integer class_id) throws Exception {
 
-		return dao.getDetailLectureClass(class_id);
+		return lectureDao.getDetailLectureClass(class_id);
 	}
 	
 	@Override
 	public List<LectureVO> getTutorLectureList(String user_id) throws Exception {
 		
-		return dao.getTutorLectureList(user_id);
+		return lectureDao.getTutorLectureList(user_id);
 	}
 }
