@@ -54,6 +54,7 @@ var previewTemplate = `
 
 // Disabling autoDiscover, otherwise Dropzone will try to attach twice.
 Dropzone.autoDiscover = false;
+var USER_ID = document.querySelector(".js_user_id").value;
 var CLASS_ID = document.querySelector(".js_class_id").value;
 var URL_UPLOAD ="/file/upload";
 var URL_DELETE = "/file/delete";
@@ -129,7 +130,9 @@ myDropzone.on("totaluploadprogress", function(progress) {
 
 // 폴더 이름을 class_id로 만들어서 저장하기
 myDropzone.on("sending", function(file , xhr, formData) {
-    formData.append("class_id", CLASS_ID);
+    formData.append("class_id",CLASS_ID);
+    formData.append("user_id",USER_ID);
+    formData.append("image_name",file.name);
 });
 
 function addfileButton(file){
@@ -165,8 +168,9 @@ function xhrdelete(file) {
     file.previewElement.querySelector(".delete").addEventListener("click", function (event) {
         event.preventDefault();
         var formData = new FormData();
-        formData.append('file_name', file.name);
-        formData.append('class_id', CLASS_ID);
+        formData.append("class_id",CLASS_ID);
+        formData.append("user_id",USER_ID);
+        formData.append("image_name",file.name);
         fetch(URL_DELETE, {
             method: 'DELETE', 
             body: formData, 
