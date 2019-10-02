@@ -142,22 +142,22 @@ function ZoomControl(zoomControlDiv, map) {
 }
 
 // Infobox Output
-function locationData(lectureURL, lectureImg, lectureTitle, lectureAddress, lectureRating, lectureReviewCounter) {
+function locationData(customMap) {
   return (''+
     `
-  <a href=${lectureURL} class="listing-img-container">
+  <a href=${customMap.lectureURL} class="listing-img-container">
     <div class="infoBox-close"><i class="fa fa-times"></i></div>
-    <img src="${lectureImg}" alt="${lectureTitle}">
+    <img src="${customMap.lectureImg}" alt="${customMap.teacher_name}">
     <div class="listing-item-content">
-      <h3>${lectureTitle}</h3>
-      <span>${lectureAddress}</span>
+      <h3>${customMap.lectureTitle}</h3>
+      <span>${customMap.teacher_name}</span>
     </div>
   </a>
 
   <div class="listing-content">
     <div class="listing-title">
-      <div class="${INFOBOX_RATINGTYPE}" data-rating="${lectureRating}">
-        <div class="rating-counter">(${lectureReviewCounter} reviews)</div>
+      <div class="${INFOBOX_RATINGTYPE}" data-rating="${customMap.lectureRating}">
+        <div class="rating-counter">(${customMap.lectureReviewCounter} reviews)</div>
       </div>
     </div>
   </div>
@@ -175,63 +175,7 @@ function geolocate(map) {
   }
 }
 
-// Locations (test) -> 비동기로 값을 받아오기 
-// ----------------------------------------------- //
-var locations = [
-  {},
-  {
-    html: locationData('listings-single-page.html', `${IMAGE_URL}/classImages/listing-item-01.png`, "Tom's Restaurant", '964 School Street, New York', '3.5', '12'),
-    lat: 40.94401669296697,
-    lng: -74.16938781738281,
-    pinMarkerId: 1,
-    pinImg: '<i class="im im-icon-Chef-Hat"></i>'
-  },
-  {
-    html: locationData('listings-single-page.html', `${IMAGE_URL}/classImages/listing-item-02.png`, 'Sticky Band', 'Bishop Avenue, New York', '5.0', '23'),
-    lat: 40.77055783505125,
-    lng: -74.26002502441406,
-    pinMarkerId: 2,
-    pinImg: '<i class="im im-icon-Electric-Guitar"></i>'
-  },
-  {
-    html: locationData('listings-single-page.html', `${IMAGE_URL}/classImages/listing-item-03.png`, 'Hotel Govendor', '778 Country Street, New York', '2.0', '17'),
-    lat: 40.7427837,
-    lng: -73.11445617675781,
-    pinMarkerId: 3,
-    pinImg: '<i class="im im-icon-Home-2"></i>'
-  },
-  {
-    html: locationData('listings-single-page.html', `${IMAGE_URL}/classImages/listing-item-04.png`, 'Burger House', '2726 Shinn Street, New York', '5.0', '31'),
-    lat: 40.70437865245596,
-    lng: -73.98674011230469,
-    pinMarkerId: 4,
-    pinImg: '<i class="im im-icon-Hamburger"></i>'
-  },
-  {
-    html: locationData('listings-single-page.html', `${IMAGE_URL}/classImages/listing-item-05.png`, 'Airport', '1512 Duncan Avenue, New York', '3.5', '46'),
-    lat: 40.641311,
-    lng: -73.778139,
-    pinMarkerId: 5,
-    pinImg: '<i class="im im-icon-Plane"></i>'
-  },
-  {
-    html: locationData('listings-single-page.html', `${IMAGE_URL}/classImages/listing-item-06.png`, 'Think Coffee', '215 Terry Lane, New York', '4.5', '15'),
-    lat: 41.080938,
-    lng: -73.535957,
-    pinMarkerId: 6,
-    pinImg: '<i class="im im-icon-Coffee"></i>'
-  },
-  {
-    html: locationData('listings-single-page.html', `${IMAGE_URL}/classImages/listing-item-04.png`, 'Burger House', '2726 Shinn Street, New York', '5.0', '31'),
-    lat: 41.079386,
-    lng: -73.519478,
-    pinMarkerId: 7,
-    pinImg: '<i class="im im-icon-Hamburger"></i>'
-  },
-];
-
-// Map Attributes
-var mapZoomAttr = document.querySelector('#map').dataset.mapZoom;
+ // Map Attributes
 var mapScrollAttr = document.querySelector('#map').dataset.mapScroll;
 
 // Scroll enabling button
@@ -241,13 +185,14 @@ var scrollEnabling = document.querySelector('#scrollEnabling');
 var currentGeoLocation = document.querySelector('#geoLocation');
 var customcurrentGeoLocation = document.querySelector('.input-with-icon.location a i')
 
-function mainMap() {
+function mainMap(locations, position, mapZoom) {
   // Map setting 
   // Map Attributes
   // ----------------------------------------------- //
+
   var zoomLevel, scrollEnabled;
-  if (mapZoomAttr && typeof mapZoomAttr !== "undefined") {
-    zoomLevel = parseInt(mapZoomAttr);
+  if (mapZoom && typeof mapZoom !== "undefined") {
+    zoomLevel = parseInt(mapZoom);
   } else {
     zoomLevel = 5;
   }
@@ -264,7 +209,7 @@ function mainMap() {
     zoom: zoomLevel,
     scrollwheel: scrollEnabled,
     // korea default
-    center: new google.maps.LatLng(40.80, -73.70),
+    center: new google.maps.LatLng(position.lat, position.lng),
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     zoomControl: false,
     mapTypeControl: false,
@@ -348,7 +293,7 @@ function mainMap() {
     },
     closeBoxMargin: "0",
     closeBoxURL: "",
-    infoBoxClearance: new google.maps.Size(350, 300),
+    infoBoxClearance: new google.maps.Size(300, 100),
     isHidden: false,
     pane: "floatPane",
     enableEventPropagation: false,
@@ -432,19 +377,55 @@ function mainMap() {
     var center = map.getCenter();
     google.maps.event.trigger(map, "resize");
     map.setCenter(center);
-    console.log(1);
     Promise.resolve().then(someMethodIThinkMightBeSlow);
   });
 }
+// ---------------- Main Map / End ---------------- //
+
 var startTime;
 function initMap(){
   startTime = performance.now();
+  var mapZoom = 8;
+  var position ={
+    lat: 37.3232287,
+    lng: 126.8384344,
+  };
+  var locations = [
+    {},
+    {
+      html: locationData('listings-single-page.html', `${IMAGE_URL}/classImages/listing-item-01.png`, "Tom's Restaurant", '964 School Street, New York', '3.5', '12'),
+      lat: 40.94401669296697,
+      lng: -74.16938781738281,
+      pinMarkerId: 1,
+      pinImg: '<i class="im im-icon-Chef-Hat"></i>'
+    },
+  ];
+
   var map = document.getElementById('map');
   if (map && typeof (map) !== 'undefined') {
-    google.maps.event.addDomListener(window, 'load', mainMap());
+    google.maps.event.addDomListener(window, 'load', mainMap(locations,position,mapZoom));
   }
+}
+
+function searchMap(customMap) {
+  startTime = performance.now();
+  var mapZoom = customMap.mapZoom;
+  var position = {
+    lat: customMap.lat,
+    lng: customMap.lng,
+  }
+  var locations = [
+    {},
+    {
+      html: locationData(customMap),
+      lat: customMap.lat,
+      lng: customMap.lng,
+      pinMarkerId: 0,
+      pinImg: `<i class="im ${customMap.pinImg}"></i>`
+    },
+  ];
+  google.maps.event.addDomListener(window, 'load', mainMap(locations, position, mapZoom));
 }
 
 Promise.resolve(initMap()).then(someMethodIThinkMightBeSlow(startTime));
 
-// ---------------- Main Map / End ---------------- //
