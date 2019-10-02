@@ -1,5 +1,5 @@
 var CLASS_ID = document.querySelector(".js_class_id").value;
-var URL = "/test/regist";
+var URL = "/lecture/regist";
 
 var submitButton = document.querySelector(".js_submit");
 submitButton.addEventListener("click", function (event) {

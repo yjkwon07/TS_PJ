@@ -74,7 +74,7 @@
 			</div>
 			<!-- Left Side Content / End -->
 
-			<form action="/test/classinsert" method="POST">
+			<form action="/lecture/insert" method="POST">
 				<input hidden name="user_id" value="${userVO.user_id}" />
 				<input type="submit" value="강의 등록 ">
 			</form>
