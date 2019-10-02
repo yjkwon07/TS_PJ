@@ -21,4 +21,5 @@ public interface UserDAO {
 	
 	//튜터id로 유저정보 가져오는 기능
 	public UserVO getUserInfoFromTutorId(String user_id)throws Exception;
+	
 }

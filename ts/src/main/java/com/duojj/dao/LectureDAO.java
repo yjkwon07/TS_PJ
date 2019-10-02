@@ -12,4 +12,5 @@ public interface LectureDAO {
 	public List<LectureVO> getTutorLectureList(String user_id)throws Exception;
 	
 	public Integer lastColumnClassId()throws Exception;
+	
 }
