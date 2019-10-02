@@ -19,7 +19,7 @@
 
 				<!-- Logo -->
 				<div id="logo">
-					<a href="/"><img src="${contextPath}/resources/images/logo.png" alt=""></a>
+					<a href="/main"><img src="${contextPath}/resources/images/logo.png" alt=""></a>
 				</div>
 
 				<!-- Mobile Navigation -->
@@ -77,8 +77,8 @@
 			<form action="/test/classinsert" method="POST">
 				<input hidden name="user_id" value="${userVO.user_id}" />
 				<input type="submit" value="강의 등록 ">
-				
 			</form>
+    
 			<c:if test="${empty login}">
 				<!-- Right Side Content / End -->
 				<div class="right-side">
@@ -87,9 +87,6 @@
 							Sign In</a>
 					</div>
 				</div>
-				<!-- Right Side Content / End -->
-
-
 			</c:if>
 
 			<c:if test="${not empty login}">
@@ -101,7 +98,6 @@
 					</div>
 				</form>
 			</c:if>
-			<!-- Sign In Popup / End -->
 
 		</div>
 	</div>

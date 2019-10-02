@@ -10,7 +10,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -28,10 +27,10 @@ import com.duojj.service.UserService;
 import com.duojj.vo.LectureVO;
 import com.duojj.vo.UserVO;
 import com.google.gson.Gson;
+import com.duojj.service.UserService;
 
 @Controller
 @RequestMapping(value = "/test")
-@EnableAspectJAutoProxy
 public class TestController {
 	@Autowired
 	UserService userService;
@@ -111,6 +110,13 @@ public class TestController {
 			map.put("message", "강의 개설 실패");
 			return new ResponseEntity<Map<String, String>>(map, HttpStatus.BAD_REQUEST);
 		}
+  }
+  
+	@RequestMapping(value = "/error", method = RequestMethod.GET)
+	public ModelAndView error(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("common/error");
+		return mav;
 	}
 
 }

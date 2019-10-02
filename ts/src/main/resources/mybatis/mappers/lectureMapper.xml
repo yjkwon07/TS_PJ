@@ -84,8 +84,20 @@
 		class_startday=#{class_startday},
 		class_youtube=#{class_youtube},
 		class_name=#{class_name}
-		
+    
 		WHERE class_id=#{class_id}
 	</update>
+  
+  <select id="getDetailLectureClass" resultType="lectureVO">
+		select * 
+			from tbl_class
+		where class_id = #{class_id}
+	</select>
 
+	<select id="getTutorLectureList" resultType="lectureVO">
+		select *
+			from tbl_class
+		where user_id = #{user_id}
+	</select>
+  
 </mapper>

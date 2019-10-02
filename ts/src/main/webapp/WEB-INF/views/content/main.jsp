@@ -343,9 +343,7 @@
 				</div>
 				<!-- Listing Item / End -->
 			</div>
-
 		</div>
-
 	</div>
 </div>
 <!-- Listings / End -->

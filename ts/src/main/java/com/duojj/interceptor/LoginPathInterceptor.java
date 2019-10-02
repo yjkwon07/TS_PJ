@@ -15,22 +15,11 @@ import org.springframework.web.util.WebUtils;
 import com.duojj.service.UserService;
 import com.duojj.vo.UserVO;
 
-public class AuthInterceptor extends HandlerInterceptorAdapter{
-
-	/*
-	 * AuthInterceptor는 
-	 * 특정 경로에 접근하는 경우 현재 사용자가 로그인한 상태의 사용자인지 체크하는 역할 처리
-	 * 안되어 있으면 로그인창으로 이동하고
-	 * 로그인하면 사용자가 원하는 URI로 다시 이동!
-	 */
+public class LoginPathInterceptor extends HandlerInterceptorAdapter{
 	
 	@Inject
 	private UserService service;
 	
-	/*
-	 * 원래 사용자가 원하는 페이지정보를 dest에 저장한다. 
-	 * get방식의 경우는 URI 정보 뒤의 파라미터들을 함께 보관해야한다. 
-	 */
 	private void saveDest(HttpServletRequest req) {
 		
 		String uri = req.getRequestURI();
@@ -65,7 +54,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 			
 			if(loginCookie != null) {
 				UserVO userVO = service.checkLoginBefore(loginCookie.getValue());
-			
+				
 				if(userVO != null) {
 					session.setAttribute("login", userVO);
 					return true;

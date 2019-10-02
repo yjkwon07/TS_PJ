@@ -1,5 +1,7 @@
 package com.duojj.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -8,6 +10,7 @@ import com.duojj.dao.FileDAO;
 import com.duojj.dao.LectureDAO;
 import com.duojj.vo.FileImageVO;
 import com.duojj.vo.LectureVO;
+import com.duojj.vo.UserVO;
 
 @Service
 public class LectureServiceImpl implements LectureService{
@@ -38,6 +41,16 @@ public class LectureServiceImpl implements LectureService{
 	public void deleteImage(FileImageVO vo) throws Exception {
 		fileDao.deleteImage(vo);
 	}
+	
+	@Override
+	public LectureVO getDetailLectureClass(Integer class_id) throws Exception {
 
-
+		return dao.getDetailLectureClass(class_id);
+	}
+	
+	@Override
+	public List<LectureVO> getTutorLectureList(String user_id) throws Exception {
+		
+		return dao.getTutorLectureList(user_id);
+	}
 }

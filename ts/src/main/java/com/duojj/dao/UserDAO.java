@@ -16,4 +16,9 @@ public interface UserDAO {
 	//기록된 값으로 사용자의 정보를 조회하는 기능
 	public UserVO checkUserWithSessionKey(String value);
 	
+	//유저가 튜터인지 튜터가 아닌지 session으로 확인하는 기능
+	public Integer checkUserTutorAuth(String value);
+	
+	//튜터id로 유저정보 가져오는 기능
+	public UserVO getUserInfoFromTutorId(String user_id)throws Exception;
 }
