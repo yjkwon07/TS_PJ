@@ -13,12 +13,14 @@ const router = express.Router();
 
 // router.use(async (req, res, next) => {
 //     const domain = url.parse(req.get('origin')).host;
+//     console.log(domain)
 //     if (domain === ALLOW_URL) {
 //         cors({ origin: req.get('origin') })(req, res, next);
 //     } else {
 //         next();
 //     }
 // });
+router.use(cors());
 
 router.get('/searchMap/autocomplete/:query', async (req, res, next) => {
     try {

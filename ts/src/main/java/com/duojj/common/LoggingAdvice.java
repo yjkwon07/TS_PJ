@@ -1,4 +1,4 @@
-package com.duojj.common.log;
+package com.duojj.common;
 
 import java.util.Arrays;
 

@@ -16,7 +16,7 @@
 <script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
 
 <!--jquery-custom-->
-<script type="text/javascript" src="${contextPath}/resources/scripts/jquery-custom/develop/chosen.js"></script>
+<!-- <script type="text/javascript" src="${contextPath}/resources/scripts/jquery-custom/develop/chosen.js"></script> -->
 <script type="text/javascript" src="${contextPath}/resources/scripts/jquery-custom/min/magnific-popup.min.js"></script>
 <script type="text/javascript" src="${contextPath}/resources/scripts/jquery-custom/min/mmenu.min.js"></script>
 <script type="text/javascript" src="${contextPath}/resources/scripts/jquery-custom/min/slick.min.js"></script>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.duojj.mapper.fileMapper">
+
+	<insert id="insertImage">
+		insert into tbl_image(image_name, user_id, class_id)
+		values
+            (#{image_name}, #{user_id}, #{class_id})
+	</insert>
+
+	<delete id="deleteImage">
+		DELETE FROM tbl_image 
+		WHERE 
+		class_id=#{class_id} and user_id= #{user_id} and image_name=#{image_name}
+	</delete>
+
+</mapper>
