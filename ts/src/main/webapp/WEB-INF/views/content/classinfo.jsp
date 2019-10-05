@@ -5,104 +5,125 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
-<body>
-
-	<!-- Titlebar
+<!-- Titlebar
 ================================================== -->
-	<div id="titlebar" class="gradient">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<h2>${lectureVO.class_name}</h2><span>${lectureVO.class_summary}</span>
-				</div>
+<div id="titlebar" class="gradient">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h2>${lectureVO.class_name}</h2><span>${lectureVO.class_summary}</span>
 			</div>
 		</div>
 	</div>
+</div>
 
-
-	<!-- Content
+<!-- Content
 ================================================== -->
-	<div class="container">
+<div class="container">
+	<!-- Blog Posts -->
+	<div class="blog-page">
+		<div class="row">
+			<!-- Post Content -->
+			<div class="col-lg-9 col-md-8 padding-right-30">
 
-		<!-- Blog Posts -->
-		<div class="blog-page">
-			<div class="row">
+				<!-- lecture Post -->
+				<div class="blog-post single-post">
+					<!-- Main Img -->
 
-
-				<!-- Post Content -->
-				<div class="col-lg-9 col-md-8 padding-right-30">
-
-
-					<!-- Blog Post -->
-					<div class="blog-post single-post">
-
-						<!-- Img -->
-						<img class="post-img" src="${contextPath}/resources/images/blog-post-02.jpg" alt="">
-
-
-						<!-- Content -->
-						<div class="post-content">
-
-							<h3>${lectureVO.class_name}</h3>
-
-							<pre>${lectureVO.class_content}</pre>
-
-							<!-- Share Buttons -->
-							<ul class="share-buttons margin-top-40 margin-bottom-0">
-								<li><a class="fb-share" href="#"><i class="fa fa-facebook"></i> Share</a></li>
-								<li><a class="twitter-share" href="#"><i class="fa fa-twitter"></i> Tweet</a></li>
-								<li><a class="gplus-share" href="#"><i class="fa fa-google-plus"></i> Share</a></li>
-								<li><a class="pinterest-share" href="#"><i class="fa fa-pinterest-p"></i> Pin</a></li>
-							</ul>
-							<div class="clearfix"></div>
-
+					<!-- slider Main + sub Img / End -->
+					<div class="just-own-slick-carousel dots-nav">
+						<div class="carousel-item">
+							<!-- Default Img-->
+							<c:if test="${empty lectureVO.class_image || lectureVO.class_image == 'local'}">
+								<img class="post-img" src="${contextPath}/resources/images/slider-bg-02.jpg" alt="mainImage">
+							</c:if>
+							<!-- Default Img / End -->
+						
+							<!-- slider Main + sub Img / End -->
+							<c:if test="${not empty lectureVO.class_image || lectureVO.class_image != 'local'}">
+								<!-- Main Image First -->
+								<img class="post-img" 
+									src="/file/download?image_name=${lectureVO.class_image}&class_id=${lectureVO.class_id}"
+									alt="mainImage">
+								<!-- Main Image First / End -->
+							</c:if>
+							<!-- Main Img / End -->
 						</div>
+
+						<!-- lecture subImage -->
+						<c:forEach var="imageListVO" items="${imageList}">
+							<c:if test="${lectureVO.class_image ne imageListVO.image_name}">
+								<div class="carousel-item">
+									<img class="post-img"
+										src="/file/download?image_name=${imageListVO.image_name}&class_id=${lectureVO.class_id}" 
+										alt="subImage">
+								</div>
+							</c:if>
+						</c:forEach>
+						<!-- lecture subImage / End -->
 					</div>
-					<!-- Blog Post / End -->
+					
+					<!-- slider Main + sub Img / End -->
 
-					<!-- Map
-================================================== -->
-					<div id="map-container" class="fullwidth-home-map">
-
-						<div id="map" data-map-zoom="9">
-							<!-- map goes here -->
-						</div>
-
-						<div class="main-search-inner">
-
-							<div class="container">
-
-							</div>
-
-						</div>
-
-						<!-- Scroll Enabling Button -->
-						<a href="#" id="scrollEnabling" title="Enable or disable scrolling on map">Enable Scrolling</a>
+					<!-- 상세 내용-->
+					<div class="post-content">
+						<h3>${lectureVO.class_name}</h3>
+						<pre>${lectureVO.class_content}</pre>
 					</div>
-					<div id="youTubePlayer"></div><!-- 플레이어를 불러올 영역-->
-					<!-- About Author -->
-					<div class="about-author">
-						<img src="${contextPath}/resources/images/user-avatar.jpg" alt="" />
-						<div class="about-description">
-							<h4>${lectureVO.class_teacher_name}</h4>
-							<input hidden class="js_user_youtube" value="${lectureVO.class_youtube}"/>
-							<p>${tutorVO.user_status}</p>
-						</div>
+					<!-- 상세 내용 / End-->
+				</div>
+				<!-- lecture Post / End -->
+
+				<!-- About Teacher -->
+				<div class="about-author">
+					<img src="${contextPath}/resources/images/user-avatar.jpg" alt="" />
+					<div class="about-description">
+						<h4>${lectureVO.class_teacher_name}</h4>
+						<p>${tutorVO.user_status}</p>
 					</div>
+				</div>
+				<!-- About Teacher / End -->
 
+				<!-- Map Location
+				================================================== -->
+				<div id="listing-location" class="listing-section">
+					<h3 class="listing-desc-headline margin-top-60 margin-bottom-30">강의 장소</h3>
+					<div id="singleListingMap" data-latitude="${lectureVO.class_lat}" data-longitude="${lectureVO.class_lng}">
+						<a href="#" id="streetView">Street View</a>
+					</div>
+				</div>
+				<!-- Map Location / End -->
 
-					<!-- Related Posts -->
-					<div class="clearfix"></div>
-					<h4 class="headline margin-top-25">이 튜터의 다른 강좌들</h4>
-					<div class="row">
+				<!-- YouTube -->
+				<div class="container">
+					<input hidden class="js_user_youtube" value="${lectureVO.class_youtube}" />
+					<c:if test="${not empty lectureVO.class_youtube}">
+						<div id="youTubePlayer"></div>
+					</c:if>
+				</div>
+				<!-- YouTube / End -->
+
+				<!-- Related Teacher Lecture -->
+				<h4 class="headline margin-top-25">${lectureVO.class_teacher_name} 튜터의 다른 강좌들</h4>
+				<div class="just-two-slick-carousel dots-nav">
 					<c:forEach var="lectureListVO" items="${lectureList}">
 						<c:if test="${lectureListVO.class_id != lectureVO.class_id}">
-							<!-- Blog Post Item -->
-							<div class="col-md-6">
+							<!-- lecture Post -->
+							<div class="carousel-item col-md-6">
 								<a href="${lectureListVO.class_id}" class="blog-compact-item-container">
 									<div class="blog-compact-item">
-										<img src="${contextPath}/resources/images/blog-compact-post-01.jpg" alt="">
-										<span class="blog-item-tag">Tips</span>
+										<c:choose>
+											<c:when
+												test="${empty lectureListVO.class_image || lectureListVO.class_image == 'local'}">
+												<img src="${contextPath}/resources/images/blog-compact-post-01.jpg"
+													alt="mainImage">
+											</c:when>
+											<c:otherwise>
+												<img class="post-img"
+													src="/file/download?image_name=${lectureListVO.class_image}&class_id=${lectureListVO.class_id}"
+													alt="mainImage">
+											</c:otherwise>
+										</c:choose>
 										<div class="blog-compact-item-content">
 											<h3>${lectureListVO.class_name}</h3>
 											<p>${lectureListVO.class_summary}</p>
@@ -110,76 +131,62 @@
 									</div>
 								</a>
 							</div>
-							<!-- Blog post Item / End -->
+							<!-- lecture post / End -->
 						</c:if>
 					</c:forEach>
-					</div>
-					<!-- Related Posts / End -->
-
-
-					<div class="margin-top-50"></div>
 				</div>
-				<!-- Content / End -->
+				<!-- Related Teacher Lecture / End -->
+			</div>
+			<!-- Post Content / End -->
 
-
-
-				<!-- Widgets -->
-				<div class="col-lg-3 col-md-4">
-					<div class="sidebar right">
-
-						<!-- Widget -->
-						<div class="widget margin-top-40">
-							<h3>수업 세부 사항</h3>
-							<div class="boxed-widget opening-hours margin-top-35">
+			<!-- nav -->
+			<div class="col-lg-3 col-md-4">
+				<div class="sidebar right">
+					<!-- 수업  시작, 종료 날짜-->
+					<div class="widget margin-top-40">
+						<h3>수업 세부 사항</h3>
+						<div class="boxed-widget opening-hours margin-top-35">
 							<div class="listing-badge now-open">Now Open</div>
-								<h3><i class="sl sl-icon-clock"></i>Start-day<br>End-day</h3>
-								<ul>
-									<li>수업 시작일<span>${lectureVO.class_startday}</span></li>
-									<li>수업 종료일 <span>${lectureVO.class_endday}</span></li>
-								</ul>
-							</div>
+							<h3><i class="sl sl-icon-clock"></i><span>Start~End-day</span></h3>
+							<ul>
+								<li>수업 시작일 <span>${lectureVO.class_startday}</span></li>
+								<li>수업 종료일 <span>${lectureVO.class_endday}</span></li>
+							</ul>
 						</div>
-						<!-- Widget / End -->
-
-						<div class="clearfix"></div>
-						<div class="margin-bottom-40"></div>
 					</div>
-				</div>
-				<div class="col-lg-3 col-md-4">
-					<div class="sidebar right">
-
-						<!-- Widget -->
-						<div class="widget margin-top-40">
-							<div class="boxed-widget opening-hours margin-top-35">
-								<h3><i class="sl sl-icon-clock"></i> Opening Hours</h3>
-								<ul>
-									<li>Monday <span>${lectureVO.class_MON}</span></li>
-									<li>Tuesday <span>${lectureVO.class_TUE}</span></li>
-									<li>Wednesday <span>${lectureVO.class_WED}</span></li>
-									<li>Thursday <span>${lectureVO.class_THU}</span></li>
-									<li>Friday <span>${lectureVO.class_FRI}</span></li>
-									<li>Saturday <span>${lectureVO.class_SAT}</span></li>
-									<li>Sunday <span>${lectureVO.class_SUN}</span></li>
-								</ul>
-							</div>
-						</div>
-						<!-- Widget / End -->
-					<form action="/lecture/tuteeRegister" method="POST">
-						<input type="hidden" name="user_id" value="${tuteeVO.user_id}"/>
-						<input type="hidden" name="enrolment_classname" value="${lectureVO.class_name}"/>
-						<input type="hidden" name="enrolment_class_id" value="${lectureVO.class_id}"/>
-						<i class="fa fa-arrow-circle-right"></i><input type="submit" value='강의 신청'/>
-					</form>
-					
-						<div class="clearfix"></div>
-						<div class="margin-bottom-40"></div>
-					</div>
+					<!-- 수업  시작, 종료 날짜 / End -->
 				</div>
 			</div>
-			<!-- Sidebar / End -->
+			<div class="col-lg-3 col-md-4">
+				<div class="sidebar right">
+					<!-- 수업 요일별 시간 -->
+					<div class="widget margin-top-40">
+						<div class="boxed-widget opening-hours margin-top-35">
+							<h3><i class="sl sl-icon-clock"></i> Opening Hours</h3>
+							<ul>
+								<li>Monday <span>${lectureVO.class_MON}</span></li>
+								<li>Tuesday <span>${lectureVO.class_TUE}</span></li>
+								<li>Wednesday <span>${lectureVO.class_WED}</span></li>
+								<li>Thursday <span>${lectureVO.class_THU}</span></li>
+								<li>Friday <span>${lectureVO.class_FRI}</span></li>
+								<li>Saturday <span>${lectureVO.class_SAT}</span></li>
+								<li>Sunday <span>${lectureVO.class_SUN}</span></li>
+							</ul>
+						</div>
+					</div>
+					<!-- 수업 요일별 시간 / End -->
 
-
+					<!-- 수강 등록 -->
+					<form action="/lecture/tuteeRegister" method="POST">
+						<input type="hidden" name="user_id" value="${tuteeVO.user_id}" />
+						<input type="hidden" name="enrolment_classname" value="${lectureVO.class_name}" />
+						<input type="hidden" name="enrolment_class_id" value="${lectureVO.class_id}" />
+						<button type="submit" class="button medium border">강의 신청</button>
+					</form>
+					<!-- 수강 등록 / End-->
+				</div>
+			</div>
+			<!-- nav -->
 		</div>
 	</div>
-
-</body>
+</div>
