@@ -5,6 +5,11 @@
 
 <mapper namespace="com.duojj.mapper.fileMapper">
 
+	<select id="lectureImage" resultType="FileImageVO">
+		SELECT * FROM tbl_image
+		WHERE class_id = #{class_id}
+	</select>
+
 	<insert id="insertImage">
 		insert into tbl_image(image_name, user_id, class_id)
 		values

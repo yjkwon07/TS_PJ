@@ -1,5 +1,5 @@
 <%@include file="/WEB-INF/views/css/commonCss.jsp"%>
 
-<!-- classinsert CSS
+<!-- classinfo CSS
 ================================================== -->
 <link rel="stylesheet" href="${contextPath}/resources/css/youtubeIframe.css"/>

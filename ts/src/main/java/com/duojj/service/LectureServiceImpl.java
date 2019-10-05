@@ -52,4 +52,9 @@ public class LectureServiceImpl implements LectureService{
 		
 		return lectureDao.getTutorLectureList(user_id);
 	}
+
+	@Override
+	public List<FileImageVO> getLectureImageList(LectureVO vo) throws Exception {
+		return fileDao.getLectureImageList(vo);
+	}
 }

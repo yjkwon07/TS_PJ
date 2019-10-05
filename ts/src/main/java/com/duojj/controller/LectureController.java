@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.http.HttpStatus;
@@ -24,7 +27,9 @@ import com.duojj.service.EnrolmentService;
 import com.duojj.service.LectureService;
 import com.duojj.service.UserService;
 import com.duojj.vo.EnrolmentVO;
+import com.duojj.vo.FileImageVO;
 import com.duojj.vo.LectureVO;
+import com.duojj.vo.UserVO;
 import com.google.gson.Gson;
 
 @Controller
@@ -54,8 +59,8 @@ public class LectureController {
 			map.put("message", "강의 개설 성공");
 			return new ResponseEntity<Map<String, String>>(map, HttpStatus.OK);
 		} catch (Exception e) {
-			System.out.println(e.getStackTrace());
-			System.out.println(e.getMessage());
+			e.getStackTrace();
+			e.getMessage();
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("message", "강의 개설 실패");
 			return new ResponseEntity<Map<String, String>>(map, HttpStatus.BAD_REQUEST);
@@ -77,8 +82,8 @@ public class LectureController {
 			mv.setViewName("/classinsert");
 			return mv;
 		} catch (Exception e) {
-			System.out.println(e.getStackTrace());
-			System.out.println(e.getMessage());
+			e.getStackTrace();
+			e.getMessage();
 			rttr.addFlashAttribute("msg", "다시 시도해 주세요");
 			mv.setViewName("redirect:/main");
 			return mv;
@@ -90,18 +95,21 @@ public class LectureController {
 	public ModelAndView getDetailLectureClassId(@PathVariable Integer class_id,RedirectAttributes rttr,HttpServletRequest request,HttpServletResponse response)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		try {
+			HttpSession session = request.getSession();
+			UserVO tuteeVO = (UserVO)session.getAttribute("login");
+			
 			LectureVO lectureVO = lectureService.getDetailLectureClass(class_id);
 			String tutorId = lectureVO.getUser_id();
 			UserVO tutorVO = userService.getUserInfoFromTutorId(tutorId);
 			List<LectureVO> lectureList = lectureService.getTutorLectureList(tutorId);
+			List<FileImageVO> fileList = lectureService.getLectureImageList(lectureVO);
 			
-			HttpSession session = request.getSession();
-			UserVO tuteeVO = (UserVO)session.getAttribute("login");
 			if(lectureVO != null) {
-				mv.addObject("lectureVO", lectureVO);
 				mv.addObject("tutorVO", tutorVO);
+				mv.addObject("lectureVO", lectureVO);
 				mv.addObject("tuteeVO", tuteeVO);
 				mv.addObject("lectureList", lectureList);
+				mv.addObject("imageList", fileList);
 				mv.setViewName("/classinfo");
 				return mv;
 			} else {

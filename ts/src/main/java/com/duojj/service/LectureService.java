@@ -19,6 +19,9 @@ public interface LectureService {
 	// tbl_image delete
 	public void deleteImage(FileImageVO vo) throws Exception;
 
+	// tbl_image select
+	public List<FileImageVO> getLectureImageList(LectureVO vo) throws Exception;
+	
 	//강의번호로 강의조회
 	public LectureVO getDetailLectureClass(Integer class_id)throws Exception;
 	
