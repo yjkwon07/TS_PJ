@@ -1,5 +1,5 @@
 var tag = document.createElement('script');
-tag.src = "https://www.youtube.com/player_api";
+tag.src = "https://www.youtube.com/player_api?showinfo=0&enablejsapi=1&origin=https://localhost:8090'";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
@@ -12,8 +12,8 @@ var youTubePlayer;
 
 function onYouTubeIframeAPIReady() {
     youTubePlayer = new YT.Player('youTubePlayer', {
-        width: '1000',
-        height: '563',
+        width: '850',
+        height: '520',
         videoId,
         playerVars: {rel: 0},//추천영상 안보여주게 설정
         events: {
