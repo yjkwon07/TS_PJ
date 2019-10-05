@@ -6,14 +6,16 @@
 
 <!-- Header Container
 ================================================== -->
-<header id="header-container">
-	<!-- Sign In Popup -->
-	<%@include file="/WEB-INF/views/common/loginpop.jsp"%>
 
+<!-- Sign In Popup 
+================================================== -->
+<%@include file="/WEB-INF/views/common/loginpop.jsp"%>
+
+<header id="header-container">	
 	<!-- Header -->
 	<div id="header">
 		<div class="container">
-
+			
 			<!-- Left Side Content -->
 			<div class="left-side">
 
@@ -34,38 +36,37 @@
 				<!-- Main Navigation -->
 				<nav id="navigation" class="style-1">
 					<ul id="responsive">
+						<!-- Categories -->
 
-						<li><a href="#">Categories</a>
+						<!-- <li><a href="#">Categories</a>
 							<ul>
 								<li><a href="#">프로그래밍</a>
 									<ul>
-										<li><a href="listings-list-with-sidebar.html">웹/앱</a></li>
-										<li><a href="listings-list-full-width.html">클라우드</a></li>
-										<li><a href="listings-list-full-width-with-map.html">코딩</a></li>
+										<li><a href="#">웹/앱</a></li>
+										<li><a href="#">클라우드</a></li>
+										<li><a href="#">코딩</a></li>
 									</ul>
 								</li>
 								<li><a href="#">뷰티</a>
 									<ul>
-										<li><a href="listings-grid-with-sidebar-1.html">뷰티</a></li>
-										<li><a href="listings-grid-with-sidebar-2.html">커스텀</a></li>
-										<li><a href="listings-grid-full-width.html">의류</a></li>
+										<li><a href="#">뷰티</a></li>
+										<li><a href="#">커스텀</a></li>
+										<li><a href="#">의류</a></li>
 									</ul>
 								</li>
-								<li><a href="#">Half Screen Map</a>
-									<ul>
-										<li><a href="listings-half-screen-map-list.html">List Layout</a></li>
-										<li><a href="listings-half-screen-map-grid-1.html">Grid Layout 1</a></li>
-										<li><a href="listings-half-screen-map-grid-2.html">Grid Layout 2</a></li>
-									</ul>
-								</li>
-								<li><a href="listings-single-page.html">Single Listing 1</a></li>
-								<li><a href="listings-single-page-2.html">Single Listing 2</a></li>
 							</ul>
-						</li>
+						</li> -->
+						<!--- Categories / End -->
 
-						<li><a href="#">User Profile</a>
-						</li>
+						<!-- only login view -->
+						<c:if test="${not empty login}">
+							<!-- user Profile -->
+							<li><a href="#">User Profile</a></li>
+							<!-- user Profile / End -->
 
+						</c:if>
+						<!-- only login view -->
+						
 					</ul>
 				</nav>
 				<div class="clearfix"></div>
@@ -73,35 +74,37 @@
 
 			</div>
 			<!-- Left Side Content / End -->
-
-			<form action="/lecture/insert" method="POST">
-				<input hidden name="user_id" value="${userVO.user_id}" />
-				<input type="submit" value="강의 등록 ">
-			</form>
-    
-			<c:if test="${empty login}">
-				<!-- Right Side Content / End -->
-				<div class="right-side">
-					<div class="header-widget">
-						<a href="#sign-in-dialog" class="sign-in popup-with-zoom-anim"><i class="sl sl-icon-login"></i>
-							Sign In</a>
-					</div>
-				</div>
-			</c:if>
-
-			<c:if test="${not empty login}">
-				<form action="/user/logout" method="post">
+	
+			<!-- login Form -->
+			<c:choose>
+				<c:when test="${empty login}">
 					<div class="right-side">
 						<div class="header-widget">
-							<button type="submit"><i class="sl sl-icon-login"></i>로그아웃</button>
+							<a href="#sign-in-dialog" class="sign-in popup-with-zoom-anim"><i class="sl sl-icon-login"></i>Sign In</a>
 						</div>
 					</div>
+				</c:when>
+				<c:when test="${not empty login}">
+					<form action="/user/logout" method="post">
+						<div class="main-right-side margin-top-15">
+							<button class="button medium border"><i class="sl sl-icon-logout"></i>logout</a></button>
+						</div>
+					</form>
+				</c:when>
+			</c:choose>
+			<!-- login Form / End -->
+			<c:if test="${userVO.user_auth == 2}">
+				<!-- 강의 등록 -->
+				<form action="/lecture/insert" method="POST">
+					<input hidden name="user_id" value="${userVO.user_id}" />
+					<div class="main-right-side">
+						<button class="button medium border"><i class="sl sl-icon-pencil"></i>강의 등록</a></button>
+					</div>
 				</form>
+				<!-- 강의 등록/  End -->
 			</c:if>
-
 		</div>
 	</div>
 	<!-- Header / End -->
 </header>
-<div class="clearfix"></div>
 <!-- Header Container / End -->
