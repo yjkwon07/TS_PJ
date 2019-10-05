@@ -41,18 +41,17 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter{
 		UserVO userVO = (UserVO)modelMap.get("userVO");
 		
 		if(userVO != null) {
-			logger.info("new login success");
+			logger.info("new login success "+userVO.getUser_id());
 			session.setAttribute(LOGIN, userVO);
 			
 			if(request.getParameter("useCookie") != null) {
 				
-				logger.info("remember me..........");
+				logger.info("remember me.........."+ userVO.getUser_id());
 				Cookie loginCookie = new Cookie("loginCookie",session.getId());
 				loginCookie.setPath("/");
 				loginCookie.setMaxAge(60*60*5); 
 				response.addCookie(loginCookie); //만들어진 쿠키는 반드시 HttpServletResponse에 담겨서 전송
 			}
-			
 			
 			Object dest = session.getAttribute("dest");
 			if(dest == null) {
@@ -60,7 +59,6 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter{
 			} else {
 				response.sendRedirect(dest != null ? (String)dest:"/");
 			}
-			
 		}
 	}
 

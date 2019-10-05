@@ -53,7 +53,7 @@ public class UserController {
 	@RequestMapping(value="/loginPost", method=RequestMethod.POST)
 	public ModelAndView postLogin(LoginDTO dto, HttpSession session, Model model, RedirectAttributes rttr)throws Exception{
 	
-		logger.info("call loginPost");
+		logger.info("call loginPost "+ dto.getUser_id());
 		ModelAndView mv = new ModelAndView();
 		UserVO vo = service.login(dto);
 		
