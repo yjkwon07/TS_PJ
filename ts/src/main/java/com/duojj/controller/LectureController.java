@@ -1,7 +1,6 @@
 package com.duojj.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -25,9 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.duojj.dto.CategoriesDTO;
 import com.duojj.service.EnrolmentService;
 import com.duojj.service.LectureService;
-import com.duojj.service.UserService;
 import com.duojj.vo.EnrolmentVO;
-import com.duojj.vo.FileImageVO;
 import com.duojj.vo.LectureVO;
 import com.duojj.vo.UserVO;
 import com.google.gson.Gson;
@@ -37,9 +34,6 @@ import com.google.gson.Gson;
 public class LectureController {
 	@Inject
 	private LectureService lectureService;
-
-	@Inject
-	private UserService userService;
 
 	@Inject
 	private EnrolmentService enrolmentService;
@@ -97,19 +91,10 @@ public class LectureController {
 		try {
 			HttpSession session = request.getSession();
 			UserVO tuteeVO = (UserVO)session.getAttribute("login");
-			
-			LectureVO lectureVO = lectureService.getDetailLectureClass(class_id);
-			String tutorId = lectureVO.getUser_id();
-			UserVO tutorVO = userService.getUserInfoFromTutorId(tutorId);
-			List<LectureVO> lectureList = lectureService.getTutorLectureList(tutorId);
-			List<FileImageVO> fileList = lectureService.getLectureImageList(lectureVO);
-			
-			if(lectureVO != null) {
-				mv.addObject("tutorVO", tutorVO);
-				mv.addObject("lectureVO", lectureVO);
-				mv.addObject("tuteeVO", tuteeVO);
-				mv.addObject("lectureList", lectureList);
-				mv.addObject("imageList", fileList);
+			Map<String, Object> map =  lectureService.getDetailLectureClassId(class_id);
+			map.put("tuteeVO", tuteeVO);
+			if(map != null) {
+				mv.addObject("detailLectureVO", map);
 				mv.setViewName("/classinfo");
 				return mv;
 			} else {

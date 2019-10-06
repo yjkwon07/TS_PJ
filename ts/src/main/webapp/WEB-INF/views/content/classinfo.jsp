@@ -5,13 +5,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
+
 <!-- Titlebar
 ================================================== -->
 <div id="titlebar" class="gradient">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<h2>${lectureVO.class_name}</h2><span>${lectureVO.class_summary}</span>
+				<h2>${detailLectureVO['lectureVO'].class_name}</h2><span>${detailLectureVO['lectureVO'].class_summary}</span>
 			</div>
 		</div>
 	</div>
@@ -34,16 +35,16 @@
 					<div class="just-own-slick-carousel dots-nav">
 						<div class="carousel-item">
 							<!-- Default Img-->
-							<c:if test="${empty lectureVO.class_image || lectureVO.class_image == 'local'}">
+							<c:if test="${empty detailLectureVO['lectureVO'].class_image || detailLectureVO['lectureVO'].class_image == 'local'}">
 								<img class="post-img" src="${contextPath}/resources/images/slider-bg-02.jpg" alt="mainImage">
 							</c:if>
 							<!-- Default Img / End -->
 						
 							<!-- slider Main + sub Img / End -->
-							<c:if test="${not empty lectureVO.class_image || lectureVO.class_image != 'local'}">
+							<c:if test="${not empty detailLectureVO['lectureVO'].class_image || detailLectureVO['lectureVO'].class_image != 'local'}">
 								<!-- Main Image First -->
 								<img class="post-img" 
-									src="/file/download?image_name=${lectureVO.class_image}&class_id=${lectureVO.class_id}"
+									src="/file/download?image_name=${detailLectureVO['lectureVO'].class_image}&class_id=${detailLectureVO['lectureVO'].class_id}"
 									alt="mainImage">
 								<!-- Main Image First / End -->
 							</c:if>
@@ -51,11 +52,11 @@
 						</div>
 
 						<!-- lecture subImage -->
-						<c:forEach var="imageListVO" items="${imageList}">
+						<c:forEach var="imageListVO" items="${detailLectureVO['imageList']}">
 							<c:if test="${lectureVO.class_image ne imageListVO.image_name}">
 								<div class="carousel-item">
 									<img class="post-img"
-										src="/file/download?image_name=${imageListVO.image_name}&class_id=${lectureVO.class_id}" 
+										src="/file/download?image_name=${imageListVO.image_name}&class_id=${detailLectureVO['lectureVO'].class_id}" 
 										alt="subImage">
 								</div>
 							</c:if>
@@ -67,8 +68,8 @@
 
 					<!-- 상세 내용-->
 					<div class="post-content">
-						<h3>${lectureVO.class_name}</h3>
-						<pre>${lectureVO.class_content}</pre>
+						<h3>${detailLectureVO['lectureVO'].class_name}</h3>
+						<pre>${detailLectureVO['lectureVO'].class_content}</pre>
 					</div>
 					<!-- 상세 내용 / End-->
 				</div>
@@ -78,8 +79,8 @@
 				<div class="about-author">
 					<img src="${contextPath}/resources/images/user-avatar.jpg" alt="" />
 					<div class="about-description">
-						<h4>${lectureVO.class_teacher_name}</h4>
-						<p>${tutorVO.user_status}</p>
+						<h4>${detailLectureVO['lectureVO'].class_teacher_name}</h4>
+						<p>${detailLectureVO['tutorVO'].user_status}</p>
 					</div>
 				</div>
 				<!-- About Teacher / End -->
@@ -89,7 +90,7 @@
 				<div id="listing-location" class="listing-section">
 					<h3 class="listing-desc-headline margin-top-60 margin-bottom-30">강의 장소</h3>
 					<div id="singleListingMap-container">
-						<div id="singleListingMap" data-latitude="${lectureVO.class_lat}" data-longitude="${lectureVO.class_lng}"></div>
+						<div id="singleListingMap" data-latitude="${detailLectureVO['lectureVO'].class_lat}" data-longitude="${detailLectureVO['lectureVO'].class_lng}"></div>
 						<!-- Strret View -->
 						<a href="#" id="streetView">Street View</a>
 						<!-- current Button -->
@@ -100,8 +101,8 @@
 
 				<!-- YouTube -->
 				<div class="single-post">
-					<input hidden class="js_user_youtube" value="${lectureVO.class_youtube}" />
-					<c:if test="${not empty lectureVO.class_youtube}">
+					<input hidden class="js_user_youtube" value="${detailLectureVO['lectureVO'].class_youtube}" />
+					<c:if test="${not empty detailLectureVO['lectureVO'].class_youtube}">
 						<h3 class="listing-desc-headline margin-top-60 margin-bottom-30">강의 영상</h3>
 						<div id="youTubePlayer"></div>
 					</c:if>
@@ -109,9 +110,9 @@
 				<!-- YouTube / End -->
 
 				<!-- Related Teacher Lecture -->
-				<h4 class="headline margin-top-25">${lectureVO.class_teacher_name} 튜터의 다른 강좌들</h4>
+				<h4 class="headline margin-top-25">${detailLectureVO['lectureVO'].class_teacher_name} 튜터의 다른 강좌들</h4>
 				<div class="just-two-slick-carousel dots-nav">
-					<c:forEach var="lectureListVO" items="${lectureList}">
+					<c:forEach var="lectureListVO" items="${detailLectureVO['lectureList']}">
 						<c:if test="${lectureListVO.class_id != lectureVO.class_id}">
 							<!-- lecture Post -->
 							<div class="carousel-item col-md-6">
@@ -154,8 +155,8 @@
 							<div class="listing-badge now-open">Now Open</div>
 							<h3><i class="sl sl-icon-clock"></i><span>Start~End-day</span></h3>
 							<ul>
-								<li>수업 시작일 <span>${lectureVO.class_startday}</span></li>
-								<li>수업 종료일 <span>${lectureVO.class_endday}</span></li>
+								<li>수업 시작일 <span>${detailLectureVO['lectureVO'].class_startday}</span></li>
+								<li>수업 종료일 <span>${detailLectureVO['lectureVO'].class_endday}</span></li>
 							</ul>
 						</div>
 					</div>
@@ -169,13 +170,13 @@
 						<div class="boxed-widget opening-hours margin-top-35">
 							<h3><i class="sl sl-icon-clock"></i> Opening Hours</h3>
 							<ul>
-								<li>Monday <span>${lectureVO.class_MON}</span></li>
-								<li>Tuesday <span>${lectureVO.class_TUE}</span></li>
-								<li>Wednesday <span>${lectureVO.class_WED}</span></li>
-								<li>Thursday <span>${lectureVO.class_THU}</span></li>
-								<li>Friday <span>${lectureVO.class_FRI}</span></li>
-								<li>Saturday <span>${lectureVO.class_SAT}</span></li>
-								<li>Sunday <span>${lectureVO.class_SUN}</span></li>
+								<li>Monday <span>${detailLectureVO['lectureVO'].class_MON}</span></li>
+								<li>Tuesday <span>${detailLectureVO['lectureVO'].class_TUE}</span></li>
+								<li>Wednesday <span>${detailLectureVO['lectureVO'].class_WED}</span></li>
+								<li>Thursday <span>${detailLectureVO['lectureVO'].class_THU}</span></li>
+								<li>Friday <span>${detailLectureVO['lectureVO'].class_FRI}</span></li>
+								<li>Saturday <span>${detailLectureVO['lectureVO'].class_SAT}</span></li>
+								<li>Sunday <span>${detailLectureVO['lectureVO'].class_SUN}</span></li>
 							</ul>
 						</div>
 					</div>
@@ -183,9 +184,9 @@
 
 					<!-- 수강 등록 -->
 					<form action="/lecture/tuteeRegister" method="POST">
-						<input type="hidden" name="user_id" value="${tuteeVO.user_id}" />
-						<input type="hidden" name="enrolment_classname" value="${lectureVO.class_name}" />
-						<input type="hidden" name="enrolment_class_id" value="${lectureVO.class_id}" />
+						<input type="hidden" name="user_id" value="${detailLectureVO['tuteeVO'].user_id}" />
+						<input type="hidden" name="enrolment_classname" value="${detailLectureVO['lectureVO'].class_name}" />
+						<input type="hidden" name="enrolment_class_id" value="${detailLectureVO['lectureVO'].class_id}" />
 						<button type="submit" class="button medium border">강의 신청</button>
 					</form>
 					<!-- 수강 등록 / End-->
