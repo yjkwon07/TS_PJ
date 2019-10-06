@@ -88,16 +88,21 @@
 				================================================== -->
 				<div id="listing-location" class="listing-section">
 					<h3 class="listing-desc-headline margin-top-60 margin-bottom-30">강의 장소</h3>
-					<div id="singleListingMap" data-latitude="${lectureVO.class_lat}" data-longitude="${lectureVO.class_lng}">
+					<div id="singleListingMap-container">
+						<div id="singleListingMap" data-latitude="${lectureVO.class_lat}" data-longitude="${lectureVO.class_lng}"></div>
+						<!-- Strret View -->
 						<a href="#" id="streetView">Street View</a>
+						<!-- current Button -->
+						<a href="#" id="geoLocation" title="길찾기">현재 위치에서 길찾기</a>
 					</div>
 				</div>
 				<!-- Map Location / End -->
 
 				<!-- YouTube -->
-				<div class="container">
+				<div class="single-post">
 					<input hidden class="js_user_youtube" value="${lectureVO.class_youtube}" />
 					<c:if test="${not empty lectureVO.class_youtube}">
+						<h3 class="listing-desc-headline margin-top-60 margin-bottom-30">강의 영상</h3>
 						<div id="youTubePlayer"></div>
 					</c:if>
 				</div>
