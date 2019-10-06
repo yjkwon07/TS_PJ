@@ -99,7 +99,7 @@
 	<select id="getTutorLectureList" resultType="LectureVO">
 		select *
 			from tbl_class
-		where user_id = #{user_id}
+		where user_id = #{user_id} and class_endday >= curdate()
 	</select>
   
 </mapper>
