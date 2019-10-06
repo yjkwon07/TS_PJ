@@ -9,5 +9,11 @@
 		insert into tbl_enrolment(user_id,enrolment_classname,enrolment_class_id)
 		values(#{user_id},#{enrolment_classname},#{enrolment_class_id});
 	</insert>
+
+	<select id="getEnrolmentLecture" parameterType="java.lang.String" resultType="LectureVO">
+		select distinct tbl_class.* from tbl_enrolment join tbl_class
+			on tbl_class.class_id = tbl_enrolment.enrolment_class_id
+		where tbl_class.user_id =#{user_id} and class_endday >= curdate()
+	</select>
 </mapper>
 

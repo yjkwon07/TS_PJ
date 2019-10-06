@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+    <!-- UserpofilePage-->
+    <definition name="/userprofile" extends="baseLayout">
+        <put-attribute name="css" value="/WEB-INF/views/css/userprofileCss.jsp"/>
+        <put-attribute name="title" value="TS_PJ_Userpofile"/>
+        <put-attribute name="content" value="/WEB-INF/views/content/userprofile.jsp"/>
+        <put-attribute name="script" value="/WEB-INF/views/script/userprofileScript.jsp"/>
+    </definition>
+</tiles-definitions>
