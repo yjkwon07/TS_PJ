@@ -200,37 +200,34 @@
 <!-- Listings -->
 <div class="container margin-top-70">
 	<div class="row">
-
 		<div class="col-md-12">
 			<h3 class="headline centered margin-bottom-45">
 				${userVO.user_id}님의 강좌 리스트
-				<span>Discover top-rated your Lectures</span>
 			</h3>
 		</div>
-	<c:forEach var="enrolmentLectureVO" items="${userprofileVO['enrolmentLectureVO']}">
 		<div class="col-md-12">
 			<div class="simple-slick-carousel dots-nav">
-				<!-- Listing Item -->
-				<div class="carousel-item">
-					<a href="lecture/${enrolmentLectureVO.class_id}" class="listing-item-container">
-						<div class="listing-item">
-							<img src="${contextPath}/resources/images/listing-item-01.jpg" alt="">
-	
-							<div class="listing-badge now-open">Now Open</div>
-	
-							<div class="listing-item-content">
-								<span class="tag">${enrolmentLectureVO.class_maincategories}/${enrolmentLectureVO.class_subcategories}</span>
-								<h3>${enrolmentLectureVO.class_name}</h3>
-								<span>${enrolmentLectureVO.class_summary}</span>
+				<c:forEach var="enrolmentLectureVO" items="${userprofileVO['enrolmentLectureVO']}">
+							<!-- Listing Item -->
+							<div class="carousel-item">
+							<a href="lecture/${enrolmentLectureVO.class_id}" class="listing-item-container">
+								<div class="listing-item">
+									<img src="/file/download?image_name=${enrolmentLectureVO.class_image}&class_id=${enrolmentLectureVO.class_id}" alt="">
+			
+									<div class="listing-badge now-closed">${enrolmentLectureVO.class_endday}</div>
+			
+									<div class="listing-item-content">
+										<span class="tag">${enrolmentLectureVO.class_maincategories}/${enrolmentLectureVO.class_subcategories}</span>
+										<h3>${enrolmentLectureVO.class_name}</h3>
+										<span>${enrolmentLectureVO.class_summary}</span>
+									</div>
+								</div>
+							</a>
 							</div>
-							<span class="like-icon"></span>
-						</div>
-					</a>
-				</div>
-				<!-- Listing Item / End -->
+							<!-- Listing Item / End -->
+				</c:forEach>
 			</div>
 		</div>
-	</c:forEach>
 	</div>
 </div>
 <!-- Listings / End -->
