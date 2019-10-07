@@ -4,21 +4,22 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class FileImageVO {
 	private MultipartFile file;
-	public MultipartFile getFile() {
-		return file;
-	}
-	public void setFile(MultipartFile file) {
-		this.file = file;
-	}
 	private String class_id;
 	private String user_id;
 	private String image_name;
 	private String image_date;
+	
 	public String getImage_date() {
 		return image_date;
 	}
 	public void setImage_date(String image_date) {
 		this.image_date = image_date;
+	}
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
 	}
 	public String getUser_id() {
 		return user_id;

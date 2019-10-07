@@ -18,41 +18,31 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter{
 	private static final Logger logger = LoggerFactory.getLogger(LoginCheckInterceptor.class);
 	
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws Exception {
-		
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)throws Exception {
 		HttpSession session = request.getSession();
-		
 		if(session.getAttribute(LOGIN)!= null) {
-			logger.info("clear login data before");
+			logger.info("clear login session data before");
 			session.removeAttribute(LOGIN);
 		}
-		
 		return true;
 	}
 	
 	
 	@Override
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-			ModelAndView modelAndView) throws Exception {
-		
-		HttpSession session = request.getSession();
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 		ModelMap modelMap = modelAndView.getModelMap();
+		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO)modelMap.get("userVO");
-		
 		if(userVO != null) {
 			logger.info("new login success "+userVO.getUser_id());
 			session.setAttribute(LOGIN, userVO);
-			
 			if(request.getParameter("useCookie") != null) {
-				
-				logger.info("remember me.........."+ userVO.getUser_id());
+				logger.info("remember userID.........."+ userVO.getUser_id());
 				Cookie loginCookie = new Cookie("loginCookie",session.getId());
 				loginCookie.setPath("/");
 				loginCookie.setMaxAge(60*60*5); 
 				response.addCookie(loginCookie); //만들어진 쿠키는 반드시 HttpServletResponse에 담겨서 전송
 			}
-			
 			Object dest = session.getAttribute("dest");
 			if(dest == null) {
 				response.sendRedirect("/main");

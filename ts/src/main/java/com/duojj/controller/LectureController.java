@@ -86,7 +86,7 @@ public class LectureController {
 	
 	@SuppressWarnings("unused")
 	@RequestMapping(value="/{class_id}", method=RequestMethod.GET)
-	public ModelAndView getDetailLectureClassId(@PathVariable Integer class_id,RedirectAttributes rttr,HttpServletRequest request,HttpServletResponse response)throws Exception{
+	public ModelAndView getDetailLectureClassId(@PathVariable Integer class_id, HttpServletRequest request, HttpServletResponse response, RedirectAttributes rttr)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		try {
 			HttpSession session = request.getSession();

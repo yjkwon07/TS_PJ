@@ -10,6 +10,7 @@ public class EnrolmentVO {
 	private Date enrolment_reviewdate;
 	private int enrolment_class_id;
 	private double enrolment_rating;
+	
 	public int getEnrolment_id() {
 		return enrolment_id;
 	}

@@ -74,12 +74,11 @@ public class UserController {
 	
 	@RequestMapping(value="/logout", method=RequestMethod.POST)
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response, HttpSession session, RedirectAttributes rttr) throws Exception{
-		Object obj = session.getAttribute(LOGIN);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/main");
 		rttr.addFlashAttribute("msg", "로그아웃 되었습니다.");
-		if(obj != null) {
-			UserVO vo = (UserVO) obj;
+		UserVO vo = (UserVO)session.getAttribute(LOGIN);
+		if(vo != null) {
 			session.removeAttribute(LOGIN);
 			session.invalidate();
 			mv.setViewName("redirect:/main");
@@ -95,13 +94,11 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/{user_id}", method=RequestMethod.GET)
-	public ModelAndView getUserprofile(@PathVariable String user_id,RedirectAttributes rttr,HttpServletRequest request,HttpServletResponse response)throws Exception{
+	public ModelAndView getUserprofile(@PathVariable String user_id, HttpServletRequest request, HttpServletResponse response, RedirectAttributes rttr)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		try {
-			System.out.println("ok");
 			Map<String, Object> map =  userService.getUserprofile(user_id);
 			if(map != null) {
-				System.out.println("ok");
 				mv.addObject("userprofileVO", map);
 				mv.setViewName("/userprofile");
 				return mv;

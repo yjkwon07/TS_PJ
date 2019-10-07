@@ -90,7 +90,7 @@
 		WHERE class_id=#{class_id}
 	</update>
 
-  <select id="getDetailLectureClass" resultType="lectureVO">
+  	<select id="getDetailLectureClass" resultType="lectureVO">
 		select * 
 			from tbl_class
 		where class_id = #{class_id}

@@ -11,12 +11,11 @@ import com.duojj.vo.EnrolmentVO;
 public class EnrolmentServiceImpl implements EnrolmentService{
 	
 	@Inject
-	private EnrolmentDAO dao;
+	private EnrolmentDAO enrolmentDAO;
 	
 	@Override
 	public void tuteeLectureRegister(EnrolmentVO vo) throws Exception {
-		
-		dao.tuteeLectureRegister(vo);
+		enrolmentDAO.tuteeLectureRegister(vo);
 	}
 	
 }
