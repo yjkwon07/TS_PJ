@@ -1,5 +1,7 @@
 package com.duojj.controller;
 
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,6 +30,9 @@ public class MainController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/main");
 		if(userVO != null) {
+			String user_id = userVO.getUser_id();
+			Map<String,Object> map = userService.getUserprofile(user_id);
+			mav.addObject("userprofileVO", map);
 			mav.addObject("userVO", userVO);
 		}
 		return mav;

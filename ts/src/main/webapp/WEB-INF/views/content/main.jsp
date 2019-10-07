@@ -196,154 +196,43 @@
 </div>
 <!-- Listings / End -->
 
+<c:if test="${userprofileVO != null}">
 <!-- Listings -->
 <div class="container margin-top-70">
 	<div class="row">
 
 		<div class="col-md-12">
 			<h3 class="headline centered margin-bottom-45">
-				${userid}님의 강좌 리스트
+				${userVO.user_id}님의 강좌 리스트
 				<span>Discover top-rated your Lectures</span>
 			</h3>
 		</div>
-
+	<c:forEach var="enrolmentLectureVO" items="${userprofileVO['enrolmentLectureVO']}">
 		<div class="col-md-12">
 			<div class="simple-slick-carousel dots-nav">
-
 				<!-- Listing Item -->
 				<div class="carousel-item">
-					<a href="listings-single-page.html" class="listing-item-container">
+					<a href="lecture/${enrolmentLectureVO.class_id}" class="listing-item-container">
 						<div class="listing-item">
 							<img src="${contextPath}/resources/images/listing-item-01.jpg" alt="">
-
+	
 							<div class="listing-badge now-open">Now Open</div>
-
+	
 							<div class="listing-item-content">
-								<span class="tag">Eat & Drink</span>
-								<h3>Tom's Restaurant</h3>
-								<span>964 School Street, New York</span>
+								<span class="tag">${enrolmentLectureVO.class_maincategories}/${enrolmentLectureVO.class_subcategories}</span>
+								<h3>${enrolmentLectureVO.class_name}</h3>
+								<span>${enrolmentLectureVO.class_summary}</span>
 							</div>
 							<span class="like-icon"></span>
-						</div>
-						<div class="star-rating" data-rating="3.5">
-							<div class="rating-counter">(12 reviews)</div>
-						</div>
-					</a>
-				</div>
-				<!-- Listing Item / End -->
-
-				<!-- Listing Item -->
-				<div class="carousel-item">
-					<a href="listings-single-page.html" class="listing-item-container">
-						<div class="listing-item">
-							<img src="${contextPath}/resources/images/listing-item-02.jpg" alt="">
-							<div class="listing-item-details">
-								<ul>
-									<li>Friday, August 10</li>
-								</ul>
-							</div>
-							<div class="listing-item-content">
-								<span class="tag">Events</span>
-								<h3>Sticky Band</h3>
-								<span>Bishop Avenue, New York</span>
-							</div>
-							<span class="like-icon"></span>
-						</div>
-						<div class="star-rating" data-rating="5.0">
-							<div class="rating-counter">(23 reviews)</div>
-						</div>
-					</a>
-				</div>
-				<!-- Listing Item / End -->
-
-				<!-- Listing Item -->
-				<div class="carousel-item">
-					<a href="listings-single-page.html" class="listing-item-container">
-						<div class="listing-item">
-							<img src="${contextPath}/resources/images/listing-item-03.jpg" alt="">
-							<div class="listing-item-details">
-								<ul>
-									<li>Starting from $59 per night</li>
-								</ul>
-							</div>
-							<div class="listing-item-content">
-								<span class="tag">Hotels</span>
-								<h3>Hotel Govendor</h3>
-								<span>778 Country Street, New York</span>
-							</div>
-							<span class="like-icon"></span>
-						</div>
-						<div class="star-rating" data-rating="2.0">
-							<div class="rating-counter">(17 reviews)</div>
-						</div>
-					</a>
-				</div>
-				<!-- Listing Item / End -->
-
-				<!-- Listing Item -->
-				<div class="carousel-item">
-					<a href="listings-single-page.html" class="listing-item-container">
-						<div class="listing-item">
-							<img src="${contextPath}/resources/images/listing-item-04.jpg" alt="">
-
-							<div class="listing-badge now-open">Now Open</div>
-
-							<div class="listing-item-content">
-								<span class="tag">Eat & Drink</span>
-								<h3>Burger House</h3>
-								<span>2726 Shinn Street, New York</span>
-							</div>
-							<span class="like-icon"></span>
-						</div>
-						<div class="star-rating" data-rating="5.0">
-							<div class="rating-counter">(31 reviews)</div>
-						</div>
-					</a>
-				</div>
-				<!-- Listing Item / End -->
-
-				<!-- Listing Item -->
-				<div class="carousel-item">
-					<a href="listings-single-page.html" class="listing-item-container">
-						<div class="listing-item">
-							<img src="${contextPath}/resources/images/listing-item-05.jpg" alt="">
-							<div class="listing-item-content">
-								<span class="tag">Other</span>
-								<h3>Airport</h3>
-								<span>1512 Duncan Avenue, New York</span>
-							</div>
-							<span class="like-icon"></span>
-						</div>
-						<div class="star-rating" data-rating="3.5">
-							<div class="rating-counter">(46 reviews)</div>
-						</div>
-					</a>
-				</div>
-				<!-- Listing Item / End -->
-
-				<!-- Listing Item -->
-				<div class="carousel-item">
-					<a href="listings-single-page.html" class="listing-item-container">
-						<div class="listing-item">
-							<img src="${contextPath}/resources/images/listing-item-06.jpg" alt="">
-
-							<div class="listing-badge now-closed">Now Closed</div>
-
-							<div class="listing-item-content">
-								<span class="tag">Eat & Drink</span>
-								<h3>Think Coffee</h3>
-								<span>215 Terry Lane, New York</span>
-							</div>
-							<span class="like-icon"></span>
-						</div>
-						<div class="star-rating" data-rating="4.5">
-							<div class="rating-counter">(15 reviews)</div>
 						</div>
 					</a>
 				</div>
 				<!-- Listing Item / End -->
 			</div>
 		</div>
+	</c:forEach>
 	</div>
 </div>
 <!-- Listings / End -->
+</c:if>
+
