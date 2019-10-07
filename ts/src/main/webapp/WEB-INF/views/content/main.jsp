@@ -232,4 +232,11 @@
 </div>
 <!-- Listings / End -->
 </c:if>
+<script>
+	var msg = "${msg}";
+	if(msg.length > 0){
+		window.alert(msg);
+	}
+		
+</script>
 

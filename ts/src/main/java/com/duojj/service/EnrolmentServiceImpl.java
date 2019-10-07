@@ -18,4 +18,8 @@ public class EnrolmentServiceImpl implements EnrolmentService{
 		enrolmentDAO.tuteeLectureRegister(vo);
 	}
 	
+	@Override
+	public Integer checkLecture(EnrolmentVO vo) throws Exception {
+		return enrolmentDAO.checkLecture(vo);
+	}
 }

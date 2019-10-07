@@ -96,10 +96,10 @@
 		where class_id = #{class_id}
 	</select>
 
-	<select id="getTutorLectureList" resultType="LectureVO">
+	<select id="getTutorLectureList" resultType="lectureVO">
 		select *
 			from tbl_class
 		where user_id = #{user_id} and class_endday >= curdate()
 	</select>
-  
+
 </mapper>

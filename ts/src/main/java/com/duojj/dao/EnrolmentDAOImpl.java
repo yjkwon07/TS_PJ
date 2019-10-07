@@ -28,4 +28,9 @@ public class EnrolmentDAOImpl implements EnrolmentDAO {
 	public List<LectureVO> getEnrolmentLecture(String user_id) throws Exception {
 		return sqlSession.selectList(namespace + ".getEnrolmentLecture", user_id);
 	}
+	
+	@Override
+	public Integer checkLecture(EnrolmentVO vo) throws Exception {
+		return sqlSession.selectOne(namespace+".checkLecture", vo);
+	}
 }

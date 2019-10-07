@@ -15,5 +15,10 @@
 			on tbl_class.class_id = tbl_enrolment.enrolment_class_id
 		where tbl_enrolment.user_id =#{user_id} and class_endday >= curdate()
 	</select>
+	
+	<select id="checkLecture" parameterType="EnrolmentVO" resultType="int">
+		select enrolment_class_id from tbl_enrolment
+		where enrolment_class_id = #{enrolment_class_id} and user_id = #{user_id}
+	</select>
 </mapper>
 
