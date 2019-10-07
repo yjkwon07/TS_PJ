@@ -20,9 +20,7 @@ public class TutorAuthCheckInterceptor extends HandlerInterceptorAdapter{
 	private UserService service;
 	
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws Exception {
-		
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)throws Exception {
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO)session.getAttribute(LOGIN);
 		if(userVO != null) {
@@ -43,6 +41,5 @@ public class TutorAuthCheckInterceptor extends HandlerInterceptorAdapter{
 		return false;
 		
 	}
-	
 
 }

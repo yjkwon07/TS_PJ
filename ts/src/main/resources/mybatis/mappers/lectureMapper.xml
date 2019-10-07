@@ -90,7 +90,7 @@
 		WHERE class_id=#{class_id}
 	</update>
 
-  <select id="getDetailLectureClass" resultType="lectureVO">
+  	<select id="getDetailLectureClass" resultType="lectureVO">
 		select * 
 			from tbl_class
 		where class_id = #{class_id}
@@ -99,7 +99,7 @@
 	<select id="getTutorLectureList" resultType="LectureVO">
 		select *
 			from tbl_class
-		where user_id = #{user_id}
+		where user_id = #{user_id} and class_endday >= curdate()
 	</select>
   
 </mapper>

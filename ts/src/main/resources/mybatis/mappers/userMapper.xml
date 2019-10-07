@@ -6,7 +6,7 @@
 <mapper namespace="com.duojj.mapper.userMapper">
 
 	<select id="login" resultType="UserVO">
-		select user_id, user_name, user_sessionkey
+		select user_id, user_name, user_auth, user_sessionkey
 			from tbl_user
 		where user_id = #{user_id} and user_pw = #{user_pw}
 	</select>
@@ -28,9 +28,11 @@
 			from tbl_user
 		where user_sessionkey = #{value}
 	</select>
+	
 	<select id="getUserInfoFromTutorId" resultType="UserVO">
 		select *
 			from tbl_user
 		where user_id = #{user_id}
 	</select>
+		
 </mapper>
