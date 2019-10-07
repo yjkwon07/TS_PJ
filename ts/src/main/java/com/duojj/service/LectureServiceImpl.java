@@ -19,59 +19,59 @@ import com.duojj.vo.UserVO;
 public class LectureServiceImpl implements LectureService {
 
 	@Inject
-	private LectureDAO lectureDao;
+	private LectureDAO lectureDAO;
+
 	@Inject
-	private FileDAO fileDao;
+	private FileDAO fileDAO;
+	
 	@Inject
-	private UserDAO userDao;
-	@Inject
-	private LectureService LectureService;
+	private UserDAO userDAO;
 
 	@Override
 	public void postInitLectureRegister(LectureVO vo) throws Exception {
-		int class_id = lectureDao.currentLectureCount() + 1;
+		int class_id = lectureDAO.currentLectureCount() + 1;
 		vo.setClass_id(class_id);
-		lectureDao.postInitLectureRegister(vo);
+		lectureDAO.postInitLectureRegister(vo);
 	}
 
 	@Override
 	public void postLectureRegister(LectureVO vo) throws Exception {
-		lectureDao.postLectureUpdate(vo);
+		lectureDAO.postLectureUpdate(vo);
 	}
 
 	@Override
 	public void insertImage(FileImageVO vo) throws Exception {
-		fileDao.insertImage(vo);
+		fileDAO.insertImage(vo);
 	}
 
 	@Override
 	public void deleteImage(FileImageVO vo) throws Exception {
-		fileDao.deleteImage(vo);
+		fileDAO.deleteImage(vo);
 	}
 
 	@Override
 	public LectureVO getDetailLectureClass(int class_id) throws Exception {
-		return lectureDao.getDetailLectureClass(class_id);
+		return lectureDAO.getDetailLectureClass(class_id);
 	}
 
 	@Override
 	public List<LectureVO> getTutorLectureList(String user_id) throws Exception {
-		return lectureDao.getTutorLectureList(user_id);
+		return lectureDAO.getTutorLectureList(user_id);
 	}
 
 	@Override
 	public List<FileImageVO> getLectureImageList(LectureVO vo) throws Exception {
-		return fileDao.getLectureImageList(vo);
+		return fileDAO.getLectureImageList(vo);
 	}
 
 	@Override
 	public Map<String, Object> getDetailLectureClassId(int class_id) throws Exception {
 		Map<String, Object> map = new HashMap<String,Object>();
-		LectureVO lectureVO = LectureService.getDetailLectureClass(class_id);
+		LectureVO lectureVO = lectureDAO.getDetailLectureClass(class_id);
 		String tutorId = lectureVO.getUser_id();
-		UserVO tutorVO = userDao.getUserInfoFromTutorId(tutorId);
-		List<LectureVO> lectureList = LectureService.getTutorLectureList(tutorId);
-		List<FileImageVO> fileList = LectureService.getLectureImageList(lectureVO);
+		UserVO tutorVO = userDAO.getUserInfoFromTutorId(tutorId);
+		List<LectureVO> lectureList = lectureDAO.getTutorLectureList(tutorId);
+		List<FileImageVO> fileList = fileDAO.getLectureImageList(lectureVO);
 		map.put("tutorVO", tutorVO);
 		map.put("lectureVO", lectureVO);
 		map.put("lectureList", lectureList);
