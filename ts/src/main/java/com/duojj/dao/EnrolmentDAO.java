@@ -12,6 +12,6 @@ public interface EnrolmentDAO {
 	// 등록한 강좌 select 
 	public List<LectureVO> getEnrolmentLecture(String user_id)throws Exception;
 	
-	//등록되어있는지 확인하는 기능 
-	public Integer checkLecture(EnrolmentVO vo)throws Exception;
+	//튜티가 등록되어있는지 확인하는 기능 
+	public EnrolmentVO checkLecture(EnrolmentVO vo)throws Exception;
 }

@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.duojj.dao.EnrolmentDAO;
+import com.duojj.dao.LectureDAO;
 import com.duojj.vo.EnrolmentVO;
 
 @Service
@@ -19,7 +20,8 @@ public class EnrolmentServiceImpl implements EnrolmentService{
 	}
 	
 	@Override
-	public Integer checkLecture(EnrolmentVO vo) throws Exception {
+	public EnrolmentVO checkLecture(EnrolmentVO vo) throws Exception {
 		return enrolmentDAO.checkLecture(vo);
 	}
+	
 }

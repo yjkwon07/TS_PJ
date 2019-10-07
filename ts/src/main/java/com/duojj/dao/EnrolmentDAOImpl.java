@@ -30,7 +30,7 @@ public class EnrolmentDAOImpl implements EnrolmentDAO {
 	}
 	
 	@Override
-	public Integer checkLecture(EnrolmentVO vo) throws Exception {
+	public EnrolmentVO checkLecture(EnrolmentVO vo) throws Exception {
 		return sqlSession.selectOne(namespace+".checkLecture", vo);
 	}
 }

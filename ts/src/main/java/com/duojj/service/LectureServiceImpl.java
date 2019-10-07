@@ -78,6 +78,4 @@ public class LectureServiceImpl implements LectureService {
 		map.put("imageList", fileList);
 		return map;
 	}
-
-
 }

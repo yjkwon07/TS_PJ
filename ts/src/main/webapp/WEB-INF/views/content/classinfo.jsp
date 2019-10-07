@@ -184,7 +184,7 @@
 
 					<!-- 수강 등록 -->
 					<form action="/lecture/tuteeRegister" method="POST">
-						<input type="hidden" name="user_id" value="${detailLectureVO['tuteeVO'].user_id}" />
+						<input type="hidden" name="user_id" value="${detailLectureVO['userVO'].user_id}" />
 						<input type="hidden" name="enrolment_classname" value="${detailLectureVO['lectureVO'].class_name}" />
 						<input type="hidden" name="enrolment_class_id" value="${detailLectureVO['lectureVO'].class_id}" />
 						<button type="submit" class="button medium border">강의 신청</button>
