@@ -202,10 +202,15 @@
 	<div class="row">
 		<div class="col-md-12">
 			<h3 class="headline centered margin-bottom-45">
-				${userVO.user_id}님의 강좌 리스트
+				${userVO.user_id}님의 강의 리스트
 			</h3>
 		</div>
-		<div class="col-md-12">
+		<c:choose>
+			<c:when test="${userprofileVO['enrolmentLectureVO'][0].user_id == null}">
+				<h2 class="headline centered margin-bottom-30">등록 강의가 없습니다! 강의를 등록해주세요</h2>
+			</c:when>
+			<c:otherwise>
+			<div class="col-md-12">
 			<div class="simple-slick-carousel dots-nav">
 				<c:forEach var="enrolmentLectureVO" items="${userprofileVO['enrolmentLectureVO']}">
 							<!-- Listing Item -->
@@ -227,7 +232,9 @@
 							<!-- Listing Item / End -->
 				</c:forEach>
 			</div>
-		</div>
+			</div>
+			</c:otherwise>
+		</c:choose>
 	</div>
 </div>
 <!-- Listings / End -->
