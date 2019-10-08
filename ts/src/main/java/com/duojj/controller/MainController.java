@@ -1,5 +1,6 @@
 package com.duojj.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.duojj.service.LectureService;
 import com.duojj.service.UserService;
+import com.duojj.vo.LectureVO;
 import com.duojj.vo.UserVO;
 
 @Controller
@@ -21,6 +24,9 @@ public class MainController {
 	@Inject
 	UserService userService;
 	
+	@Inject
+	LectureService lectureService;
+	
 	private static final String LOGIN = "login";
 	
 	@RequestMapping(method = RequestMethod.GET)
@@ -28,6 +34,8 @@ public class MainController {
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO)session.getAttribute(LOGIN);
 		ModelAndView mav = new ModelAndView();
+		List<LectureVO> latestLectureList = lectureService.getLatestLectureList();
+		mav.addObject("latestLectureList", latestLectureList);
 		mav.setViewName("/main");
 		if(userVO != null) {
 			String user_id = userVO.getUser_id();

@@ -78,4 +78,9 @@ public class LectureServiceImpl implements LectureService {
 		map.put("imageList", fileList);
 		return map;
 	}
+	
+	@Override
+	public List<LectureVO> getLatestLectureList() throws Exception {
+		return lectureDAO.getLatestLectureList();
+	}
 }

@@ -31,4 +31,7 @@ public interface LectureService {
 
 	// 강의번호 요청시 가져올 데이터 map으로 json 반환
 	public Map<String, Object> getDetailLectureClassId(int class_id)throws Exception;
+	
+	//최근 개설한 12개 강의 가져오기
+	public List<LectureVO> getLatestLectureList()throws Exception;
 }
