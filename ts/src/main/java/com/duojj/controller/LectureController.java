@@ -90,9 +90,9 @@ public class LectureController {
 		ModelAndView mv = new ModelAndView();
 		try {
 			HttpSession session = request.getSession();
-			UserVO tuteeVO = (UserVO)session.getAttribute("login");
+			UserVO userVO = (UserVO)session.getAttribute("login");
 			Map<String, Object> map =  lectureService.getDetailLectureClassId(class_id);
-			map.put("tuteeVO", tuteeVO);
+			map.put("userVO", userVO);
 			if(map != null) {
 				mv.addObject("detailLectureVO", map);
 				mv.setViewName("/classinfo");
@@ -114,6 +114,13 @@ public class LectureController {
 	public ModelAndView postTuteeLectureRegister(EnrolmentVO enrolmentVO, HttpServletRequest request, HttpServletResponse response, RedirectAttributes rttr)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		try {
+			int enrolment_class_id = enrolmentVO.getEnrolment_class_id();
+			EnrolmentVO checkEnrolmentVO = enrolmentService.checkLecture(enrolmentVO);
+			if(checkEnrolmentVO != null) {
+				mv.setViewName("redirect:/lecture/"+enrolment_class_id);
+				rttr.addFlashAttribute("msg", "이미 등록된 강좌 입니다.");
+				return mv;
+			}
 			enrolmentService.tuteeLectureRegister(enrolmentVO);
 			rttr.addFlashAttribute("msg", "강의신청되었습니다.");
 			mv.setViewName("redirect:/main");
@@ -123,6 +130,6 @@ public class LectureController {
 			mv.setViewName("redirect:/user/login");
 			rttr.addFlashAttribute("msg", "로그인이 필요합니다.");
 			return mv;
-		}
+		} 
 	}
 }
