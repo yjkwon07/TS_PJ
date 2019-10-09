@@ -1,6 +1,8 @@
 package com.duojj.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -48,8 +50,11 @@ public class LectureDAOImpl implements LectureDAO {
 	}
 	
 	@Override
-	public List<LectureVO> getLatestLectureList() throws Exception {
-		return sqlSession.selectList(namespace+".getLatestLectureList");
+	public List<LectureVO> getLatestLectureList(Integer minCnt, Integer maxCnt) throws Exception {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("minCnt", minCnt);
+		paramMap.put("maxCnt", maxCnt);
+		return sqlSession.selectList(namespace+".getLatestLectureList",paramMap);
 	}
 }
 

@@ -18,5 +18,5 @@ public interface LectureDAO {
 	
 	public List<LectureVO> getTutorLectureList(String user_id)throws Exception;
 	
-	public List<LectureVO> getLatestLectureList()throws Exception;
+	public List<LectureVO> getLatestLectureList(Integer minCnt, Integer maxCnt)throws Exception;
 }

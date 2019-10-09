@@ -80,7 +80,7 @@ public class LectureServiceImpl implements LectureService {
 	}
 	
 	@Override
-	public List<LectureVO> getLatestLectureList() throws Exception {
-		return lectureDAO.getLatestLectureList();
+	public List<LectureVO> getLatestLectureList(Integer minCnt, Integer maxCnt) throws Exception {
+		return lectureDAO.getLatestLectureList(minCnt, maxCnt);
 	}
 }

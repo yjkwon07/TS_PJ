@@ -105,7 +105,7 @@
 	<select id="getLatestLectureList" resultType="lectureVO">
 		select *
 			from tbl_class
-	 	order by class_regdate desc limit 12
+	 	order by class_regdate desc limit #{minCnt}, #{maxCnt}
 	</select>
 	
 </mapper>
