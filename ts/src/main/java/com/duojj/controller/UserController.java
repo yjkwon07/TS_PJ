@@ -93,12 +93,14 @@ public class UserController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/{user_id}", method=RequestMethod.GET)
+	@RequestMapping(value="/profile/{user_id}", method=RequestMethod.GET)
 	public ModelAndView getUserprofile(@PathVariable String user_id, HttpServletRequest request, HttpServletResponse response, RedirectAttributes rttr)throws Exception{
 		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO)session.getAttribute(LOGIN);
 		try {
-			Map<String, Object> map =  userService.getUserprofile(user_id);
-			if(map != null) {
+			Map<String, Object> map = userService.getUserprofile(user_id);
+			if(map != null && user_id.equals(userVO.getUser_id())) {
 				mv.addObject("userprofileVO", map);
 				mv.setViewName("/userprofile");
 				return mv;

@@ -1,3 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"	isELIgnored="false"
+	%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!-- Content
 ================================================== -->
 <div class="container">
@@ -14,108 +20,114 @@
         ================================================== -->
         <div class="col-lg-8 col-md-8 padding-left-30">
 
-            <h3 class="margin-top-0 margin-bottom-40">Tom's Listings</h3>
+            <c:if test="${userprofileVO['userVO'].user_auth == 1}">
+            <h3 class="margin-top-0 margin-bottom-40">${userprofileVO['userVO'].user_id} 등록한 강좌 목록</h3>
+            	<!-- Listings Container -->
+	            <div class="row">
+	            <c:forEach var="lectureVO" items="${userprofileVO['enrolmentLectureVO']}">
+		            <!-- Listing Item -->
+		                <div class="col-lg-12 col-md-12">
+		                    <div class="listing-item-container list-layout">
+		                        <a href="/lecture/${lectureVO.class_id}" class="listing-item">
+		
+		                            <!-- Image -->
+		                            <div class="listing-item-image">
+		                                <img src="images/listing-item-01.jpg" alt="">
+		                                <span class="tag">${lectureVO.class_maincategories}/${lectureVO.class_subcategories}</span>
+		                            </div>
+		
+		                            <!-- Content -->
+		                            <div class="listing-item-content">
+		                                <div class="listing-item-inner">
+		                                	<h4>${lectureVO.class_teacher_name}</h4>
+		                                    <h3>${lectureVO.class_name}</h3>
+		                                    <span>${lectureVO.class_summary}</span>
+		                                </div>
+		                            </div>
+		                        </a>
+		                    </div>
+		                </div>
+		            <!-- Listing Item / End -->
+	            </c:forEach>
+	            
+	            <div class="col-md-12 browse-all-user-listings">
+	                <a href="#">Browse All Listings <i class="fa fa-angle-right"></i> </a>
+	            </div>
+	
+	        	</div>
+	            <!-- Listings Container / End -->
+            </c:if>
 
-            <!-- Listings Container -->
+            
+            <c:if test="${userprofileVO['userVO'].user_auth == 2}">
+            <h3 class="margin-top-0 margin-bottom-40">${userprofileVO['userVO'].user_id} 강의 개설 목록</h3>
+            
             <div class="row">
-
-                <!-- Listing Item -->
+            <c:forEach var="tutorLectureVO" items="${userprofileVO['tutorLectureVO']}">
+            	<!-- Listing Item -->
                 <div class="col-lg-12 col-md-12">
                     <div class="listing-item-container list-layout">
-                        <a href="listings-single-page.html" class="listing-item">
+                        <a href="/lecture/${tutorLectureVO.class_id}" class="listing-item">
 
                             <!-- Image -->
                             <div class="listing-item-image">
                                 <img src="images/listing-item-01.jpg" alt="">
-                                <span class="tag">Eat & Drink</span>
+                                <span class="tag">${tutorLectureVO.class_maincategories}/${tutorLectureVO.class_subcategories}</span>
                             </div>
 
                             <!-- Content -->
                             <div class="listing-item-content">
-                                <div class="listing-badge now-open">Now Open</div>
-
                                 <div class="listing-item-inner">
-                                    <h3>Tom's Restaurant</h3>
-                                    <span>964 School Street, New York</span>
-                                    <div class="star-rating" data-rating="3.5">
-                                        <div class="rating-counter">(12 reviews)</div>
-                                    </div>
+                                    <h3>${tutorLectureVO.class_name}</h3>
+                                    <span>${tutorLectureVO.class_summary}</span>
                                 </div>
-
-                                <span class="like-icon"></span>
                             </div>
                         </a>
                     </div>
                 </div>
-                <!-- Listing Item / End -->
-
-                <!-- Listing Item -->
-                <div class="col-lg-12 col-md-12">
-                    <div class="listing-item-container list-layout">
-                        <a href="listings-single-page.html" class="listing-item">
-
-                            <!-- Image -->
-                            <div class="listing-item-image">
-                                <img src="images/listing-item-03.jpg" alt="">
-                                <span class="tag">Hotels</span>
-                            </div>
-
-                            <!-- Content -->
-                            <div class="listing-item-content">
-
-                                <div class="listing-item-inner">
-                                    <h3>Hotel Govendor</h3>
-                                    <span>778 Country Street, New York</span>
-                                    <div class="star-rating" data-rating="2.0">
-                                        <div class="rating-counter">(17 reviews)</div>
-                                    </div>
-                                </div>
-
-                                <span class="like-icon"></span>
-
-                                <div class="listing-item-details">Starting from $59 per night</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <!-- Listing Item / End -->
-
-                <!-- Listing Item -->
-                <div class="col-lg-12 col-md-12">
-                    <div class="listing-item-container list-layout">
-                        <a href="listings-single-page.html" class="listing-item">
-
-                            <!-- Image -->
-                            <div class="listing-item-image">
-                                <img src="images/listing-item-04.jpg" alt="">
-                                <span class="tag">Eat & Drink</span>
-                            </div>
-
-                            <!-- Content -->
-                            <div class="listing-item-content">
-                                <div class="listing-badge now-open">Now Open</div>
-
-                                <div class="listing-item-inner">
-                                    <h3>Burger House</h3>
-                                    <span>2726 Shinn Street, New York</span>
-                                    <div class="star-rating" data-rating="5.0">
-                                        <div class="rating-counter">(31 reviews)</div>
-                                    </div>
-                                </div>
-
-                                <span class="like-icon"></span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <!-- Listing Item / End -->
-
-                <div class="col-md-12 browse-all-user-listings">
-                    <a href="#">Browse All Listings <i class="fa fa-angle-right"></i> </a>
-                </div>
-
+		        <!-- Listing Item / End -->
+            </c:forEach>
             </div>
-            <!-- Listings Container / End -->
+            
+            <h3 class="margin-top-0 margin-bottom-40">${userprofileVO['userVO'].user_id} 등록한 강좌 목록</h3>
+            	<!-- Listings Container -->
+	            <div class="row">
+	            <c:forEach var="lectureVO" items="${userprofileVO['enrolmentLectureVO']}">
+		            <!-- Listing Item -->
+		                <div class="col-lg-12 col-md-12">
+		                    <div class="listing-item-container list-layout">
+		                        <a href="/lecture/${lectureVO.class_id}" class="listing-item">
+		
+		                            <!-- Image -->
+		                            <div class="listing-item-image">
+		                                <img src="images/listing-item-01.jpg" alt="">
+		                                <span class="tag">${lectureVO.class_maincategories}/${lectureVO.class_subcategories}</span>
+		                            </div>
+		
+		                            <!-- Content -->
+		                            <div class="listing-item-content">
+		                                <div class="listing-item-inner">
+		                                	<h4>${lectureVO.class_teacher_name}</h4>
+		                                    <h3>${lectureVO.class_name}</h3>
+		                                    <span>${lectureVO.class_summary}</span>
+		                                </div>
+		                            </div>
+		                        </a>
+		                    </div>
+		                </div>
+		            <!-- Listing Item / End -->
+	            </c:forEach>
+	            
+	            <div class="col-md-12 browse-all-user-listings">
+	                <a href="#">Browse All Listings <i class="fa fa-angle-right"></i> </a>
+	            </div>
+	
+	        	</div>
+	            <!-- Listings Container / End -->
+	            
+	            
+            </c:if>
+	           	
         </div>
     </div>
 </div>
