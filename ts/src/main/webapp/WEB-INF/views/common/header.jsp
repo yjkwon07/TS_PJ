@@ -61,7 +61,7 @@
 						<!-- only login view -->
 						<c:if test="${not empty login}">
 							<!-- user Profile -->
-							<li><a href="#">User Profile</a></li>
+							<li><a href="/user/profile/${login.user_id}">User Profile</a></li>
 							<!-- user Profile / End -->
 
 						</c:if>
