@@ -26,5 +26,6 @@ uri="http://java.sun.com/jsp/jstl/core"%>
     <tiles:insertAttribute name="footer" />
   </div>
 
-    <tiles:insertAttribute name="script" />
 </body>
+
+<tiles:insertAttribute name="script" />

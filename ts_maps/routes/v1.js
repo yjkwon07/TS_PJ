@@ -10,6 +10,7 @@ const googleMapsClient = googleMaps.createClient({
     key: process.env.PLACES_API_KEY,
 });
 const router = express.Router();
+let connection;
 
 // router.use(async (req, res, next) => {
 //     const domain = url.parse(req.get('origin')).host;
@@ -21,7 +22,6 @@ const router = express.Router();
 //     }
 // });
 router.use(cors());
-
 router.get('/searchMap/autocomplete/:query', async (req, res, next) => {
     try {
         const placename = req.params.query;
@@ -76,7 +76,9 @@ router.get('/searchMap/:query', async (req, res, next) => {
 router.get('/searchClass/autocomplete/:query', async (req, res, next) => {
     try {
         const classname = req.params.query;
-        let connection = await db.getConnection(async conn => conn);
+        if(!connection) {
+            connection =  await db.getConnection(async conn => conn)
+        }
         let selectClass = `SELECT * FROM tbl_class WHERE class_name LIKE '%${classname}%'`;
         await connection.query(selectClass, (err, classSearch) => {
             if (err) {
@@ -100,10 +102,45 @@ router.get('/searchClass/autocomplete/:query', async (req, res, next) => {
 
 router.get('/searchClass/:query', async (req, res, next) => {
     try {
+        if(!connection) {
+            connection =  await db.getConnection(async conn => conn)
+        }
         const classname = req.params.query;
-        let connection = await db.getConnection(async conn => conn);
         let selectClass = `SELECT * FROM ts_pj.tbl_class WHERE class_name = '${classname}'`;
-        let class_arr = await connection.query(selectClass, (err, classSearch) => {
+        await connection.query(selectClass, (err, classSearch) => {
+            if (err) {
+                res.status(419).json({
+                    code: 419,
+                    message: '검색한 결과가 없습니다.'
+                });
+            } else {
+                res.json({
+                    code: 200,
+                    results: classSearch
+                });
+            }
+        });
+    } catch (err) {
+        console.error(err);
+        next(err);
+    }
+});
+
+router.get('/searchBoundsLecture', async (req, res, next) => {
+    try {
+        if(!connection) {
+            connection =  await db.getConnection(async conn => conn)
+        }
+        const startLat = req.query.startLat;
+        const startLng = req.query.startLng;
+        const endLat = req.query.endLat;
+        const endLng = req.query.endLng;
+
+        let selectClass = `SELECT * FROM ts_pj.tbl_class
+        WHERE ${startLat} <= class_lat and ${startLng} <= class_lng
+        and ${endLat} >= class_lat and ${endLng} >= class_lng`;
+        
+        await connection.query(selectClass, (err, classSearch) => {
             if (err) {
                 res.status(419).json({
                     code: 419,
