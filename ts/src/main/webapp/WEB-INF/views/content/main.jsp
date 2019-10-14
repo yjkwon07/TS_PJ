@@ -7,35 +7,52 @@
 <!-- Map
 ================================================== -->
 <div id="map-container" class="fullwidth-home-map">
+		<div class="js_maps" id="map" data-map-zoom="8">
+			<!-- map goes here -->
+		</div>
 
-	<div id="map" data-map-zoom="9">
-		<!-- map goes here -->
-	</div>
+		<!-- place search -->
+		<div class="main-search-inner">
 
-	<div class="main-search-inner">
+			<div class="container">
 
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
+				<div class="row">
 
-					<div class="main-search-input">
+					<div class="col-md-11">
 
-						<div class="main-search-input-item">
-							<input type="text" placeholder="What are you looking for?" value="" />
+						<div class="main-search-input">
+
+							<div class="main-search-input-item">
+								<input class="js_LectureName" type="text" placeholder="강의 장소를 입력해 주세요." value="" />
+
+								<div class="dashboard-list-box margin-top-0">
+									<ul id="search-list"></ul>
+								</div>
+							</div>
+
+							<button class="js_PlaceSearch button">Search</button>
 						</div>
-
-						<button class="button">Search</button>
-
 					</div>
 				</div>
 			</div>
+
 		</div>
 
-	</div>
-	<!-- Scroll Enabling Button -->
-	<a href="#" id="scrollEnabling" title="Enable or disable scrolling on map">Enable Scrolling</a>
-	<!-- current button Button -->
-	<a href="#" id="geoLocation" title="Enable or disable scrolling on map">현재 위치</a>
+		<!-- Scroll Enabling Button -->
+		<a href="#" id="scrollEnabling" title="Enable or disable scrolling on map">Enable Scrolling</a>
+		<!-- current button Button -->
+		<a href="#" id="geoLocation" title="Enable or disable scrolling on map">현재 위치</a>
+		
+		<!-- Strret View -->
+		<a style="visibility: hidden" href="#" id="streetView">Street View</a>
+
+		<!-- get lecture Button -->
+		<a href="#" class ="button  medium border" id="start" title="현재 위치에서 강의 찾기">현재 위치에서 강의 찾기</a>
+		
+		<!-- current Button -->
+		<a style="visibility: hidden" href="#" class ="button  medium border" id="gps" title="길찾기">현재 위치에서 길찾기</a>
+
+
 </div>
 
 
@@ -43,6 +60,7 @@
 ================================================== -->
 
 <!-- Listings -->
+<div class="margin-top-100 "></div>
 <div class="container margin-top-70">
 	<div class="row">
 
