@@ -5,6 +5,7 @@
     <definition name="/main" extends="baseLayout">
         <put-attribute name="title" value="TS_PJ_Main"/>
         <put-attribute name="content" value="/WEB-INF/views/content/main.jsp"/>
+        <put-attribute name="script" value="/WEB-INF/views/script/mainScript.jsp"/>
     </definition>
     
 </tiles-definitions>

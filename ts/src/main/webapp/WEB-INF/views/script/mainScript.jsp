@@ -1,6 +1,6 @@
 <%@include file="/WEB-INF/views/script/commonScript.jsp"%>
 
-<!-- classinfo Scripts
+<!-- mainScript Scripts
 ================================================== -->
 
 <!-- Maps -->
@@ -8,7 +8,8 @@
 <script async defer src="${contextPath}/resources/scripts/maps/infobox.min.js"></script>
 <script async defer src="${contextPath}/resources/scripts/maps/custommarker.js"></script>
 <script async defer src="${contextPath}/resources/scripts/maps/markerclusterer.js"></script>
-<script async defer src="${contextPath}/resources/scripts/maps/classinfoMap.js"></script>
+<script async defer src="${contextPath}/resources/scripts/maps/mainMap.js"></script>
 <script src="${contextPath}/resources/scripts/maps/googleMap.js"></script>
 
-<script src="${contextPath}/resources/scripts/youtube/iframeCustom.js"></script>
+<!-- MapsFunc -->
+<script src="${contextPath}/resources/scripts/maps/query.js"></script>

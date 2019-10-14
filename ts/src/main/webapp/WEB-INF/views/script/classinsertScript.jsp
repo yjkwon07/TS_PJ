@@ -5,12 +5,14 @@
 
 <!-- Maps -->
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsLQ-siN80uRGoJqri7Ib9qhYETZm2en8&libraries=places"></script>
-<script type="text/javascript" src="${contextPath}/resources/scripts/maps/infobox.min.js"></script>
-<script type="text/javascript" src="${contextPath}/resources/scripts/maps/markerclusterer.js"></script>
-<script type="text/javascript" src="${contextPath}/resources/scripts/maps/custommarker.js"></script>
-<script type="text/javascript" src="${contextPath}/resources/scripts/maps/mainMap.js"></script>
+<script async defer src="${contextPath}/resources/scripts/maps/infobox.min.js"></script>
+<script async defer src="${contextPath}/resources/scripts/maps/custommarker.js"></script>
+<script async defer src="${contextPath}/resources/scripts/maps/markerclusterer.js"></script>
+<script async defer src="${contextPath}/resources/scripts/maps/classinsertMap.js"></script>
+<script src="${contextPath}/resources/scripts/maps/googleMap.js"></script>
+
 <!-- MapsFunc -->
-<script type="text/javascript" src="${contextPath}/resources/scripts/maps/query.js"></script>
+<script src="${contextPath}/resources/scripts/maps/query.js"></script>
 
 <!-- categories -->
 <script src="${contextPath}/resources/scripts/classinsert/categories.js"></script>
