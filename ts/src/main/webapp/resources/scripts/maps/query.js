@@ -144,6 +144,7 @@ if (lectureElement) {
           let place = JSON.parse(xhr.responseText);
           let lat = place['results'][0]['class_lat'];
           let lng = place['results'][0]['class_lng'];
+          let class_id = place['results'][0]['class_id'];
           lat = parseFloat(lat);
           lng = parseFloat(lng);
           let lectureImg = place['results'][0]['class_image'];
@@ -151,11 +152,10 @@ if (lectureElement) {
             lectureImg = DEFAULT_IMG;
           }
           else {
-            lectureImg = "/resources/images/" + lectureImg;
+            lectureImg = `/file/download?image_name=${lectureImg}&class_id=${class_id}`;
           }
           let teacher_name = place['results'][0]['class_teacher_name'];
           let lectureTitle = place['results'][0]['class_summary'];
-          let class_id = place['results'][0]['class_id'];
           let customMap = {
             lectureURL: `/lecture/${class_id}`,
             teacher_name,

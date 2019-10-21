@@ -34,7 +34,7 @@ public class MainController {
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO)session.getAttribute(LOGIN);
 		ModelAndView mav = new ModelAndView();
-		List<LectureVO> latestLectureList = lectureService.getLatestLectureList(1,5);
+		List<LectureVO> latestLectureList = lectureService.getLatestLectureList(0,5);
 		mav.addObject("latestLectureList", latestLectureList);
 		mav.setViewName("/main");
 		if(userVO != null) {

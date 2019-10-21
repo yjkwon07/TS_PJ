@@ -82,7 +82,7 @@
 								수강 최대 인원 수
 								<i class="tip" data-tip-content='최대 수강인원을 적어주세요.'></i>
 							</h5>
-							<input type="number" placeholder="15" class="js_class_student_cnt">
+							<input type="number" placeholder="최대 수강인원을 적어주세요." class="js_class_student_cnt">
 						</div>
 					</div>
 					<!-- class info / End -->
