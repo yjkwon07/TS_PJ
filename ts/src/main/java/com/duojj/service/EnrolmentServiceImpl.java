@@ -5,7 +5,6 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.duojj.dao.EnrolmentDAO;
-import com.duojj.dao.LectureDAO;
 import com.duojj.vo.EnrolmentVO;
 
 @Service
