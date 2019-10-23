@@ -7,127 +7,104 @@
 <!-- Content
 ================================================== -->
 <div class="container">
-    <div class="row sticky-wrapper">
 
-        <!-- Sidebar
-                ================================================== -->
-        <div class="col-lg-4 col-md-4 margin-top-0">
+	<div class="row">
+		<!-- About User -->
+		<div class="col-lg-4 col-md-4 margin-top-0">
+			<div class="about-author">
+				<img src="${contextPath}/resources/images/user-avatar.jpg" alt="" />
+				<div class="about-description">
+					<h4>${userprofileVO['userVO'].user_id}</h4>
+					<p>${userprofileVO['userVO'].user_status}</p>
+				</div>
+			</div>
+		</div>
+		<!-- About User / End -->
+	</div>
 
-        </div>
-        <!-- Sidebar / End -->
+	<!-- EnrolmentLecture -->
+	<section class="listings-container margin-top-30">
+		<div class="row fs-switcher">
+			<div class="col-md-6">
+				<p class="showing-results">등록한 강좌 목록</p>
+			</div>
+		</div>
 
-        <!-- Content
-        ================================================== -->
-        <div class="col-lg-8 col-md-8 padding-left-30">
+		<c:forEach var="lectureVO" items="${userprofileVO['enrolmentLectureVO']}">
+			<div class="col fs-listings">
+				<!-- EnrolmentLecture Item -->
+				<div class="col-lg-6 col-md-12">
+					<a href="/lecture/${lectureVO.class_id}" class="listing-item-container">
+						<div class="listing-item">
+							<!-- Default Img-->
+							<c:if test="${empty lectureVO.class_image || lectureVO.class_image == 'local'}">
+								<img class="post-img" src="${contextPath}/resources/images/slider-bg-02.jpg"
+									alt="mainImage">
+							</c:if>
+							<!-- Default Img / End -->
 
-            <c:if test="${userprofileVO['userVO'].user_auth == 1}">
-            <h3 class="margin-top-0 margin-bottom-40">${userprofileVO['userVO'].user_id} 등록한 강좌 목록</h3>
-            	<!-- Listings Container -->
-	            <div class="row">
-	            <c:forEach var="lectureVO" items="${userprofileVO['enrolmentLectureVO']}">
-		            <!-- Listing Item -->
-		                <div class="col-lg-12 col-md-12">
-		                    <div class="listing-item-container list-layout">
-		                        <a href="/lecture/${lectureVO.class_id}" class="listing-item">
-		
-		                            <!-- Image -->
-		                            <div class="listing-item-image">
-		                                <img src="images/listing-item-01.jpg" alt="">
-		                                <span class="tag">${lectureVO.class_maincategories}/${lectureVO.class_subcategories}</span>
-		                            </div>
-		
-		                            <!-- Content -->
-		                            <div class="listing-item-content">
-		                                <div class="listing-item-inner">
-		                                	<h4>${lectureVO.class_teacher_name}</h4>
-		                                    <h3>${lectureVO.class_name}</h3>
-		                                    <span>${lectureVO.class_summary}</span>
-		                                </div>
-		                            </div>
-		                        </a>
-		                    </div>
-		                </div>
-		            <!-- Listing Item / End -->
-	            </c:forEach>
-	            
-	            <div class="col-md-12 browse-all-user-listings">
-	                <a href="#">Browse All Listings <i class="fa fa-angle-right"></i> </a>
-	            </div>
-	
-	        	</div>
-	            <!-- Listings Container / End -->
-            </c:if>
+							<!-- Main Image -->
+							<c:if test="${not empty lectureVO.class_image || lectureVO.class_image != 'local'}">
+								<img class="post-img"
+									src="/file/download?image_name=${lectureVO.class_image}&class_id=${lectureVO.class_id}"
+									alt="mainImage">
+							</c:if>
+							<!-- Main Image -->
 
-            
-            <c:if test="${userprofileVO['userVO'].user_auth == 2}">
-            <h3 class="margin-top-0 margin-bottom-40">${userprofileVO['userVO'].user_id} 강의 개설 목록</h3>
-            
-            <div class="row">
-            <c:forEach var="tutorLectureVO" items="${userprofileVO['tutorLectureVO']}">
-            	<!-- Listing Item -->
-                <div class="col-lg-12 col-md-12">
-                    <div class="listing-item-container list-layout">
-                        <a href="/lecture/${tutorLectureVO.class_id}" class="listing-item">
+							<div class="listing-item-content">
+								<span class="tag">${lectureVO.class_maincategories}/${lectureVO.class_subcategories}</span>
+								<h4>${lectureVO.class_teacher_name}</h4>
+								<h3>${lectureVO.class_name}</h3>
+								<span>${lectureVO.class_summary}</span>
+							</div>
+						</div>
+					</a>
+				</div>
+				<!-- EnrolmentLecture Item / End -->
+			</div>
+		</c:forEach>
+		<!-- Pagination Container / End -->
+	</section>
+	<!-- EnrolmentLecture / End -->
+	<div class="clearfix margin-top-30"></div>
 
-                            <!-- Image -->
-                            <div class="listing-item-image">
-                                <img src="images/listing-item-01.jpg" alt="">
-                                <span class="tag">${tutorLectureVO.class_maincategories}/${tutorLectureVO.class_subcategories}</span>
-                            </div>
+	<!-- Lectureinsert Tutor -->
+	<c:if test="${userprofileVO['userVO'].user_auth == 2}">
+		<div class="row">
+			<p>강의 개설 목록</p>
+			<!-- Lecture Container -->
+			<div class="just-two-slick-carousel dots-nav">
+				<c:forEach var="tutorLectureVO" items="${userprofileVO['tutorLectureVO']}">
+					<div class="carousel-item col-md-6">
+						<a href="/lecture/${tutorLectureVO.class_id}" class="blog-compact-item-container">
+							<div class="listing-item-image">
+								<c:choose>
+									<c:when
+										test="${empty tutorLectureVO.class_image || tutorLectureVO.class_image == 'local'}">
+										<img src="${contextPath}/resources/images/blog-compact-post-01.jpg"
+											alt="mainImage">
+									</c:when>
+									<c:otherwise>
+										<img class="post-img"
+											src="/file/download?image_name=${tutorLectureVO.class_image}&class_id=${tutorLectureVO.class_id}"
+											alt="mainImage">
+									</c:otherwise>
+								</c:choose>
+							</div>
+							<div class="listing-item-content">
+								<div class="listing-item-inner">
+									<span
+										class="tag">${tutorLectureVO.class_maincategories}/${tutorLectureVO.class_subcategories}</span>
+									<h3>${tutorLectureVO.class_name}</h3>
+									<p>${tutorLectureVO.class_summary}</p>
+								</div>
+							</div>
+						</a>
+					</div>
+				</c:forEach>
+			</div>
+		</div>
+	</c:if>
+	<!-- Lectureinsert Tutor / End-->
 
-                            <!-- Content -->
-                            <div class="listing-item-content">
-                                <div class="listing-item-inner">
-                                    <h3>${tutorLectureVO.class_name}</h3>
-                                    <span>${tutorLectureVO.class_summary}</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-		        <!-- Listing Item / End -->
-            </c:forEach>
-            </div>
-            
-            <h3 class="margin-top-0 margin-bottom-40">${userprofileVO['userVO'].user_id} 등록한 강좌 목록</h3>
-            	<!-- Listings Container -->
-	            <div class="row">
-	            <c:forEach var="lectureVO" items="${userprofileVO['enrolmentLectureVO']}">
-		            <!-- Listing Item -->
-		                <div class="col-lg-12 col-md-12">
-		                    <div class="listing-item-container list-layout">
-		                        <a href="/lecture/${lectureVO.class_id}" class="listing-item">
-		
-		                            <!-- Image -->
-		                            <div class="listing-item-image">
-		                                <img src="images/listing-item-01.jpg" alt="">
-		                                <span class="tag">${lectureVO.class_maincategories}/${lectureVO.class_subcategories}</span>
-		                            </div>
-		
-		                            <!-- Content -->
-		                            <div class="listing-item-content">
-		                                <div class="listing-item-inner">
-		                                	<h4>${lectureVO.class_teacher_name}</h4>
-		                                    <h3>${lectureVO.class_name}</h3>
-		                                    <span>${lectureVO.class_summary}</span>
-		                                </div>
-		                            </div>
-		                        </a>
-		                    </div>
-		                </div>
-		            <!-- Listing Item / End -->
-	            </c:forEach>
-	            
-	            <div class="col-md-12 browse-all-user-listings">
-	                <a href="#">Browse All Listings <i class="fa fa-angle-right"></i> </a>
-	            </div>
-	
-	        	</div>
-	            <!-- Listings Container / End -->
-	            
-	            
-            </c:if>
-	           	
-        </div>
-    </div>
 </div>
