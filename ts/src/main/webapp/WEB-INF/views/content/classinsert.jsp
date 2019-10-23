@@ -146,7 +146,7 @@
 				<!-- 강의 내용 / End -->
 
 				<!-- 강의 장소 -->
-				<div class="add-listing-section margin-top-45">
+				<div class="add-listing-section margin-top-45" id="search">
 
 					<!-- Map -->
 					<div class="add-listing-headline">
