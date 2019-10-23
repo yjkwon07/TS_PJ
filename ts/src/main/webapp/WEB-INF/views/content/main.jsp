@@ -51,19 +51,16 @@
 		
 		<!-- current Button -->
 		<a style="visibility: hidden" href="#" class ="button  medium border" id="gps" title="길찾기">현재 위치에서 길찾기</a>
-
-
 </div>
 
+<div class="margin-top-100 "></div>
 
 <!-- Content
 ================================================== -->
 
-<!-- Listings -->
-<div class="margin-top-100 "></div>
+<!-- LatetestLecture Container -->
 <div class="container margin-top-70">
 	<div class="row">
-
 		<div class="col-md-12">
 			<h3 class="headline centered margin-bottom-45">
 				최신 강좌
@@ -74,14 +71,27 @@
 		<div class="col-md-12">
 			<div class="simple-slick-carousel dots-nav">
 				<c:forEach var="latetestLectureVO" items="${latestLectureList}">
-					<!-- Listing Item -->
+					<!-- latetestLecture Item -->
 					<div class="carousel-item">
 						<a href="lecture/${latetestLectureVO.class_id}" class="listing-item-container">
 							<div class="listing-item">
-								<img src="/file/download?image_name=${latetestLectureVO.class_image}&class_id=${latetestLectureVO.class_id}" alt="">
-	
+								<!-- Default Img-->
+								<c:if test="${empty latetestLectureVO.class_image || latetestLectureVO.class_image == 'local'}">
+									<img class="post-img" src="${contextPath}/resources/images/slider-bg-02.jpg"
+										alt="mainImage">
+								</c:if>
+								<!-- Default Img / End -->
+							
+								<!-- Main Image -->
+								<c:if test="${not empty latetestLectureVO.class_image && latetestLectureVO.class_image != 'local'}">
+									<img class="post-img"
+										src="/file/download?image_name=${latetestLectureVO.class_image}&class_id=${latetestLectureVO.class_id}"
+										alt="mainImage">
+								</c:if>
+								<!-- Main Image / End -->
+							
 								<div class="listing-badge now-open">Now Open</div>
-	
+							
 								<div class="listing-item-content">
 									<span class="tag">${latetestLectureVO.class_maincategories}/${latetestLectureVO.class_subcategories}</span>
 									<h3>${latetestLectureVO.class_name}</h3>
@@ -90,63 +100,70 @@
 							</div>
 						</a>
 					</div>
-					<!-- Listing Item / End -->
+					<!-- latetestLecture Item / End -->
 				</c:forEach>
 			</div>
 		</div>
-
 	</div>
 </div>
-<!-- Listings / End -->
+<!-- LatetestLecture Container / End -->
 
+<!-- EnrolmentLecture Container -->
 <c:if test="${userprofileVO != null}">
-<!-- Listings -->
-<div class="container margin-top-70">
-	<div class="row">
-		<div class="col-md-12">
-			<h3 class="headline centered margin-bottom-45">
-				${userVO.user_id}님의 강의 리스트
-			</h3>
-		</div>
-		<c:choose>
-			<c:when test="${userprofileVO['enrolmentLectureVO'][0].user_id == null}">
-				<h2 class="headline centered margin-bottom-30">등록 강의가 없습니다! 강의를 등록해주세요</h2>
-			</c:when>
-			<c:otherwise>
-			<div class="col-md-12">
-			<div class="simple-slick-carousel dots-nav">
-				<c:forEach var="enrolmentLectureVO" items="${userprofileVO['enrolmentLectureVO']}">
-							<!-- Listing Item -->
-							<div class="carousel-item">
-							<a href="lecture/${enrolmentLectureVO.class_id}" class="listing-item-container">
-								<div class="listing-item">
-									<img src="/file/download?image_name=${enrolmentLectureVO.class_image}&class_id=${enrolmentLectureVO.class_id}" alt="">
+	<div class="container margin-top-70">
+		<div class="row">
 			
-									<div class="listing-badge now-closed">${enrolmentLectureVO.class_endday}</div>
-			
-									<div class="listing-item-content">
-										<span class="tag">${enrolmentLectureVO.class_maincategories}/${enrolmentLectureVO.class_subcategories}</span>
-										<h3>${enrolmentLectureVO.class_name}</h3>
-										<span>${enrolmentLectureVO.class_summary}</span>
-									</div>
+			<c:choose>
+				<c:when test="${userprofileVO['enrolmentLectureVO'][0].user_id == null}">
+					<div class="col-md-12">
+						<h3 class="headline centered margin-bottom-30">등록된 강의가 없습니다! 강의를 등록해주세요</h3>
+					</div>
+				</c:when>
+				
+				<c:otherwise>
+					<div class="col-md-12">
+						<h3 class="headline centered margin-bottom-45">
+							${userVO.user_id}님의 강의 리스트
+							<i class="tip" data-tip-content='해당 빨간 리본은 강의 종료 날짜입니다''></i>
+						</h3>
+					</div>
+					
+					<div class="col-md-12">
+						<div class="simple-slick-carousel dots-nav">
+							<c:forEach var="enrolmentLectureVO" items="${userprofileVO['enrolmentLectureVO']}">
+								<!-- EnrolmentLecture Item -->
+								<div class="carousel-item">
+									<a href="lecture/${enrolmentLectureVO.class_id}" class="listing-item-container">
+										<div class="listing-item">
+											<!-- Default Img-->
+											<c:if test="${empty enrolmentLectureVO.class_image || enrolmentLectureVO.class_image == 'local'}">
+												<img class="post-img" src="${contextPath}/resources/images/slider-bg-02.jpg" alt="mainImage">
+											</c:if>
+											<!-- Default Img / End -->
+								
+											<!-- Main Image -->
+											<c:if test="${not empty enrolmentLectureVO.class_image && enrolmentLectureVO.class_image != 'local'}">
+												<img src="/file/download?image_name=${enrolmentLectureVO.class_image}&class_id=${enrolmentLectureVO.class_id}" alt="">
+											</c:if>
+
+											<div class="listing-badge now-closed">${fn:split(enrolmentLectureVO.class_endday, ' ')[0]}</div>
+											<div class="listing-item-content">
+												<span class="tag">${enrolmentLectureVO.class_maincategories}/${enrolmentLectureVO.class_subcategories}</span>
+												<h3>${enrolmentLectureVO.class_name}</h3>
+												<span>${enrolmentLectureVO.class_summary}</span>
+											</div>
+										</div>
+									</a>
 								</div>
-							</a>
-							</div>
-							<!-- Listing Item / End -->
-				</c:forEach>
-			</div>
-			</div>
-			</c:otherwise>
-		</c:choose>
+								<!-- EnrolmentLecture Item / End -->
+							</c:forEach>
+						</div>
+					</div>
+					
+				</c:otherwise>
+			</c:choose>
+		</div>
 	</div>
-</div>
-<!-- Listings / End -->
 </c:if>
-<script>
-	var msg = "${msg}";
-	if(msg.length > 0){
-		window.alert(msg);
-	}
-		
-</script>
+<!-- EnrolmentLecture Container / End -->
 
