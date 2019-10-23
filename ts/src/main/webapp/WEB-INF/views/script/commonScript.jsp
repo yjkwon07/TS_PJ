@@ -1,5 +1,11 @@
 <!-- common Scripts
 ================================================== -->
+<script>
+    var msg = "${msg}";
+    if(msg.length > 0){
+        window.alert(msg);
+    }
+</script>
 
 <!--jquery-->
 <script src="${contextPath}/resources/scripts/jquery/jquery-2.2.0.min.js"></script>
