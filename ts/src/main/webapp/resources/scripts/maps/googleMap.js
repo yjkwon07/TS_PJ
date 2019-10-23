@@ -32,7 +32,7 @@ class GoogleMap {
          * @param {google.map.Map} map It makes the Map (google)
          * @param {Array.<InfoBox>} infobox It makese the pinMarker that infomation ex) lecture Tutor, Summary etc...  
          * @param {Array} pinMarkers It makes the GPS pinMarker
-         * @param {Array} markerCluster it makes the cluster (pin)
+         * @param {MarkerClusterer} markerCluster it makes the cluster (pin)
          */
         this.position = position;
         this.zoom = 8;
@@ -40,7 +40,7 @@ class GoogleMap {
         this.mapConfig(this.position);
         this.infobox = new InfoBox();
         this.pinMarkers = [];
-        this.markerCluster = [];
+        this.markerCluster;
     }
 }
 
@@ -148,9 +148,9 @@ GoogleMap.prototype.setInfoBox = function (locationData) {
         // infobox custom config adat
         google.maps.event.addDomListener(overlayPinMarker, 'click', ((overlayPinMarker, locations_number) => {
             return () => {
+                infobox.close();
                 boxText.innerHTML = locationData[locations_number]['html'];
                 infobox.setOptions(boxOptions);
-                infobox.close();
                 infobox.open(this.map, overlayPinMarker);
 
                 // infobox Listener click view or close
@@ -184,14 +184,14 @@ GoogleMap.prototype.setClusterStyles = function () {
         {
             textColor: 'white',
             url: '',
-            height: 200,
-            width: 200
+            height: 50,
+            width: 50
         }
     ];
     const options = {
         imagePath: 'images/',
         styles: clusterStyles,
-        minClusterSize: 15
+        minClusterSize: 5
     };
     this.markerCluster = new MarkerClusterer(this.map, this.pinMarkers, options);
 }
@@ -368,9 +368,13 @@ GoogleMap.prototype.addPinMarker = function (markerIcon, marker_id, lat, lng) {
  * @param {Array} pinMarkers 
  */
 GoogleMap.prototype.removePinMarker = function () {
-    this.pinMarkers.forEach((tag) => {
-        tag.remove();
-    });
+    this.infobox.close();
+    if(this.pinMarkers.length >= 1){
+        this.pinMarkers.forEach((tag) => {
+            tag.remove();
+        });
+    }
+    this.infobox = new InfoBox();
     this.pinMarkers = [];
 }
 
