@@ -152,7 +152,7 @@ let googleMap;
 
 // Geo Location Current & Create select Button
 async function setNavigation() {
-  await googleMap.removePinMarker();
+  init();
   await googleMap.geolocate();
   await googleMap.addPinMarker(CURRENT_MAP_ICO, 1, googleMap.position.lat, googleMap.position.lng);
   await googleMap.addPinMarker(LECTURE_MAP_ICO, 2, LECTURE_LAT, LECTURE_LNG);
@@ -167,7 +167,7 @@ async function setNavigation() {
             <option value="WALKING">Walking</option>
             <option value="BICYCLING">Bicycling</option>
             <option value="TRANSIT">Transit</option>
-        `;
+    `;
     singleListingMapContainer.appendChild(selector);
   }
   else {
@@ -177,23 +177,23 @@ async function setNavigation() {
 }
 
 function init() {
-  GPS.addEventListener("click", () => {
-    setNavigation();
-  });
-
   if (elementMap && typeof (elementMap) !== 'undefined') {
     googleMap = new GoogleMap(tools);
     googleMap.setStreetView(STREETELEMENT);
     google.maps.event.addDomListener(window, 'load', googleMap.map);
   }
+
+  GPS.addEventListener("click", () => {
+    setNavigation();
+  });
+  
   GET_LECTURE.addEventListener("click", () => {
     googleMap.geolocate();
     getBounds();
-    GET_LECTURE.style.visibility = "hidden";
   });
 };
 
-async function getBounds() {
+function getBounds() {
   // 줌 또는 드래그, 화면이동 등 지도 정보 변경시에 화면내에 마커만 표시하기위해 좌표 인식
   google.maps.event.addListener(googleMap.map, 'zoom_changed', () => {
     boundsCheck();
