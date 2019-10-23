@@ -11776,6 +11776,7 @@ box-sizing: border-box; }
 }
 
 .mfp-auto-cursor .mfp-content {
+	margin-top: 700px;
 	cursor: auto;
 }
 
