@@ -152,11 +152,10 @@
 					<div class="widget margin-top-40">
 						<h3>수업 세부 사항</h3>
 						<div class="boxed-widget opening-hours margin-top-35">
-							<div class="listing-badge now-open">Now Open</div>
 							<h3><i class="sl sl-icon-clock"></i><span>Start~End-day</span></h3>
 							<ul>
-								<li>수업 시작일 <span>${detailLectureVO['lectureVO'].class_startday}</span></li>
-								<li>수업 종료일 <span>${detailLectureVO['lectureVO'].class_endday}</span></li>
+								<li>수업 시작일 <span>${fn:split(detailLectureVO['lectureVO'].class_startday, ' ')[0]}</span></li>
+								<li>수업 종료일 <span>${fn:split(detailLectureVO['lectureVO'].class_endday, ' ')[0]}</span></li>
 							</ul>
 						</div>
 					</div>
@@ -181,25 +180,18 @@
 						</div>
 					</div>
 					<!-- 수업 요일별 시간 / End -->
-
-					<!-- 수강 등록 -->
-					<form action="/lecture/tuteeRegister" method="POST">
-						<input type="hidden" name="user_id" value="${detailLectureVO['userVO'].user_id}" />
-						<input type="hidden" name="enrolment_classname" value="${detailLectureVO['lectureVO'].class_name}" />
-						<input type="hidden" name="enrolment_class_id" value="${detailLectureVO['lectureVO'].class_id}" />
-						<button type="submit" class="button medium border">강의 신청</button>
-					</form>
-					<!-- 수강 등록 / End-->
 				</div>
+				<div class="margin-top-7"></div>
+				<!-- 수강 등록 -->
+				<form action="/lecture/tuteeRegister" method="POST">
+					<input type="hidden" name="user_id" value="${detailLectureVO['userVO'].user_id}" />
+					<input type="hidden" name="enrolment_classname" value="${detailLectureVO['lectureVO'].class_name}" />
+					<input type="hidden" name="enrolment_class_id" value="${detailLectureVO['lectureVO'].class_id}" />
+					<button type="submit" class="button medium border">강의 신청</button>
+				</form>
+				<!-- 수강 등록 / End-->
 			</div>
 			<!-- nav -->
 		</div>
 	</div>
 </div>
-<script>
-	var msg = "${msg}";
-	if(msg.length > 0){
-		window.alert(msg);
-	}
-		
-</script>
