@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(value = "/file")
 @Controller
 public class FileUpload {
-	private static final String CURR_IMAGE_REPO_PATH = "C:" + File.separator + "TS_STORE" + File.separator + "file_repo";
+	private static final String CURR_IMAGE_REPO_PATH = "C:" + File.separator + "shopping" + File.separator + "file_repo";
 
 	@Inject
 	private LectureService lectureService;
