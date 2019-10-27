@@ -1,13 +1,11 @@
 package com.duojj.service;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.inject.Inject;
-
-import org.springframework.stereotype.Service;
 
 import com.duojj.dao.EnrolmentDAO;
 import com.duojj.dao.LectureDAO;
@@ -15,6 +13,8 @@ import com.duojj.dao.UserDAO;
 import com.duojj.dto.LoginDTO;
 import com.duojj.vo.LectureVO;
 import com.duojj.vo.UserVO;
+
+import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -27,6 +27,8 @@ public class UserServiceImpl implements UserService {
 
 	@Inject 
 	private EnrolmentDAO enrolmentDAO;
+	
+	private UUID uuid = UUID.randomUUID();
 
 	@Override
 	public UserVO login(LoginDTO dto) throws Exception {
@@ -34,18 +36,18 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void keepLogin(String user_id, String user_sessionid, Date next) {
-		userDAO.keepLogin(user_id, user_sessionid, next);
+	public void keepLogin(UserVO userVO) {
+		userDAO.keepLogin(userVO);
 	}
 
 	@Override
-	public UserVO checkLoginBefore(String value) {
-		return userDAO.checkUserWithSessionKey(value);
+	public UserVO checkUserWithSessionKey(String user_sessionkey) {
+		return userDAO.checkUserWithSessionKey(user_sessionkey);
 	}
 
 	@Override
-	public Integer checkUserTutorAuth(String value) {
-		return userDAO.checkUserTutorAuth(value);
+	public Integer checkUserTutorAuth(String user_sessionkey) {
+		return userDAO.checkUserTutorAuth(user_sessionkey);
 	}
 
 	@Override
@@ -67,4 +69,19 @@ public class UserServiceImpl implements UserService {
 		map.put("enrolmentLectureVO", enrolmentLectureVO);
 		return map;
 	}
+
+	@Override
+	public void RegistertUser(UserVO userVO) throws Exception {
+		userVO.setUser_sessionkey(UUID.randomUUID().toString());
+		userDAO.RegistertUser(userVO);
+	}
+
+	public UUID getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(UUID uuid) {
+		this.uuid = uuid;
+	}
+
 }

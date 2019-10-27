@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.duojj.mapper.enrolmentMapper">
 
@@ -11,15 +9,16 @@
 	</insert>
 
 	<select id="getEnrolmentLecture" parameterType="java.lang.String" resultType="LectureVO">
+	<![CDATA[ 
 		select distinct tbl_class.* from tbl_enrolment join tbl_class
 			on tbl_class.class_id = tbl_enrolment.enrolment_class_id
 		where tbl_enrolment.user_id =#{user_id} and class_endday >= curdate()
+	]]>
 	</select>
-	
+
 	<select id="checkLecture" parameterType="EnrolmentVO" resultType="EnrolmentVO">
 		select * from tbl_enrolment
 		where enrolment_class_id = #{enrolment_class_id} and user_id = #{user_id}
 	</select>
-	
-</mapper>
 
+</mapper>

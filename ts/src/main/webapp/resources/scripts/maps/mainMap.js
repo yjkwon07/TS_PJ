@@ -20,6 +20,9 @@ const currentGeoLocation = document.querySelector('#geoLocation');
 // Geo GPS 
 const GPS = document.querySelector('#gps');
 
+// Geo GPS_END 
+const GPS_END = document.querySelector("#gps_end");
+
 // Steet View Button
 const STREETELEMENT = document.querySelector("#streetView");
 
@@ -150,9 +153,12 @@ const tools = {
 // object
 let googleMap;
 
+// Geo way select Button
+let selector;
+
 // Geo Location Current & Create select Button
 async function setNavigation() {
-  await googleMap.removePinMarker();
+  init();
   await googleMap.geolocate();
   await googleMap.addPinMarker(CURRENT_MAP_ICO, 1, googleMap.position.lat, googleMap.position.lng);
   await googleMap.addPinMarker(LECTURE_MAP_ICO, 2, LECTURE_LAT, LECTURE_LNG);
@@ -160,14 +166,14 @@ async function setNavigation() {
   const singleListingMapContainer = document.querySelector("#map-container");
   const checkSelect = singleListingMapContainer.querySelector(".js_route_mode_way");
   if (!checkSelect || typeof (checkSelect) == 'undefined' && checkSelect == null) {
-    const selector = document.createElement("select");
+    selector = document.createElement("select");
     selector.classList.add("js_route_mode_way")
     selector.innerHTML = `
             <option value="DRIVING">Driving</option>
             <option value="WALKING">Walking</option>
             <option value="BICYCLING">Bicycling</option>
             <option value="TRANSIT">Transit</option>
-        `;
+    `;
     singleListingMapContainer.appendChild(selector);
   }
   else {
@@ -177,23 +183,39 @@ async function setNavigation() {
 }
 
 function init() {
-  GPS.addEventListener("click", () => {
-    setNavigation();
-  });
-
   if (elementMap && typeof (elementMap) !== 'undefined') {
     googleMap = new GoogleMap(tools);
     googleMap.setStreetView(STREETELEMENT);
     google.maps.event.addDomListener(window, 'load', googleMap.map);
   }
+}
+
+function lisnerInit() {
+
+  GPS.style.visibility= "hidden";
+  GPS_END.style.visibility = "hidden";
+  STREETELEMENT.style.visibility = "hidden";
+  GET_LECTURE.style.visibility = "visible";
+  if(selector) {
+    selector.remove();
+  }
+  GPS.addEventListener("click", () => {
+    GPS_END.style.visibility = "visible";
+    GET_LECTURE.style.visibility = "hidden";
+    setNavigation();
+  });
   GET_LECTURE.addEventListener("click", () => {
     googleMap.geolocate();
     getBounds();
-    GET_LECTURE.style.visibility = "hidden";
   });
+  GPS_END.addEventListener("click", () => {
+    lisnerInit();
+    init();
+  });
+
 };
 
-async function getBounds() {
+function getBounds() {
   // 줌 또는 드래그, 화면이동 등 지도 정보 변경시에 화면내에 마커만 표시하기위해 좌표 인식
   google.maps.event.addListener(googleMap.map, 'zoom_changed', () => {
     boundsCheck();
@@ -213,4 +235,5 @@ function boundsCheck() {
   getLecture(startLat, startLng, endLat, endLng);
 }
 
+lisnerInit();
 init();

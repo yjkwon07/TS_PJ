@@ -6,14 +6,14 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import org.springframework.stereotype.Service;
-
 import com.duojj.dao.FileDAO;
 import com.duojj.dao.LectureDAO;
 import com.duojj.dao.UserDAO;
 import com.duojj.vo.FileImageVO;
 import com.duojj.vo.LectureVO;
 import com.duojj.vo.UserVO;
+
+import org.springframework.stereotype.Service;
 
 @Service
 public class LectureServiceImpl implements LectureService {
@@ -23,30 +23,30 @@ public class LectureServiceImpl implements LectureService {
 
 	@Inject
 	private FileDAO fileDAO;
-	
+
 	@Inject
 	private UserDAO userDAO;
 
 	@Override
-	public void postInitLectureRegister(LectureVO vo) throws Exception {
+	public void postInitLectureRegister(LectureVO lectureVO) throws Exception {
 		int class_id = lectureDAO.currentLectureCount() + 1;
-		vo.setClass_id(class_id);
-		lectureDAO.postInitLectureRegister(vo);
+		lectureVO.setClass_id(class_id);
+		lectureDAO.postInitLectureRegister(lectureVO);
 	}
 
 	@Override
-	public void postLectureRegister(LectureVO vo) throws Exception {
-		lectureDAO.postLectureUpdate(vo);
+	public void postLectureRegister(LectureVO lectureVO) throws Exception {
+		lectureDAO.postLectureUpdate(lectureVO);
 	}
 
 	@Override
-	public void insertImage(FileImageVO vo) throws Exception {
-		fileDAO.insertImage(vo);
+	public void insertImage(FileImageVO fileImageVO) throws Exception {
+		fileDAO.insertImage(fileImageVO);
 	}
 
 	@Override
-	public void deleteImage(FileImageVO vo) throws Exception {
-		fileDAO.deleteImage(vo);
+	public void deleteImage(FileImageVO fileImageVO) throws Exception {
+		fileDAO.deleteImage(fileImageVO);
 	}
 
 	@Override
@@ -60,13 +60,13 @@ public class LectureServiceImpl implements LectureService {
 	}
 
 	@Override
-	public List<FileImageVO> getLectureImageList(LectureVO vo) throws Exception {
-		return fileDAO.getLectureImageList(vo);
+	public List<FileImageVO> getLectureImageList(LectureVO lectureVO) throws Exception {
+		return fileDAO.getLectureImageList(lectureVO);
 	}
 
 	@Override
 	public Map<String, Object> getDetailLectureClassId(int class_id) throws Exception {
-		Map<String, Object> map = new HashMap<String,Object>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		LectureVO lectureVO = lectureDAO.getDetailLectureClass(class_id);
 		String tutorId = lectureVO.getUser_id();
 		UserVO tutorVO = userDAO.getUserInfoFromTutorId(tutorId);
@@ -78,9 +78,9 @@ public class LectureServiceImpl implements LectureService {
 		map.put("imageList", fileList);
 		return map;
 	}
-	
+
 	@Override
-	public List<LectureVO> getLatestLectureList(Integer minCnt, Integer maxCnt) throws Exception {
+	public List<LectureVO> getLatestLectureList(int minCnt, int maxCnt) throws Exception {
 		return lectureDAO.getLatestLectureList(minCnt, maxCnt);
 	}
 }

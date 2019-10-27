@@ -53,9 +53,9 @@
 						<!-- Teacher name  -->
 						<div class="col-md-6">
 							<h5>Teacher name</h5>
-							<input type="text" value='${login.user_name}' disabled>
-							<input type="hidden" class="js_class_teacher_name" value='${login.user_name}' />
-							<input type="hidden" class="js_user_id" value='${login.user_id}'  />
+							<input type="text" value='${LOGIN.user_name}' disabled>
+							<input type="hidden" class="js_class_teacher_name" value='${LOGIN.user_name}' />
+							<input type="hidden" class="js_user_id" value='${LOGIN.user_id}'  />
 						</div>
 
 						<!-- Summary -->
@@ -146,7 +146,7 @@
 				<!-- 강의 내용 / End -->
 
 				<!-- 강의 장소 -->
-				<div class="add-listing-section margin-top-45">
+				<div class="add-listing-section margin-top-45" id="search">
 
 					<!-- Map -->
 					<div class="add-listing-headline">

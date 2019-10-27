@@ -79,7 +79,7 @@ router.get('/searchClass/autocomplete/:query', async (req, res, next) => {
         if(!connection) {
             connection =  await db.getConnection(async conn => conn)
         }
-        let selectClass = `SELECT * FROM tbl_class WHERE class_name LIKE '%${classname}%'`;
+        let selectClass = `SELECT * FROM tbl_class WHERE class_name LIKE '%${classname}%' and class_endday >= curdate()`;
         await connection.query(selectClass, (err, classSearch) => {
             if (err) {
                 res.status(419).json({
@@ -106,7 +106,7 @@ router.get('/searchClass/:query', async (req, res, next) => {
             connection =  await db.getConnection(async conn => conn)
         }
         const classname = req.params.query;
-        let selectClass = `SELECT * FROM ts_pj.tbl_class WHERE class_name = '${classname}'`;
+        let selectClass = `SELECT * FROM ts_pj.tbl_class WHERE class_name = '${classname}' and class_endday >= curdate()`;
         await connection.query(selectClass, (err, classSearch) => {
             if (err) {
                 res.status(419).json({
@@ -138,7 +138,9 @@ router.get('/searchBoundsLecture', async (req, res, next) => {
 
         let selectClass = `SELECT * FROM ts_pj.tbl_class
         WHERE ${startLat} <= class_lat and ${startLng} <= class_lng
-        and ${endLat} >= class_lat and ${endLng} >= class_lng`;
+        and ${endLat} >= class_lat and ${endLng} >= class_lng
+        and class_endday >= curdate()
+        `;
         
         await connection.query(selectClass, (err, classSearch) => {
             if (err) {

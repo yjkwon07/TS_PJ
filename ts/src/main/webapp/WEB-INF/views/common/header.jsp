@@ -57,13 +57,16 @@
 							</ul>
 						</li> -->
 						<!--- Categories / End -->
+						
+						<c:if test="${empty LOGIN}">
+							<li><a href="/user/register">Register User</a></li>
+						</c:if>
 
 						<!-- only login view -->
-						<c:if test="${not empty login}">
+						<c:if test="${not empty LOGIN}">
 							<!-- user Profile -->
-							<li><a href="/user/profile/${login.user_id}">User Profile</a></li>
+							<li><a href="/user/profile/${LOGIN.user_id}">User Profile</a></li>
 							<!-- user Profile / End -->
-
 						</c:if>
 						<!-- only login view -->
 						
@@ -77,14 +80,14 @@
 	
 			<!-- login Form -->
 			<c:choose>
-				<c:when test="${empty login}">
+				<c:when test="${empty LOGIN}">
 					<div class="right-side">
 						<div class="header-widget">
 							<a href="#sign-in-dialog" class="sign-in popup-with-zoom-anim"><i class="sl sl-icon-login"></i>Sign In</a>
 						</div>
 					</div>
 				</c:when>
-				<c:when test="${not empty login}">
+				<c:when test="${not empty LOGIN}">
 					<form action="/user/logout" method="post">
 						<div class="main-right-side margin-top-15">
 							<button class="button medium border"><i class="sl sl-icon-logout"></i>logout</a></button>

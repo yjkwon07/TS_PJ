@@ -1,59 +1,48 @@
 package com.duojj.dao;
 
-
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.inject.Inject;
-
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.stereotype.Repository;
 
 import com.duojj.dto.LoginDTO;
 import com.duojj.vo.UserVO;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
+
 @Repository
-public class UserDAOImpl implements UserDAO{
-	
+public class UserDAOImpl implements UserDAO {
+
 	@Inject
 	private SqlSession sqlsession;
-	
-	private static String namespace = "com.duojj.mapper.userMapper";
+
+	private static String NAMESPACE = "com.duojj.mapper.userMapper";
 
 	@Override
 	public UserVO login(LoginDTO dto) throws Exception {
-		
-		return sqlsession.selectOne(namespace+".login", dto);
+		return sqlsession.selectOne(NAMESPACE + ".login", dto);
 	}
-	
+
 	@Override
-	public void keepLogin(String user_id, String user_sessionId, Date next) {
-		Map<String, Object> paraMap = new HashMap<String, Object> ();
-		
-		paraMap.put("user_id", user_id);
-		paraMap.put("user_sessionId", user_sessionId);
-		paraMap.put("next", next);
-		
-		
-		sqlsession.update(namespace+ ".keepLogin" ,paraMap);
+	public void keepLogin(UserVO userVO) {
+		sqlsession.update(NAMESPACE + ".keepLogin", userVO);
 	}
-	
+
 	@Override
-	public UserVO checkUserWithSessionKey(String value) {
-		
-		return sqlsession.selectOne(namespace+".checkUserWithSessionKey",value);
+	public UserVO checkUserWithSessionKey(String user_sessionkey) {
+		return sqlsession.selectOne(NAMESPACE + ".checkUserWithSessionKey", user_sessionkey);
 	}
-	
+
 	@Override
-	public Integer checkUserTutorAuth(String value) {
-		
-		return sqlsession.selectOne(namespace+".checkUserTutorAuth", value);
+	public Integer checkUserTutorAuth(String user_sessionkey) {
+		return sqlsession.selectOne(NAMESPACE + ".checkUserTutorAuth", user_sessionkey);
 	}
-	
+
 	@Override
 	public UserVO getUserInfoFromTutorId(String user_id) throws Exception {
-		
-		return sqlsession.selectOne(namespace+".getUserInfoFromTutorId",user_id);
+		return sqlsession.selectOne(NAMESPACE + ".getUserInfoFromTutorId", user_id);
+	}
+
+	@Override
+	public void RegistertUser(UserVO userVO) throws Exception {
+		sqlsession.insert(NAMESPACE + ".RegistertUser", userVO);
 	}
 }

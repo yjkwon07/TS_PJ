@@ -13,26 +13,31 @@
 	
 	<update id="keepLogin">
 		update tbl_user
-			set user_sessionkey = #{user_sessionId}, user_sessionlimit = #{next}
-		where user_id = #{user_id} 
+			set user_sessionlimit = #{user_sessionlimit}
+		where user_id = #{user_id}
 	</update>
 	
 	<select id="checkUserWithSessionKey" resultType="UserVO">
-		select *
+		select * 
 			from tbl_user
-		where user_sessionkey = #{value} and user_sessionlimit > now()
+		where user_sessionkey = #{user_sessionkey} and user_sessionlimit > now()
 	</select>
 	
 	<select id="checkUserTutorAuth" resultType="Integer">
 		select user_auth 
 			from tbl_user
-		where user_sessionkey = #{value}
+		where user_sessionkey = #{user_sessionkey}
 	</select>
 	
 	<select id="getUserInfoFromTutorId" resultType="UserVO">
-		select *
+		select user_id, user_name, user_image, user_status, user_youtube, user_auth, user_sessionkey
 			from tbl_user
 		where user_id = #{user_id}
 	</select>
-		
+	
+	<insert id="RegistertUser">
+		   insert into tbl_user (user_id, user_pw, user_name, user_birth, user_image, user_sex, user_status, user_youtube, user_auth, user_sessionkey)
+ 		   values(#{user_id}, #{user_pw}, #{user_name}, #{user_birth}, #{user_image}, #{user_sex}, #{user_status}, #{user_youtube}, #{user_auth}, #{user_sessionkey});
+	</insert>
+	
 </mapper>

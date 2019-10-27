@@ -3,6 +3,7 @@
 <tiles-definitions>
     <!-- MainPage-->
     <definition name="/main" extends="baseLayout">
+        <put-attribute name="css" value="/WEB-INF/views/css/mainCss.jsp"/>
         <put-attribute name="title" value="TS_PJ_Main"/>
         <put-attribute name="content" value="/WEB-INF/views/content/main.jsp"/>
         <put-attribute name="script" value="/WEB-INF/views/script/mainScript.jsp"/>

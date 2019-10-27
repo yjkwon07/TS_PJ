@@ -4,34 +4,32 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.stereotype.Repository;
-
 import com.duojj.vo.FileImageVO;
 import com.duojj.vo.LectureVO;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
+
 @Repository
 public class FileDAOImpl implements FileDAO {
-	
+
 	@Inject
 	private SqlSession sqlsession;
-	
-	private static String namespace = "com.duojj.mapper.fileMapper";
-	
+
+	private static final String NAMESPACE = "com.duojj.mapper.fileMapper";
 
 	@Override
-	public void insertImage(FileImageVO vo) throws Exception {
-		sqlsession.insert(namespace+".insertImage",vo);
+	public void insertImage(FileImageVO fileImageVO) throws Exception {
+		sqlsession.insert(NAMESPACE + ".insertImage", fileImageVO);
 	}
 
 	@Override
-	public void deleteImage(FileImageVO vo) throws Exception {
-		sqlsession.delete(namespace+".deleteImage",vo);
+	public void deleteImage(FileImageVO fileImageVO) throws Exception {
+		sqlsession.delete(NAMESPACE + ".deleteImage", fileImageVO);
 	}
 
 	@Override
-	public List<FileImageVO> getLectureImageList(LectureVO vo) throws Exception {
-		return sqlsession.selectList(namespace+".lectureImage",vo);
+	public List<FileImageVO> getLectureImageList(LectureVO lectureVO) throws Exception {
+		return sqlsession.selectList(NAMESPACE + ".lectureImage", lectureVO);
 	}
 }
-

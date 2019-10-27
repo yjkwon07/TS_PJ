@@ -43,7 +43,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-	<beans:bean id="loginPathInterceptor" class="com.duojj.interceptor.LoginPathInterceptor"></beans:bean>
+	<beans:bean id="loginFormInterceptor" class="com.duojj.interceptor.LoginFormInterceptor"></beans:bean>
 	
 	<beans:bean id="loginCheckInterceptor" class="com.duojj.interceptor.LoginCheckInterceptor"></beans:bean>
 	
@@ -51,8 +51,8 @@
 	
 	<interceptors>
 		<interceptor>
-			<mapping path="/user/loginPost"/>
-			<beans:ref bean="loginCheckInterceptor"/>
+			<mapping path="/user/login"/>
+			<beans:ref bean="loginFormInterceptor"/>
 		</interceptor>
 		
  		<interceptor>

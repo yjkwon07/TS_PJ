@@ -1082,8 +1082,6 @@ ClusterIcon.prototype.onAdd = function() {
   google.maps.event.addDomListener(this.div_, 'click', function(event) {
     // Only perform click when not preceded by a drag
     if (!isDragging) {
-    console.log(this)
-
       that.triggerClusterClick(event);
     }
   });
