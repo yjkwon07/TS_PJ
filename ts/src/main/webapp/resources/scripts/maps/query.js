@@ -103,7 +103,7 @@ function getLecture(startLat, startLng, endLat, endLng) {
           lng = parseFloat(lng);
           let lectureId = lecture['class_id'];
           let lectureImg = lecture['class_image'];
-          if (lectureImg !== null && lectureImg === 'local') {
+          if (lectureImg === null || lectureImg === 'local') {
             lectureImg = DEFAULT_IMG;
           }
           else {
@@ -125,7 +125,7 @@ function getLecture(startLat, startLng, endLat, endLng) {
           }
           customMap.push(customMapOption);
         });
-        if (customMap.length > 1) {
+        if (customMap.length >= 1) {
           searchLectureBoundsMap(customMap);
         }
       }
@@ -221,17 +221,17 @@ function searchLecture(query) {
         lat = parseFloat(lat);
         lng = parseFloat(lng);
         let lectureImg = place['results'][0]['class_image'];
-        if (lectureImg === 'local') {
+        let lectureId = place['results'][0]['class_id'];
+        if (lectureImg === null || lectureImg === 'local') {
           lectureImg = DEFAULT_IMG;
         }
         else {
-          lectureImg = "/resources/images/" + lectureImg;
+          lectureImg = `/file/download?image_name=${lectureImg}&class_id=${lectureId}`;
         }
         let teacher_name = place['results'][0]['class_teacher_name'];
         let lectureTitle = place['results'][0]['class_summary'];
-        let class_id = place['results'][0]['class_id'];
         let customMap = {
-          lectureURL: `/lecture/${class_id}`,
+          lectureURL: `/lecture/${lectureId}`,
           teacher_name,
           lectureImg,
           lat,
