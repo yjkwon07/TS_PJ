@@ -261,7 +261,7 @@ function searchLecture(query) {
   xhr.send();
 }
 
-function searchLectureMap(customMap) {
+async function searchLectureMap(customMap) {
   const locationData = [
     {},
     {
@@ -272,15 +272,15 @@ function searchLectureMap(customMap) {
       pinImg: `<i class="im ${customMap.pinImg}"></i>`
     },
   ];
-  googleMap.removePinMarker();
   LECTURE_LAT = parseFloat(customMap.lat);
   LECTURE_LNG = parseFloat(customMap.lng);
   googleMap.position.lat = parseFloat(customMap.lat);
   googleMap.position.lng = parseFloat(customMap.lng);
   const postion = new google.maps.LatLng(googleMap.position.lat, googleMap.position.lng);
-  googleMap.map.setCenter(postion);
-  googleMap.setMapZoom(14);
-  googleMap.setInfoBox(locationData);
+  await googleMap.map.setCenter(postion);
+  await googleMap.setMapZoom(14);
+  await googleMap.removePinMarker();
+  await googleMap.setInfoBox(locationData);
 }
 
 function searchLectureBoundsMap(customMap) {
