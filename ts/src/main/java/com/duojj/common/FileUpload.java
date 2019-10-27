@@ -12,25 +12,27 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
 
+import com.duojj.service.LectureService;
+import com.duojj.vo.FileImageVO;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.duojj.service.LectureService;
-import com.duojj.vo.FileImageVO;
 
 @RequestMapping(value = "/file")
 @Controller
 public class FileUpload {
-	private static String CURR_IMAGE_REPO_PATH = "C:"+File.separator+"shopping"+File.separator+"file_repo";
+	private static final String CURR_IMAGE_REPO_PATH = "C:" + File.separator + "TS_STORE" + File.separator + "file_repo";
 
 	@Inject
-	private LectureService service;
+	private LectureService lectureService;
 
-	@RequestMapping(value="/download", method=RequestMethod.GET)
+	@GetMapping("/download")
 	protected void download(FileImageVO file, HttpServletResponse response) throws Exception {
 		OutputStream outputStream = response.getOutputStream();
 		String dirName = file.getClass_id();
@@ -50,38 +52,37 @@ public class FileUpload {
 		fileInputStream.close();
 		outputStream.close();
 	}
-	
-	@RequestMapping(value="/upload", method=RequestMethod.POST, headers = ("content-type=multipart/*"))
+
+	@PostMapping(value = "/upload", headers = ("content-type=multipart/*"))
 	@ResponseBody
 	protected ResponseEntity<Map<String, String>> upload(FileImageVO file) throws Exception {
-		try {		
+		try {
 			String fileName = file.getFile().getOriginalFilename();
 			String dirName = file.getClass_id();
 			String dirPath = Paths.get(CURR_IMAGE_REPO_PATH, dirName).toString();
 			String filePath = Paths.get(dirPath, fileName).toString();
 			File fileDir = new File(dirPath);
 			File fileImage = new File(filePath);
-			if(file.getFile().getSize() != 0) {
+			if (file.getFile().getSize() != 0) {
 				fileDir.mkdirs();
 				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(fileImage));
 				stream.write(file.getFile().getBytes());
 				stream.close();
-				// service 
-				service.insertImage(file);
+				lectureService.insertImage(file);
 			}
-			Map<String , String> map = new HashMap<String, String>();
+			Map<String, String> map = new HashMap<String, String>();
 			map.put("message", "업로드 성공");
-			return new ResponseEntity <Map<String, String>>(map,HttpStatus.OK);
+			return new ResponseEntity<Map<String, String>>(map, HttpStatus.OK);
 		} catch (Exception e) {
 			System.out.println(e.getStackTrace());
 			System.out.println(e.getMessage());
-			Map<String , String> map = new HashMap<String, String>();
+			Map<String, String> map = new HashMap<String, String>();
 			map.put("message", "업로드 실패");
-			return new ResponseEntity <Map<String, String>>(map,HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<Map<String, String>>(map, HttpStatus.BAD_REQUEST);
 		}
 	}
-	
-	@RequestMapping(value="/delete", method=RequestMethod.DELETE, headers = ("content-type=multipart/*"))
+
+	@DeleteMapping(value = "/delete", headers = ("content-type=multipart/*"))
 	@ResponseBody
 	protected ResponseEntity<Map<String, String>> delete(FileImageVO file) throws Exception {
 		try {
@@ -90,26 +91,25 @@ public class FileUpload {
 			String dirPath = Paths.get(CURR_IMAGE_REPO_PATH, dirName).toString();
 			String filePath = Paths.get(dirPath, fileName).toString();
 			File fileImage = new File(filePath);
-			if( fileImage.exists() ){ 
-				if(fileImage.delete()){ 
-					// service
-					service.deleteImage(file);
-					Map<String , String> map = new HashMap<String, String>();
+			if (fileImage.exists()) {
+				if (fileImage.delete()) {
+					lectureService.deleteImage(file);
+					Map<String, String> map = new HashMap<String, String>();
 					map.put("message", "파일 삭제 성공");
-					return new ResponseEntity <Map<String, String>>(map,HttpStatus.OK);
-				}else{ 
+					return new ResponseEntity<Map<String, String>>(map, HttpStatus.OK);
+				} else {
 					throw new Exception();
-				} 
-			}else{ 
+				}
+			} else {
 				throw new Exception();
-			}  
+			}
 		} catch (Exception e) {
 			System.out.println(e.getStackTrace());
 			System.out.println(e.getMessage());
-			Map<String , String> map = new HashMap<String, String>();
+			Map<String, String> map = new HashMap<String, String>();
 			map.put("message", "파일 삭제 실패");
-			return new ResponseEntity <Map<String, String>>(map,HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<Map<String, String>>(map, HttpStatus.BAD_REQUEST);
 		}
 	}
-	
+
 }
