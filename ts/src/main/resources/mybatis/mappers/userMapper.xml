@@ -30,7 +30,7 @@
 	</select>
 	
 	<select id="getUserInfoFromTutorId" resultType="UserVO">
-		select (user_id, user_name, user_image, user_status, user_youtube, user_auth)
+		select user_id, user_name, user_image, user_status, user_youtube, user_auth, user_sessionkey
 			from tbl_user
 		where user_id = #{user_id}
 	</select>

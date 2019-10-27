@@ -9,9 +9,11 @@
 	</insert>
 
 	<select id="getEnrolmentLecture" parameterType="java.lang.String" resultType="LectureVO">
+	<![CDATA[ 
 		select distinct tbl_class.* from tbl_enrolment join tbl_class
 			on tbl_class.class_id = tbl_enrolment.enrolment_class_id
 		where tbl_enrolment.user_id =#{user_id} and class_endday >= curdate()
+	]]>
 	</select>
 
 	<select id="checkLecture" parameterType="EnrolmentVO" resultType="EnrolmentVO">

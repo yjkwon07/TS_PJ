@@ -5,9 +5,11 @@
 
 	<!-- 강좌 개수 sql -->
 	<select id="currentLectureCount" resultType="java.lang.Integer">
+	<![CDATA[ 
 		select class_id
         	from tbl_class
       	order by class_regdate desc limit 1
+    ]]> 	
 	</select>
 
 	<!-- 강좌 업로드 sql -->
@@ -18,7 +20,7 @@
 
 	<insert id="postLectureRegister">
 		insert into tbl_class
-		(	
+		(
 			class_id,
 			user_id,
 			class_name,
@@ -90,15 +92,21 @@
 	</select>
 
 	<select id="getTutorLectureList" resultType="lectureVO">
+	<![CDATA[ 
 		select *
 			from tbl_class
-		where user_id = #{user_id} and class_endday >= curdate()
+		where user_id = #{user_id} and 
+		class_endday >= curdate();
+	]]>
 	</select>
 
 	<select id="getLatestLectureList" resultType="lectureVO">
+	<![CDATA[ 
 		select *
-			from tbl_class
-	 	order by class_regdate desc limit #{minCnt}, #{maxCnt}
+			from tbl_class 
+		where class_endday >= curdate()
+		order by class_regdate desc limit #{minCnt}, #{maxCnt};
+	]]>
 	</select>
 
 </mapper>
