@@ -23,7 +23,7 @@
 						<div class="main-search-input">
 
 							<div class="main-search-input-item">
-								<input class="js_LectureName" type="text" placeholder="강의 장소를 입력해 주세요." value="" />
+								<input class="js_LectureName" type="text" placeholder="원하는 강의명을 입력해보세요." value="" />
 
 								<div class="dashboard-list-box margin-top-0">
 									<ul id="search-list"></ul>

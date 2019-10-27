@@ -25,7 +25,7 @@
                     <p class="form-row form-row-wide">
                         <label for="password">Password:
                             <i class="im im-icon-Lock-2"></i>
-                            <input class="input-text" type="new-password" name="user_pw" value="" />
+                            <input class="input-text" type="password" name="user_pw" value="" />
                         </label>
                     </p>
 
