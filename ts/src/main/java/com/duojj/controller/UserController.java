@@ -9,111 +9,125 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.duojj.dto.LoginDTO;
+import com.duojj.service.UserService;
+import com.duojj.vo.UserVO;
+
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 
-import com.duojj.dto.LoginDTO;
-import com.duojj.service.UserService;
-import com.duojj.vo.UserVO;
-import com.duojj.controller.UserController;
-
 @Controller
 @RequestMapping(value = "/user")
 public class UserController {
-	
-	/*
-	 * 인터셉터 처리 순서 
-	 * 1. interceptor의 prehandle 호출 -> true 이면 컨트롤러 메소드 호출
-	 * 2. controller의 메소드 실행
-	 * 3. interceptor의 posthandle처리
-	 */
-	
-	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
-	static String LOGIN = "login";
-	
+
+	private static final String LOGIN = "LOGIN";
+	private static final String VIEW_MAIN ="/main";
+	private static final String VIEW_LOGIN_FORM = "/login";
+	private static final String VIEW_USER_INSERT_FORM = "/register";
+	private static final String VIEW_USER_PROFILE_FORM = "/userprofile";
+
 	@Inject
 	private UserService userService;
-	
-	@RequestMapping(value="/login", method=RequestMethod.GET)
-	public ModelAndView getLogin()throws Exception{
-		logger.info("call loginForm");
-	    ModelAndView mv = new ModelAndView();
-	    mv.setViewName("/login"); 
-	    return mv;
+
+	@InitBinder
+	public void InitBinder(WebDataBinder dataBinder) {
+		StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+		dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
 	}
-	
-	@RequestMapping(value="/loginPost", method=RequestMethod.POST)
-	public ModelAndView postLogin(LoginDTO dto, HttpSession session, Model model, RedirectAttributes rttr)throws Exception{
-		logger.info("call loginPost "+ dto.getUser_id());
-		ModelAndView mv = new ModelAndView();
+
+	@GetMapping("/login")
+	public String getLogin() throws Exception {
+		return VIEW_LOGIN_FORM;
+	}
+
+	@PostMapping("/login")
+	public ModelAndView postLogin(LoginDTO dto, RedirectAttributes rttr) throws Exception {
+		ModelAndView mv = new ModelAndView(VIEW_MAIN);
 		UserVO vo = userService.login(dto);
-		if(vo == null) {
-			mv.setViewName("redirect:login");
-			rttr.addFlashAttribute("msg", "등록된 정보가 없습니다.");
+		if (vo == null) {
+			rttr.addFlashAttribute("msg", "등록된 정보가 없습니다");
+			mv.setViewName(VIEW_LOGIN_FORM);
 			return mv;
 		} else {
-			mv.setViewName("/main");
 			mv.addObject("userVO", vo);
 			if (dto.isUseCookie()) {
-				mv.addObject("userVO", vo);
 				int amount = 60 * 60 * 5;
 				Date sessionLimit = new Date(System.currentTimeMillis() + (1000 * amount));
-				userService.keepLogin(vo.getUser_id(), session.getId(), sessionLimit);
+				vo.setUser_sessionlimit(sessionLimit);
+				userService.keepLogin(vo);
 			}
 			return mv;
 		}
 	}
 	
-	@RequestMapping(value="/logout", method=RequestMethod.POST)
-	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response, HttpSession session, RedirectAttributes rttr) throws Exception{
+	@PostMapping("/logout")
+	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response, HttpSession session, RedirectAttributes rttr) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/main");
+		mv.setViewName("redirect:/main");
 		rttr.addFlashAttribute("msg", "로그아웃 되었습니다.");
 		UserVO vo = (UserVO)session.getAttribute(LOGIN);
-		if(vo != null) {
+		if (vo != null) {
 			session.removeAttribute(LOGIN);
 			session.invalidate();
-			mv.setViewName("redirect:/main");
 			Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
-			if(loginCookie != null) {
+			if (loginCookie != null) {
 				loginCookie.setPath("/");
 				loginCookie.setMaxAge(0);
 				response.addCookie(loginCookie);
-				userService.keepLogin(vo.getUser_id(), session.getId(), new Date());
+				vo.setUser_sessionlimit(new Date());
+				userService.keepLogin(vo);
 			}
 		}
 		return mv;
 	}
-	
-	@RequestMapping(value="/profile/{user_id}", method=RequestMethod.GET)
-	public ModelAndView getUserprofile(@PathVariable String user_id, HttpServletRequest request, HttpServletResponse response, RedirectAttributes rttr)throws Exception{
-		ModelAndView mv = new ModelAndView();
-		HttpSession session = request.getSession();
-		UserVO userVO = (UserVO)session.getAttribute(LOGIN);
+
+	@GetMapping("/register")
+	public String register() throws Exception {
+		return VIEW_USER_INSERT_FORM;
+	}
+
+	@PostMapping("/register")
+	public String postRegister(UserVO userVO, RedirectAttributes rttr) throws Exception {
+		try {
+			userService.RegistertUser(userVO);
+			rttr.addFlashAttribute("msg", "TS 회원이 되신걸 축하합니다!");
+			return "redirect:/main";
+		} catch (Exception e) {
+			e.printStackTrace();
+			rttr.addFlashAttribute("msg", "아이디를 만들수 없습니다");
+			return "redirect:/main";
+		}
+	}
+
+	@GetMapping("/profile/{user_id}")
+	public ModelAndView getUserprofile(@PathVariable String user_id, HttpServletRequest request, HttpServletResponse response, RedirectAttributes rttr) {
+		ModelAndView mv = new ModelAndView(VIEW_USER_PROFILE_FORM);
+		UserVO userVO = (UserVO) request.getSession().getAttribute(LOGIN);
 		try {
 			Map<String, Object> map = userService.getUserprofile(user_id);
-			if(map != null && user_id.equals(userVO.getUser_id())) {
+			if (map != null && user_id.equals(userVO.getUser_id())) {
 				mv.addObject("userprofileVO", map);
-				mv.setViewName("/userprofile");
 				return mv;
 			} else {
-				rttr.addFlashAttribute("msg", "등록된 사용자가 없습니다.");
+				rttr.addFlashAttribute("msg", "등록된 사용자가 없습니다");
 				mv.setViewName("redirect:/main");
 				return mv;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			rttr.addFlashAttribute("msg", "등록된 사용자가 없습니다.");
+			rttr.addFlashAttribute("msg", "등록된 사용자가 없습니다");
 			mv.setViewName("redirect:/main");
 			return mv;
 		}
 	}
+
 }
