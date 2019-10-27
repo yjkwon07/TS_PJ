@@ -51,8 +51,8 @@
 	
 	<interceptors>
 		<interceptor>
-			<mapping path="/user/loginPost"/>
-			<beans:ref bean="loginCheckInterceptor"/>
+			<mapping path="/user/login"/>
+			<beans:ref bean="loginFormInterceptor"/>
 		</interceptor>
 		
  		<interceptor>
