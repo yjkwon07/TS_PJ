@@ -56,7 +56,7 @@
 		<a style="visibility: hidden" href="#" class ="button  medium border" id="gps_end" title="길찾기 종료">길찾기 종료</a>
 </div>
 
-<div class="margin-top-100 "></div>
+<div class="margin-top-120 "></div>
 
 <!-- Content
 ================================================== -->
