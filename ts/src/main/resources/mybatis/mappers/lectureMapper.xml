@@ -1,96 +1,89 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.duojj.mapper.lectureMapper">
 
 	<!-- 강좌 개수 sql -->
 	<select id="currentLectureCount" resultType="java.lang.Integer">
 		select class_id
-        from tbl_class
+        	from tbl_class
       	order by class_regdate desc limit 1
 	</select>
-	
+
 	<!-- 강좌 업로드 sql -->
 	<insert id="postInitLectureRegister">
-		insert into tbl_class
-		(
-		class_id,
-		user_id
-		)
+		insert into tbl_class(class_id, user_id)
 		values(#{class_id}, #{user_id})
 	</insert>
 
 	<insert id="postLectureRegister">
 		insert into tbl_class
-		(
-		class_id,
-		user_id,
-		class_name,
-		class_student_cnt,
-		class_image,
-		class_price,
-		class_summary,
-		class_content,
-		class_MON,
-		class_TUE,
-		class_WED,
-		class_THU,
-		class_FRI,
-		class_SAT,
-		class_SUN,
-		class_lat,
-		class_lng,
-		class_maincategories,
-		class_endday,
-		class_subcategories,
-		class_teacher_name,
-		class_startday,
-		class_youtube
+		(	
+			class_id,
+			user_id,
+			class_name,
+			class_student_cnt,
+			class_image,
+			class_price,
+			class_summary,
+			class_content,
+			class_MON,
+			class_TUE,
+			class_WED,
+			class_THU,
+			class_FRI,
+			class_SAT,
+			class_SUN,
+			class_lat,
+			class_lng,
+			class_maincategories,
+			class_endday,
+			class_subcategories,
+			class_teacher_name,
+			class_startday,
+			class_youtube
 		)
 		values(
-		#{class_id},#{user_id},#{class_name},#{class_student_cnt},
-		#{class_image},#{class_price},#{class_summary},#{class_content},
-		#{class_MON},#{class_TUE},#{class_WED},#{class_THU},
-		#{class_FRI},#{class_SAT},#{class_SUN},#{class_lat},
-		#{class_lng},#{class_maincategories},#{class_endday},#{class_subcategories},
-		#{class_teacher_name},#{class_startday},#{class_youtube}
+			#{class_id},#{user_id},#{class_name},#{class_student_cnt},
+			#{class_image},#{class_price},#{class_summary},#{class_content},
+			#{class_MON},#{class_TUE},#{class_WED},#{class_THU},
+			#{class_FRI},#{class_SAT},#{class_SUN},#{class_lat},
+			#{class_lng},#{class_maincategories},#{class_endday},#{class_subcategories},
+			#{class_teacher_name},#{class_startday},#{class_youtube}
 		)
 	</insert>
-	
+
 	<!-- 강좌 update sql -->
 	<update id="postLectureUpdate">
 		UPDATE tbl_class
 		SET
-		user_id=#{user_id},
-		class_name=#{class_name},
-		class_student_cnt=#{class_student_cnt},
-		class_image=#{class_image},
-		class_price=#{class_price},
-		class_summary=#{class_summary},
-		class_content=#{class_content},
-		class_MON=#{class_MON},
-		class_TUE=#{class_TUE},
-		class_WED=#{class_WED},
-		class_THU=#{class_THU},
-		class_FRI=#{class_FRI},
-		class_SAT=#{class_SAT},
-		class_SUN=#{class_SUN},
-		class_lat=#{class_lat},
-		class_lng=#{class_lng},
-		class_maincategories=#{class_maincategories},
-		class_endday=#{class_endday},
-		class_subcategories=#{class_subcategories},
-		class_teacher_name=#{class_teacher_name},
-		class_startday=#{class_startday},
-		class_youtube=#{class_youtube},
-		class_name=#{class_name}
-    
+			user_id=#{user_id},
+			class_name=#{class_name},
+			class_student_cnt=#{class_student_cnt},
+			class_image=#{class_image},
+			class_price=#{class_price},
+			class_summary=#{class_summary},
+			class_content=#{class_content},
+			class_MON=#{class_MON},
+			class_TUE=#{class_TUE},
+			class_WED=#{class_WED},
+			class_THU=#{class_THU},
+			class_FRI=#{class_FRI},
+			class_SAT=#{class_SAT},
+			class_SUN=#{class_SUN},
+			class_lat=#{class_lat},
+			class_lng=#{class_lng},
+			class_maincategories=#{class_maincategories},
+			class_endday=#{class_endday},
+			class_subcategories=#{class_subcategories},
+			class_teacher_name=#{class_teacher_name},
+			class_startday=#{class_startday},
+			class_youtube=#{class_youtube},
+			class_name=#{class_name}
 		WHERE class_id=#{class_id}
 	</update>
 
-  	<select id="getDetailLectureClass" resultType="lectureVO">
+	<select id="getDetailLectureClass" resultType="lectureVO">
 		select * 
 			from tbl_class
 		where class_id = #{class_id}
@@ -101,11 +94,11 @@
 			from tbl_class
 		where user_id = #{user_id} and class_endday >= curdate()
 	</select>
-	
+
 	<select id="getLatestLectureList" resultType="lectureVO">
 		select *
 			from tbl_class
 	 	order by class_regdate desc limit #{minCnt}, #{maxCnt}
 	</select>
-	
+
 </mapper>
