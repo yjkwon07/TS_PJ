@@ -72,8 +72,16 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void RegistertUser(UserVO userVO) throws Exception {
-		userVO.setUser_sessionkey(uuid.toString());
+		userVO.setUser_sessionkey(UUID.randomUUID().toString());
 		userDAO.RegistertUser(userVO);
+	}
+
+	public UUID getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(UUID uuid) {
+		this.uuid = uuid;
 	}
 
 }
