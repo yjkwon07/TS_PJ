@@ -138,7 +138,9 @@ router.get('/searchBoundsLecture', async (req, res, next) => {
 
         let selectClass = `SELECT * FROM ts_pj.tbl_class
         WHERE ${startLat} <= class_lat and ${startLng} <= class_lng
-        and ${endLat} >= class_lat and ${endLng} >= class_lng`;
+        and ${endLat} >= class_lat and ${endLng} >= class_lng
+        and class_endday >= curdate()
+        `;
         
         await connection.query(selectClass, (err, classSearch) => {
             if (err) {
