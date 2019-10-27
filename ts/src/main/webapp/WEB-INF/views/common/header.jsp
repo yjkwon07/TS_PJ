@@ -57,13 +57,16 @@
 							</ul>
 						</li> -->
 						<!--- Categories / End -->
+						
+						<c:if test="${empty login}">
+							<li><a href="/user/register">Register User</a></li>
+						</c:if>
 
 						<!-- only login view -->
 						<c:if test="${not empty login}">
 							<!-- user Profile -->
 							<li><a href="/user/profile/${login.user_id}">User Profile</a></li>
 							<!-- user Profile / End -->
-
 						</c:if>
 						<!-- only login view -->
 						
