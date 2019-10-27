@@ -1,6 +1,7 @@
 package com.duojj.controller;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -14,6 +15,8 @@ import com.duojj.service.UserService;
 import com.duojj.vo.UserVO;
 
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
@@ -96,15 +100,41 @@ public class UserController {
 	}
 
 	@PostMapping("/register")
-	public String postRegister(UserVO userVO, RedirectAttributes rttr) throws Exception {
+	@ResponseBody
+	public ResponseEntity<Map<String, String>> postRegister(UserVO userVO, RedirectAttributes rttr) {
+		Map<String, String> map = new HashMap<String, String>();
 		try {
 			userService.RegistertUser(userVO);
-			rttr.addFlashAttribute("msg", "TS 회원이 되신걸 축하합니다!");
-			return "redirect:/main";
+			map.put("message", "TS 회원이 되신걸 축하합니다!");
+			return new ResponseEntity<Map<String, String>>(map, HttpStatus.OK);
 		} catch (Exception e) {
-			e.printStackTrace();
-			rttr.addFlashAttribute("msg", "아이디를 만들수 없습니다");
-			return "redirect:/main";
+			e.getStackTrace();
+			e.getMessage();
+			map.clear();
+			map.put("message", "아이디를 만들수 없습니다");
+			return new ResponseEntity<Map<String, String>>(map, HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@GetMapping("/check")
+	@ResponseBody
+	public ResponseEntity<Map<String, String>> isUser(String user_id) {
+		Map<String, String> map = new HashMap<String, String>();
+		try {
+			UserVO userVO = userService.getUserInfoFromTutorId(user_id);
+			if(userVO == null){
+				map.put("message", "사용 가능한 아이디 입니다");
+				return new ResponseEntity<Map<String, String>>(map, HttpStatus.OK);
+			}else {
+				map.put("message", "이미 사용중인 아이디 입니다");
+				return new ResponseEntity<Map<String, String>>(map, HttpStatus.BAD_REQUEST);
+			}
+		} catch (Exception e) {
+			e.getStackTrace();
+			e.getMessage();
+			map.clear();
+			map.put("message", "아이디를 만들수 없습니다");
+			return new ResponseEntity<Map<String, String>>(map, HttpStatus.BAD_REQUEST);
 		}
 	}
 
