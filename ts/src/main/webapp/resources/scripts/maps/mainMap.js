@@ -20,6 +20,9 @@ const currentGeoLocation = document.querySelector('#geoLocation');
 // Geo GPS 
 const GPS = document.querySelector('#gps');
 
+// Geo GPS_END 
+const GPS_END = document.querySelector("#gps_end");
+
 // Steet View Button
 const STREETELEMENT = document.querySelector("#streetView");
 
@@ -150,6 +153,9 @@ const tools = {
 // object
 let googleMap;
 
+// Geo way select Button
+let selector;
+
 // Geo Location Current & Create select Button
 async function setNavigation() {
   init();
@@ -160,7 +166,7 @@ async function setNavigation() {
   const singleListingMapContainer = document.querySelector("#map-container");
   const checkSelect = singleListingMapContainer.querySelector(".js_route_mode_way");
   if (!checkSelect || typeof (checkSelect) == 'undefined' && checkSelect == null) {
-    const selector = document.createElement("select");
+    selector = document.createElement("select");
     selector.classList.add("js_route_mode_way")
     selector.innerHTML = `
             <option value="DRIVING">Driving</option>
@@ -182,15 +188,31 @@ function init() {
     googleMap.setStreetView(STREETELEMENT);
     google.maps.event.addDomListener(window, 'load', googleMap.map);
   }
+}
 
+function lisnerInit() {
+
+  GPS.style.visibility= "hidden";
+  GPS_END.style.visibility = "hidden";
+  STREETELEMENT.style.visibility = "hidden";
+  GET_LECTURE.style.visibility = "visible";
+  if(selector) {
+    selector.remove();
+  }
   GPS.addEventListener("click", () => {
+    GPS_END.style.visibility = "visible";
+    GET_LECTURE.style.visibility = "hidden";
     setNavigation();
   });
-  
   GET_LECTURE.addEventListener("click", () => {
     googleMap.geolocate();
     getBounds();
   });
+  GPS_END.addEventListener("click", () => {
+    lisnerInit();
+    init();
+  });
+
 };
 
 function getBounds() {
@@ -213,4 +235,5 @@ function boundsCheck() {
   getLecture(startLat, startLng, endLat, endLng);
 }
 
+lisnerInit();
 init();

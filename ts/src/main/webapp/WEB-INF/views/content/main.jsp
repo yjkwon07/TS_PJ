@@ -51,6 +51,9 @@
 		
 		<!-- current Button -->
 		<a style="visibility: hidden" href="#" class ="button  medium border" id="gps" title="길찾기">현재 위치에서 길찾기</a>
+		
+		<!-- current Button -->
+		<a style="visibility: hidden" href="#" class ="button  medium border" id="gps_end" title="길찾기 종료">길찾기 종료</a>
 </div>
 
 <div class="margin-top-100 "></div>
