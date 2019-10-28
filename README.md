@@ -45,12 +45,6 @@
 - DB
   - MySQL 6
 
-
-# DataBase
-- work **(MySQL workbench 6.3 CE)**
-  - [DB Design](./info/DB.md)
-  - [DB Query](./DB/dgs.sql)
-
 # API & Module 
 - [Google Maps API](https://developers.google.com/maps/documentation/javascript/tutorial)
 - [Youtube API](https://developers.google.com/youtube/v3/getting-started?hl=ko)
@@ -58,6 +52,28 @@
 - [Dropzone.js](https://www.dropzonejs.com/#usage)
 - [slick.js](http://kenwheeler.github.io/slick/)
   
+# 기획
+**Google Document**을 활용하여 기획 구성
+
+- 프로젝트 관리 
+  - 2019.09.03 ~ 2019.10.27
+
+[프로젝트 기획](https://docs.google.com/document/d/15NszXOKZhiLjBO2Q62rTcVrHN8yIdE9OAlUQAfEcGiE/edit?usp=sharing)
+
+![flow](https://github.com/yjkwon07/TS_PJ/blob/yj/userprofile/image/flow.png)
+
+# Mindmup
+**Google Mindmup**을 활용하여 아이디어 확장
+
+[mindmup](https://drive.mindmup.com/map/1EwfCe1HodFb2d6O-Y9zePkc0dbcALPMT)
+
+![mindmup](https://github.com/yjkwon07/TS_PJ/blob/yj/userprofile/image/mindmup.png)
+
+# DataBase
+- work **(MySQL workbench 6.3 CE)**
+  - [DB Design](./info/DB.md)
+  - [DB Query](./DB/dgs.sql)
+
 # git
 - **전략** 
   - [Feature Branch Workflow](https://gmlwjd9405.github.io/2017/10/27/how-to-collaborate-on-GitHub-1.html)
@@ -101,6 +117,8 @@
 #### slick 적용
 ![main_page_slick](https://github.com/yjkwon07/TS_PJ/blob/yj/userprofile/image/main_page_slick.gif)
 
+**[Page 위로](https://github.com/yjkwon07/TS_PJ/tree/yj/userprofile#page)**
+
 ## 2. LectureInsert Page (강의등록)
 ![lecuterInsert_page VIEW](https://github.com/yjkwon07/TS_PJ/blob/yj/userprofile/image/LectureInsert_page.png)
 
@@ -136,6 +154,8 @@
 #### Marker Create
 ![Marker Create](https://github.com/yjkwon07/TS_PJ/blob/yj/userprofile/image/LectureInsert_page_MarkerCreate.gif)
 
+**[Page 위로](https://github.com/yjkwon07/TS_PJ/tree/yj/userprofile#page)**
+
 ## 3. Login Page 
 1. 페이지 header 부분 **sign in** 버튼 클릭시 페이지를 유지하고 **`Login Page`** **팝업**
 
@@ -153,6 +173,8 @@
 - 로그인시 **`Remember Me`** 버튼을 클릭하게 된다면 **`tbl_user`** 테이블의 해당 유저의 **`user_sessionlimit`** 값을 갱신한다. 즉, user_sessionlimit값이 곧 로그인 유지 시간을 뜻한다. 
 - **`user_sessionlimit`** 값을 갱신후 **`LoginFormInterceptor`** 에서 **`Cookie`** 값으로 아이디 정보를 저장한다. Cookie 유지 시간은  **`user_sessionlimit`** 과 동일하다. 
 - 모든 페이지는 Cookie값을 가져와서 LOGIN 유무를 판단하여 로그인을 유지할 수 있다.
+
+**[Page 위로](https://github.com/yjkwon07/TS_PJ/tree/yj/userprofile#page)**
 
 ## 4. LectureInfo Page (강의상세 조회)
 ![Lectureinfo_page VIEW](https://github.com/yjkwon07/TS_PJ/blob/yj/userprofile/image/Lectureinfo_page.png)
@@ -172,6 +194,8 @@
 ### 튜터의 다른 강의들
   - **`(slick.js 적용)`** 해당 튜터가 개설한 다른 강의들을 볼 수 있다.
 
+**[Page 위로](https://github.com/yjkwon07/TS_PJ/tree/yj/userprofile#page)**
+
 ## 5. My Page (유저 프로필)
 ![userprofile_page VIEW](https://github.com/yjkwon07/TS_PJ/blob/yj/userprofile/image/userprofile_page.png)
 
@@ -183,24 +207,18 @@
 ### 강의개설 목록 (튜터 VIEW)
   - **`(slick.js 적용)`**  해당 유저가 개설한 다른 강의들을 볼 수 있다.
 
+**[Page 위로](https://github.com/yjkwon07/TS_PJ/tree/yj/userprofile#page)**
+
 ## 6. Join Us Page (회원 가입)
 **`아이디 중복확인`** 버튼으로 유저 회원 중복 방지 
 
 ![register_page VIEW](https://github.com/yjkwon07/TS_PJ/blob/yj/userprofile/image/register_page.png)
 
-# 기획 📆
-**Google Document**을 활용하여 기획 구성
 
-- 프로젝트 관리 
-  - 2019.09.03 ~ 2019.10.27
-
-[프로젝트 기획](https://docs.google.com/document/d/15NszXOKZhiLjBO2Q62rTcVrHN8yIdE9OAlUQAfEcGiE/edit?usp=sharing)
-
-![flow](https://github.com/yjkwon07/TS_PJ/blob/yj/userprofile/image/flow.png)
-
-# Mindmup🤔
 **Google Mindmup**을 활용하여 아이디어 확장
 
 [mindmup](https://drive.mindmup.com/map/1EwfCe1HodFb2d6O-Y9zePkc0dbcALPMT)
 
 ![mindmup](https://github.com/yjkwon07/TS_PJ/blob/yj/userprofile/image/mindmup.png)
+
+**[Page 위로](https://github.com/yjkwon07/TS_PJ/tree/yj/userprofile#page)**
