@@ -26,11 +26,11 @@
    - 현 위치 주변 여가생활 정보를 검색 서비스 제공 
 
 # 설치방법 
-## 1. Server
-## 2. DB
-## 3. folder
-## 4. Spring
-## 5. Node 
+1. Server
+2. DB
+3. folder
+4. Spring
+5. Node 
 
 # 개발환경
 - Front
@@ -45,7 +45,13 @@
 - DB
   - MySQL 6
 
-# API & Module 📝
+
+# DataBase
+- work **(MySQL workbench 6.3 CE)**
+  - [DB Design](./info/DB.md)
+  - [DB Query](./DB/dgs.sql)
+
+# API & Module 
 - [Google Maps API](https://developers.google.com/maps/documentation/javascript/tutorial)
 - [Youtube API](https://developers.google.com/youtube/v3/getting-started?hl=ko)
 - [timepicker.js](http://www.daterangepicker.com/#examples)
@@ -58,12 +64,12 @@
   - [커밋 메시지](https://djkeh.github.io/articles/How-to-write-a-git-commit-message-kor/)
  
 # Page
-- **[Main Page]()**
-- **[LectureInsert Page]()**
-- **[Login Page]()**
-- **[LectureInfo Page]()**
-- **[My Page]()**
-- **[Join Us Page]()**
+- **[Main Page](https://github.com/yjkwon07/TS_PJ/tree/yj/userprofile#1-main-page)**
+- **[LectureInsert Page](https://github.com/yjkwon07/TS_PJ/tree/yj/userprofile#2-lectureinsert-page-%EA%B0%95%EC%9D%98%EB%93%B1%EB%A1%9D)**
+- **[Login Page](https://github.com/yjkwon07/TS_PJ/tree/yj/userprofile#3-login-page)**
+- **[LectureInfo Page](https://github.com/yjkwon07/TS_PJ/tree/yj/userprofile#4-lectureinfo-page-강의상세-조회)**
+- **[My Page](https://github.com/yjkwon07/TS_PJ/tree/yj/userprofile#5-my-page-%EC%9C%A0%EC%A0%80-%ED%94%84%EB%A1%9C%ED%95%84)**
+- **[Join Us Page](https://github.com/yjkwon07/TS_PJ/tree/yj/userprofile#6-join-us-page-%ED%9A%8C%EC%9B%90-%EA%B0%80%EC%9E%85)**
 
 ## 1. Main Page
 ![main_page VIEW](https://github.com/yjkwon07/TS_PJ/blob/yj/userprofile/image/main_page.png)
@@ -198,10 +204,3 @@
 [mindmup](https://drive.mindmup.com/map/1EwfCe1HodFb2d6O-Y9zePkc0dbcALPMT)
 
 ![mindmup](https://github.com/yjkwon07/TS_PJ/blob/yj/userprofile/image/mindmup.png)
-
-# DataBase
-- work **(MySQL workbench 6.3 CE)**
-  - [DB Design](./info/DB.md)
-  - [DB Query](./DB/dgs.sql)
-
-
