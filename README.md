@@ -83,9 +83,9 @@
 
 
 ## 로그인 기능
-![loginpop_page_view](https://github.com/yjkwon07/TS_PJ/tree/jh/README/image/loginpop.PNG)
+![loginpop_page_view](https://github.com/yjkwon07/TS_PJ/blob/jh%2FREADME/image/loginpop.PNG)
 
-![loginpage_view](https://github.com/yjkwon07/TS_PJ/tree/jh/README/image/login.PNG)
+![loginpage_view](https://github.com/yjkwon07/TS_PJ/blob/jh%2FREADME/image/login.PNG)
 
 #### 자동로그인 기능
 ```
@@ -97,9 +97,9 @@ Spring Intercepter를 이용해서 구현(아이디어: 세션 + 쿠키)
 
 
 ## 강의 상세페이지(강의 등록)
-![classinfo_page_view](https://github.com/yjkwon07/TS_PJ/tree/jh/README/image/classinfo.jpg)
+![classinfo_page_view](https://github.com/yjkwon07/TS_PJ/blob/jh%2FREADME/image/classinfo.jpg)
 ### 강의정보 및 등록기능
-![classinfo_video_view](https://github.com/yjkwon07/TS_PJ/tree/jh/README/image/classinfoVideo.gif)
+![classinfo_video_view](https://github.com/yjkwon07/TS_PJ/blob/jh%2FREADME/image/classinfoVideo.gif)
   1. 강의이미지 파일 **slick**적용하여 여러가지 이미지 view
   2. 강의위치 main view이용하여 **`현재 위치에서 길찾기 기능 제공`**기능
   3. 강의영상 -> Youtube API 사용 및 커스텀
@@ -107,9 +107,9 @@ Spring Intercepter를 이용해서 구현(아이디어: 세션 + 쿠키)
   5. 강의신청 -> 비로그인 시 로그인page로 이동, 로그인 시 DB에 등록되어짐 만약 등록되어 있는 강의면 **이미등록된 강의입니다.** alert알림
 
 ## 마이페이지
-![userprofile_page_view](https://github.com/yjkwon07/TS_PJ/tree/jh/README/image/userprofile.jpg)
+![userprofile_page_view](https://github.com/yjkwon07/TS_PJ/blob/jh%2FREADME/image/userprofile.jpg)
 ### 회원정보 및 등록강의목록
-![userprofile_video_view](https://github.com/yjkwon07/TS_PJ/tree/jh/README/image/userprofileVideo.gif)
+![userprofile_video_view](https://github.com/yjkwon07/TS_PJ/blob/jh%2FREADME/image/userprofileVideo.gif)
 
  Map형식으로 여러 DB table의 값을 저장하여 view에 전달
 
@@ -144,10 +144,10 @@ Spring Intercepter를 이용해서 구현(아이디어: 세션 + 쿠키)
  ```
 
 ## 회원가입 페이지
-![register_page_view](https://github.com/yjkwon07/TS_PJ/tree/jh/README/image/register.jpg)
+![register_page_view](https://github.com/yjkwon07/TS_PJ/blob/jh%2FREADME/image/register.jpg)
 
 ### 비동기처리를 통한 아이디 중복확인 및 회원가입
-![register_video_view](https://github.com/yjkwon07/TS_PJ/tree/jh/README/image/registerVideo.gif)
+![register_video_view](https://github.com/yjkwon07/TS_PJ/blob/jh%2FREADME/image/registerVideo.gif)
 
 #### Controller
 ```
