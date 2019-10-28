@@ -83,9 +83,9 @@
 
 
 ## 로그인 기능
-![loginpop_page_view](https://github.com/yjkwon07/TS_PJ/tree/jh/README/image/loginpop.png)
+![loginpop_page_view](https://github.com/yjkwon07/TS_PJ/tree/jh/README/image/loginpop.PNG)
 
-![loginpage_view](https://github.com/yjkwon07/TS_PJ/tree/jh/README/image/login.png)
+![loginpage_view](https://github.com/yjkwon07/TS_PJ/tree/jh/README/image/login.PNG)
 
 #### 자동로그인 기능
 ```
@@ -97,7 +97,7 @@ Spring Intercepter를 이용해서 구현(아이디어: 세션 + 쿠키)
 
 
 ## 강의 상세페이지(강의 등록)
-![classinfo_page_view](https://github.com/yjkwon07/TS_PJ/tree/jh/README/image/classinfo.png)
+![classinfo_page_view](https://github.com/yjkwon07/TS_PJ/tree/jh/README/image/classinfo.jpg)
 ### 강의정보 및 등록기능
 ![classinfo_video_view](https://github.com/yjkwon07/TS_PJ/tree/jh/README/image/classinfoVideo.gif)
   1. 강의이미지 파일 **slick**적용하여 여러가지 이미지 view
@@ -107,7 +107,7 @@ Spring Intercepter를 이용해서 구현(아이디어: 세션 + 쿠키)
   5. 강의신청 -> 비로그인 시 로그인page로 이동, 로그인 시 DB에 등록되어짐 만약 등록되어 있는 강의면 **이미등록된 강의입니다.** alert알림
 
 ## 마이페이지
-![userprofile_page_view](https://github.com/yjkwon07/TS_PJ/tree/jh/README/image/userprofile.png)
+![userprofile_page_view](https://github.com/yjkwon07/TS_PJ/tree/jh/README/image/userprofile.jpg)
 ### 회원정보 및 등록강의목록
 ![userprofile_video_view](https://github.com/yjkwon07/TS_PJ/tree/jh/README/image/userprofileVideo.gif)
 
@@ -144,7 +144,7 @@ Spring Intercepter를 이용해서 구현(아이디어: 세션 + 쿠키)
  ```
 
 ## 회원가입 페이지
-![register_page_view](https://github.com/yjkwon07/TS_PJ/tree/jh/README/image/register.png)
+![register_page_view](https://github.com/yjkwon07/TS_PJ/tree/jh/README/image/register.jpg)
 
 ### 비동기처리를 통한 아이디 중복확인 및 회원가입
 ![register_video_view](https://github.com/yjkwon07/TS_PJ/tree/jh/README/image/registerVideo.gif)
@@ -173,7 +173,7 @@ Spring Intercepter를 이용해서 구현(아이디어: 세션 + 쿠키)
 		}
 	}
 ```
-#### regist.js
+#### register.js
 ```
 function isuserCheck(query) {
   let xhr = new XMLHttpRequest();
@@ -196,9 +196,6 @@ function isuserCheck(query) {
   xhr.send();
 }
 ```
-
-
-
 
 # 기획 📆
 **Google Document**을 활용하여 기획 구성
