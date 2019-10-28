@@ -194,7 +194,7 @@
 
 **[Page 위로](https://github.com/yjkwon07/TS_PJ/tree/yj/userprofile#page)**
  
-# 기획
+# 기획 📆
 **Google Document**을 활용하여 기획 구성
 
 - 프로젝트 관리 
@@ -204,7 +204,7 @@
 
 ![flow](https://github.com/yjkwon07/TS_PJ/blob/yj/userprofile/image/flow.png)
 
-# Mindmup
+# Mindmup 🤔
 **Google Mindmup**을 활용하여 아이디어 확장
 
 [mindmup](https://drive.mindmup.com/map/1EwfCe1HodFb2d6O-Y9zePkc0dbcALPMT)
