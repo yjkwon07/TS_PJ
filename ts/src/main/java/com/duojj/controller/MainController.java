@@ -30,9 +30,9 @@ public class MainController {
 
 	@GetMapping("/main")
 	public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		HttpSession session = request.getSession();
-		UserVO userVO = (UserVO)session.getAttribute(LOGIN);
 		ModelAndView mav = new ModelAndView(VIEW_MAIN);
+    HttpSession session = request.getSession();
+		UserVO userVO = (UserVO)session.getAttribute(LOGIN);
 		List<LectureVO> latestLectureList = lectureService.getLatestLectureList(0,5);
 		mav.addObject("latestLectureList", latestLectureList);
 		if(userVO != null) {
