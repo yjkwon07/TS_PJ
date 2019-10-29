@@ -108,15 +108,15 @@ C:/ts_pj/file_repo -> folder create
   - [커밋 메시지](https://djkeh.github.io/articles/How-to-write-a-git-commit-message-kor/)
  
 # Page
-- **[Main Page](https://github.com/yjkwon07/TS_PJ/tree/yj/master#1-main-page)**
-- **[LectureInsert Page](https://github.com/yjkwon07/TS_PJ/tree/yj/master#2-lectureinsert-page-%EA%B0%95%EC%9D%98%EB%93%B1%EB%A1%9D)**
-- **[Login Page](https://github.com/yjkwon07/TS_PJ/tree/yj/master#3-login-page)**
-- **[LectureInfo Page](https://github.com/yjkwon07/TS_PJ/tree/yj/master#4-lectureinfo-page-강의상세-조회)**
-- **[My Page](https://github.com/yjkwon07/TS_PJ/tree/yj/master#5-my-page-%EC%9C%A0%EC%A0%80-%ED%94%84%EB%A1%9C%ED%95%84)**
-- **[Join Us Page](https://github.com/yjkwon07/TS_PJ/tree/yj/master#6-join-us-page-%ED%9A%8C%EC%9B%90-%EA%B0%80%EC%9E%85)**
+- **[Main Page](https://github.com/yjkwon07/TS_PJ/tree/master#1-main-page)**
+- **[LectureInsert Page](https://github.com/yjkwon07/TS_PJ/tree/master#2-lectureinsert-page-%EA%B0%95%EC%9D%98%EB%93%B1%EB%A1%9D)**
+- **[Login Page](https://github.com/yjkwon07/TS_PJ/tree/master#3-login-page)**
+- **[LectureInfo Page](https://github.com/yjkwon07/TS_PJ/tree/master#4-lectureinfo-page-강의상세-조회)**
+- **[My Page](https://github.com/yjkwon07/TS_PJ/tree/master#5-my-page-%EC%9C%A0%EC%A0%80-%ED%94%84%EB%A1%9C%ED%95%84)**
+- **[Join Us Page](https://github.com/yjkwon07/TS_PJ/tree/master#6-join-us-page-%ED%9A%8C%EC%9B%90-%EA%B0%80%EC%9E%85)**
 
 ## 1. Main Page
-![main_page VIEW](https://github.com/yjkwon07/TS_PJ/blob/yj/master/image/main_page.png)
+![main_page VIEW](https://github.com/yjkwon07/TS_PJ/blob/master/image/main_page.png)
 
 ### 지도
   - **`(Google Maps API 적용)`**
@@ -131,10 +131,10 @@ C:/ts_pj/file_repo -> folder create
   4. 길찾기
       - 강의 검색 후 해당 유저의 현재 위치에서 길찾기 **Google API** 요청
 #### 자동완성 검색 및 길찾기 
-![main_page_map VIEW](https://github.com/yjkwon07/TS_PJ/blob/yj/master/image/main_page_map.gif)
+![main_page_map VIEW](https://github.com/yjkwon07/TS_PJ/blob/master/image/main_page_map.gif)
 
 #### 현재위치를 기준으로 개설된 강의 검색
-![main_page_map2 VIEW](https://github.com/yjkwon07/TS_PJ/blob/yj/master/image/main_page_map2.gif)
+![main_page_map2 VIEW](https://github.com/yjkwon07/TS_PJ/blob/master/image/main_page_map2.gif)
 
 ### 최신 강의 (비 로그인/로그인 VIEW)
   - **`(slick.js 적용)`** 최신 등록된 강의 순으로 슬라이드 형식으로 보여준다.
@@ -143,22 +143,22 @@ C:/ts_pj/file_repo -> folder create
   - **`(slick.js 적용)`** 로그인시 유저가 등록한 강의목록을 슬라이드 형식으로 보여준다.
     - 강의 이미지 우측 상단 빨간 리본에 강의 **마감일을** 보이도록 한다.
 #### slick 적용
-![main_page_slick](https://github.com/yjkwon07/TS_PJ/blob/yj/master/image/main_page_slick.gif)
+![main_page_slick](https://github.com/yjkwon07/TS_PJ/blob/master/image/main_page_slick.gif)
 
-**[Page 위로](https://github.com/yjkwon07/TS_PJ/tree/yj/master#page)**
+**[Page 위로](https://github.com/yjkwon07/TS_PJ/tree/master#page)**
 
 ## 2. LectureInsert Page (강의등록)
-![lecuterInsert_page VIEW](https://github.com/yjkwon07/TS_PJ/blob/yj/master/image/LectureInsert_page.png)
+![lecuterInsert_page VIEW](https://github.com/yjkwon07/TS_PJ/blob/master/image/LectureInsert_page.png)
 
 ### 튜터/튜티 VIEW
 #### 튜터 권한 Check 
 - 튜터는 header 페이지에 강의개설 버튼이 보인다.
   
-![튜터 권한 VIEW](https://github.com/yjkwon07/TS_PJ/blob/yj/master/image/LectureInsert_page_TutorCheck.gif)
+![튜터 권한 VIEW](https://github.com/yjkwon07/TS_PJ/blob/master/image/LectureInsert_page_TutorCheck.gif)
 
 - 튜티는 header 페이지에 강의개설 버튼이 안 보인다.
 
-![튜티 권한 VIEW](https://github.com/yjkwon07/TS_PJ/blob/yj/master/image/LectureInsert_page_TuteeCheck.gif)
+![튜티 권한 VIEW](https://github.com/yjkwon07/TS_PJ/blob/master/image/LectureInsert_page_TuteeCheck.gif)
 
 ### Categories DTO 
   - 메인 카테고리와 서브 카테고리의 데이터는 수정사항이 많이 생길것을 대비해 서버에서 **[`CategoriesDTO`](https://github.com/yjkwon07/TS_PJ/blob/master/ts/src/main/java/com/duojj/dto/CategoriesDTO.java)** 를 만들어 데이터를 받아온다.
@@ -170,7 +170,7 @@ C:/ts_pj/file_repo -> folder create
 - 메인 이미지 선택 기능
   - 지도에 있는 마커를 클릭 시 나타나는 **`InfoBox`** 의 이미지 선택
 #### DropZone
-![DropZone](https://github.com/yjkwon07/TS_PJ/blob/yj/master/image/LectureInsert_page_DropZone.gif)
+![DropZone](https://github.com/yjkwon07/TS_PJ/blob/master/image/LectureInsert_page_DropZone.gif)
 
 ### 장소 검색 
 장소 검색 후 **`Main Page`** 지도에 렌더링이될 마커 표시 뷰를 미리 볼 수 있다. 
@@ -180,18 +180,18 @@ C:/ts_pj/file_repo -> folder create
 - 장소 검색 **`REST API`** 요청
     - 자동 완성 강의 검색
 #### Marker Create
-![Marker Create](https://github.com/yjkwon07/TS_PJ/blob/yj/master/image/LectureInsert_page_MarkerCreate.gif)
+![Marker Create](https://github.com/yjkwon07/TS_PJ/blob/master/image/LectureInsert_page_MarkerCreate.gif)
 
-**[Page 위로](https://github.com/yjkwon07/TS_PJ/tree/yj/master#page)**
+**[Page 위로](https://github.com/yjkwon07/TS_PJ/tree/master#page)**
 
 ## 3. Login Page 
 1. 페이지 header 부분 **sign in** 버튼 클릭시 페이지를 유지하고 **`Login Page`** **팝업**
 
-![loginpop_page VIEW](https://github.com/yjkwon07/TS_PJ/blob/yj/master/image/LoginPopup_page.png)
+![loginpop_page VIEW](https://github.com/yjkwon07/TS_PJ/blob/master/image/LoginPopup_page.png)
 
 1. 튜터 권한 접근 페이지 접근 시 **[`TutorAuthCheckInterceptor`](https://github.com/yjkwon07/TS_PJ/blob/master/ts/src/main/java/com/duojj/interceptor/TutorAuthCheckInterceptor.java)** 로 확인하여 로그인 안되어있다면 로그인 페이지 이동 
 
-![login_page VIEW](https://github.com/yjkwon07/TS_PJ/blob/yj/master/image/Login_page.png)
+![login_page VIEW](https://github.com/yjkwon07/TS_PJ/blob/master/image/Login_page.png)
 
 ### 자동로그인
 **[`UserController`](https://github.com/yjkwon07/TS_PJ/blob/master/ts/src/main/java/com/duojj/controller/UserController.java)**
@@ -202,10 +202,10 @@ C:/ts_pj/file_repo -> folder create
 - **`user_sessionlimit`** 값을 갱신후 **`LoginFormInterceptor`** 에서 **`Cookie`** 값으로 아이디 정보를 저장한다. Cookie 유지 시간은  **`user_sessionlimit`** 과 동일하다. 
 - 모든 페이지는 Cookie값을 가져와서 LOGIN 유무를 판단하여 로그인을 유지할 수 있다.
 
-**[Page 위로](https://github.com/yjkwon07/TS_PJ/tree/yj/master#page)**
+**[Page 위로](https://github.com/yjkwon07/TS_PJ/tree/master#page)**
 
 ## 4. LectureInfo Page (강의상세 조회)
-![Lectureinfo_page VIEW](https://github.com/yjkwon07/TS_PJ/blob/yj/master/image/Lectureinfo_page.png)
+![Lectureinfo_page VIEW](https://github.com/yjkwon07/TS_PJ/blob/master/image/Lectureinfo_page.png)
 
 ### 강의이미지 
   - **`(slick.js 적용)`** 강의이미지 파일을 메인, 서브 이미지 순으로 볼 수있다.
@@ -222,10 +222,10 @@ C:/ts_pj/file_repo -> folder create
 ### 튜터의 다른 강의들
   - **`(slick.js 적용)`** 해당 튜터가 개설한 다른 강의들을 볼 수 있다.
 
-**[Page 위로](https://github.com/yjkwon07/TS_PJ/tree/yj/master#page)**
+**[Page 위로](https://github.com/yjkwon07/TS_PJ/tree/master#page)**
 
 ## 5. My Page (유저 프로필)
-![userprofile_page VIEW](https://github.com/yjkwon07/TS_PJ/blob/yj/master/image/userprofile_page.png)
+![userprofile_page VIEW](https://github.com/yjkwon07/TS_PJ/blob/master/image/userprofile_page.png)
 
 ### 유저 프로필
   - 유저의 아이디, 이미지, 상태메시지를 볼 수 있다.
@@ -235,14 +235,14 @@ C:/ts_pj/file_repo -> folder create
 ### 강의개설 목록 (튜터 VIEW)
   - **`(slick.js 적용)`**  해당 유저가 개설한 다른 강의들을 볼 수 있다.
 
-**[Page 위로](https://github.com/yjkwon07/TS_PJ/tree/yj/master#page)**
+**[Page 위로](https://github.com/yjkwon07/TS_PJ/tree/master#page)**
 
 ## 6. Join Us Page (회원 가입)
 **`아이디 중복확인`** 버튼으로 유저 회원 중복 방지 
 
-![register_page VIEW](https://github.com/yjkwon07/TS_PJ/blob/yj/master/image/register_page.png)
+![register_page VIEW](https://github.com/yjkwon07/TS_PJ/blob/master/image/register_page.png)
 
-**[Page 위로](https://github.com/yjkwon07/TS_PJ/tree/yj/master#page)**
+**[Page 위로](https://github.com/yjkwon07/TS_PJ/tree/master#page)**
  
 # 기획 📆
 **Google Document**을 활용하여 기획 구성
@@ -252,14 +252,14 @@ C:/ts_pj/file_repo -> folder create
 
 [프로젝트 기획](https://docs.google.com/document/d/15NszXOKZhiLjBO2Q62rTcVrHN8yIdE9OAlUQAfEcGiE/edit?usp=sharing)
 
-![flow](https://github.com/yjkwon07/TS_PJ/blob/yj/master/image/flow.png)
+![flow](https://github.com/yjkwon07/TS_PJ/blob/master/image/flow.png)
 
 # Mindmup 🤔
 **Google Mindmup**을 활용하여 아이디어 확장
 
 [mindmup](https://drive.mindmup.com/map/1EwfCe1HodFb2d6O-Y9zePkc0dbcALPMT)
 
-![mindmup](https://github.com/yjkwon07/TS_PJ/blob/yj/master/image/mindmup.png)
+![mindmup](https://github.com/yjkwon07/TS_PJ/blob/master/image/mindmup.png)
 
 # DataBase
 - work **(MySQL workbench 6.3 CE)**
