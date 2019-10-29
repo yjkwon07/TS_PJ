@@ -26,24 +26,74 @@
    - 현 위치 주변 여가생활 정보를 검색 서비스 제공 
 
 # 설치방법 
-1. Server
-2. DB
+  - Browser: chrom 권장
+```
+git clone https://github.com/yjkwon07/TS_PJ.git
+```
+1. Server setting
+   - Tomcat 8.5 server setting 
+   - Context 수정 
+     - 파일 업로드를 위함
+    ```XML
+    <Context allowCasualMultipartParsing="true" path="/">
+      <!-- Default set of monitored resources. If one of these changes, the    -->
+      <!-- web application will be reloaded.                                   -->
+      <WatchedResource>WEB-INF/web.xml</WatchedResource>
+      <WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>
+
+      <!-- Uncomment this to disable session persistence across Tomcat restarts -->
+      <!--
+      <Manager pathname="" />
+        -->
+      <Resources cachingAllowed="true" cacheMaxSize="100000" />
+      <!-- Uncomment this to disable session persistence across Tomcat restarts -->
+      <!-- <Manager pathname="" /> -->
+    </Context>
+    ```
+
+2. DB setting
+    - 쿼리문 실행
+      - [DB Query](./DB/dgs.sql) 
 3. folder
-4. Spring
+```
+C:/ts_pj/file_repo -> folder create
+```
+
+4. Spring 
+- jdbc.properties 
+
+  **jdbc.properties (PATH: ts/WEB-INF/config/jdbc/jdbc.properties)**
+  ```porperties
+  jdbc.driverClassName=com.mysql.cj.jdbc.Driver
+  jdbc.url= // insert your MYSQL:URL & PORT& DB 
+            ex) jdbc:mysql://localhost:3306/TS_PJ?useSSL=false&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
+  jdbc.username= // insert your MYSQL ID ex) root
+  jdbc.password= // insert your MYSQL Password ex) 1234
+  ```
+
 5. Node 
+- .env setting
 
-# 개발환경
-- Front
-  - HTML/CSS (bootstrap4 & 외부 커스텀)
-  - Javascript (ES6) chrom 권장
+  **.env (PATH: ts_maps/.env)**
+  ```porperties
+  PORT=8015
+  COOKIE_SECRET=TS_PJ_MAPS
+  MYSQL_HOST= // insert your MYSQL Host ex) 127.0.0.1
+  MYSQL_PORT= // insert your MYSQL PORT ex) 3306
+  MYSQL_ID= // insert your MYSQL ID ex) root
+  MYSQL_PASSWORD= // insert your MYSQL Password ex) 1234
+  MYSQL_DATABASE=ts_pj
+  PLACES_API_KEY=AIzaSyDsLQ-siN80uRGoJqri7Ib9qhYETZm2en8
+  ```
 
-- Back
-  - Java 1.8
-  - Spring 4.3.7
-  - Node 10.16.0
-  - MyBatis 3.4.6
-- DB
-  - MySQL 6
+- START
+```
+ cd ts_maps 
+ npm init
+ npm i 
+ npm start
+```
+
 
 # API & Module 
 - [Google Maps API](https://developers.google.com/maps/documentation/javascript/tutorial)
