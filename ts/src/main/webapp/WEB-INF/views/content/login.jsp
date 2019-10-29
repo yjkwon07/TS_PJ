@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <div class="container">
 	<div class="sign-in-form style-1">
-		<form action="/user/loginPost" method="post">
+		<form action="/user/login" method="post">
 			<div class="form-gorup has-feedback">
 				<input type="text" name="user_id" class="form-control" placeholder="USER ID">
 				<span class="glyphicon glyphicon-envelope form-control-feedback"></span>

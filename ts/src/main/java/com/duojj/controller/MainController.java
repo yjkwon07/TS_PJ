@@ -28,23 +28,8 @@ public class MainController {
 	private static final String LOGIN = "LOGIN";
 	private static final String VIEW_MAIN ="/main";
 
-	@GetMapping("/")
+	@GetMapping(value={"/", "/main"})
 	public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView(VIEW_MAIN);
-    HttpSession session = request.getSession();
-		UserVO userVO = (UserVO)session.getAttribute(LOGIN);
-		List<LectureVO> latestLectureList = lectureService.getLatestLectureList(0,5);
-		mav.addObject("latestLectureList", latestLectureList);
-		if(userVO != null) {
-			String user_id = userVO.getUser_id();
-			Map<String,Object> map = userService.getUserprofile(user_id);
-			mav.addObject("userprofileVO", map);
-			mav.addObject("userVO", userVO);
-		}
-		return mav;
-	}
-	@GetMapping("/main")
-	public ModelAndView mainPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView(VIEW_MAIN);
     HttpSession session = request.getSession();
 		UserVO userVO = (UserVO)session.getAttribute(LOGIN);
