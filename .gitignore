@@ -1,6 +1,5 @@
 ###Express###
 node_modules
-.env
 ###Eclipse###
 .metadata
 bin/
@@ -9,7 +8,6 @@ tmp/
 *.bak
 *.swp
 *~.nib
-jdbc.properties
 .settings/
 .loadpath
 .recommenders
