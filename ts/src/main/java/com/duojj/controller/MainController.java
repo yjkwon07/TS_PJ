@@ -28,7 +28,7 @@ public class MainController {
 	private static final String LOGIN = "LOGIN";
 	private static final String VIEW_MAIN ="/main";
 
-	@GetMapping("/")
+	@GetMapping(value={"/", "/main"})
 	public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView(VIEW_MAIN);
     HttpSession session = request.getSession();
